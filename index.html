@@ -1,488 +1,324 @@
-```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>XoCrush</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XO Crush</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Margarine&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            background-image: url("images/tlo.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #170c13;
+        }
 
-    html, body {
-      margin: 0;
-      min-height: 100%;
-    }
+        /* Logo w lewym górnym rogu */
+        .logo {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            width: 180px;
+            height: auto;
+            z-index: 10;
+        }
 
-    body {
-      font-family: Georgia, serif;
-      background: #111;
-    }
+        /* Główna zawartość strony */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 150px 20px 50px;
+        }
 
-    .hero {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+        /* Logo zamiast tytułu */
+        .hero-logo {
+            width: 300px;
+            max-width: 85%;
+            height: auto;
+            display: block;
+            margin: 0 auto 20px;
+        }
 
-      background:
-        linear-gradient(
-          rgba(0, 0, 0, 0.15),
-          rgba(0, 0, 0, 0.3)
-        ),
-        url("images/tlo.png") center / cover no-repeat;
+        .subtitle {
+            font-size: 22px;
+            color: #ffffff;
+            text-shadow: 0 2px 10px #000;
+            margin: 0;
+        }
 
-      color: white;
-    }
+        /* Panel quizu */
+        .quiz {
+            width: min(400px, 90%);
+            margin-top: 45px;
+            padding: 25px;
+            background: rgba(20, 10, 20, 0.85);
+            border: 1px solid rgba(255, 180, 210, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 80, 150, 0.2);
+            backdrop-filter: blur(8px);
+        }
 
-    /* LOGO */
-    .site-logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 180px;
-      height: auto;
-      z-index: 10;
-    }
+        .quiz h2 {
+            margin-top: 0;
+            color: #ffb5d2;
+            font-size: 24px;
+        }
 
-    /* TYTUŁ */
-    .hero-title {
-      position: absolute;
-      top: 12%;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      padding: 20px;
-      width: 100%;
-      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.75);
-    }
+        .question {
+            font-size: 19px;
+            margin: 20px 0;
+        }
 
-    .title {
-      font-family: "Margarine", sans-serif;
-      font-size: clamp(36px, 7vw, 60px);
-      font-weight: normal;
-      margin-bottom: 12px;
-    }
+        .hint {
+            font-size: 13px;
+            color: #ffc2dc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
 
-    .subtitle {
-      font-family: "Margarine", sans-serif;
-      font-size: clamp(19px, 3vw, 28px);
-      min-height: 1.5em;
-    }
+        input {
+            width: 100%;
+            padding: 13px;
+            border-radius: 10px;
+            border: 1px solid #ff9dc5;
+            background: #fff;
+            color: #222;
+            font-size: 16px;
+            margin-bottom: 15px;
+            outline: none;
+        }
 
-    .typing-cursor {
-      display: inline-block;
-      margin-left: 3px;
-      animation: blink 0.8s infinite;
-    }
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 20px;
+            background: #ff8fbd;
+            color: #3b1025;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-    @keyframes blink {
-      0%, 45% { opacity: 1; }
-      46%, 100% { opacity: 0; }
-    }
+        button:hover {
+            background: #ffc1da;
+            transform: scale(1.03);
+        }
 
-    /* QUIZ */
-    .quiz {
-      position: absolute;
-      top: 53%;
-      right: 6%;
-      transform: translateY(-50%);
-      width: min(340px, 90%);
-      padding: 24px;
+        .answer-button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
 
-      border: 2px solid rgba(255, 255, 255, 0.65);
-      border-radius: 18px;
+        .gender-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
 
-      background: rgba(20, 20, 20, 0.78);
-      backdrop-filter: blur(5px);
+        .gender-button {
+            font-size: 35px;
+            width: 100px;
+            height: 75px;
+        }
 
-      text-align: center;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-    }
+        #feedback {
+            margin-top: 15px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
 
-    .quiz h2 {
-      font-family: "Margarine", sans-serif;
-      font-size: 25px;
-      margin: 0 0 10px;
-    }
+        .score {
+            font-size: 30px;
+            color: #ffb5d2;
+            margin: 20px 0;
+        }
 
-    .hint {
-      font-family: "Margarine", sans-serif;
-      font-size: 13px;
-      color: #ffd6e4;
-      margin-bottom: 22px;
-      line-height: 1.5;
-    }
+        /* Telefon */
+        @media (max-width: 700px) {
+            .logo {
+                width: 130px;
+                top: 15px;
+                left: 15px;
+            }
 
-    .question {
-      font-family: "Margarine", sans-serif;
-      font-size: 21px;
-      min-height: 55px;
-      margin-bottom: 18px;
-    }
+            .hero {
+                padding-top: 130px;
+                justify-content: flex-start;
+            }
 
-    /* WPISYWANIE ODPOWIEDZI */
-    #answer-input {
-      width: 100%;
-      padding: 13px;
-      margin-bottom: 12px;
+            .hero-logo {
+                width: 250px;
+            }
 
-      border-radius: 12px;
-      border: 1px solid white;
+            .subtitle {
+                font-size: 18px;
+            }
 
-      background: rgba(255, 255, 255, 0.12);
-      color: white;
-
-      font-family: "Margarine", sans-serif;
-      font-size: 18px;
-      text-align: center;
-      outline: none;
-    }
-
-    #answer-input::placeholder {
-      color: #bbb;
-    }
-
-    #answer-input:focus {
-      border-color: #ffb7d0;
-      box-shadow: 0 0 10px rgba(255, 183, 208, 0.3);
-    }
-
-    /* PRZYCISKI */
-    .check-button,
-    .restart {
-      width: 100%;
-      padding: 12px;
-
-      border-radius: 12px;
-      border: 1px solid white;
-
-      background: white;
-      color: #222;
-
-      font-family: "Margarine", sans-serif;
-      font-size: 18px;
-      cursor: pointer;
-
-      transition: 0.2s;
-    }
-
-    .check-button:hover,
-    .restart:hover {
-      background: #ffd6e4;
-      transform: scale(1.03);
-    }
-
-    .progress {
-      margin-top: 18px;
-      font-size: 14px;
-      opacity: 0.8;
-    }
-
-    /* WYNIK */
-    .result {
-      font-family: "Margarine", sans-serif;
-      font-size: 22px;
-      line-height: 1.5;
-    }
-
-    .restart {
-      margin-top: 18px;
-    }
-
-    /* PYTANIE O PŁEĆ */
-    .gender-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
-
-    .gender-button {
-      width: 50%;
-      padding: 12px;
-      border-radius: 12px;
-      border: 1px solid white;
-      background: rgba(255, 255, 255, 0.12);
-      color: white;
-      font-size: 30px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .gender-button:hover {
-      background: white;
-      color: #222;
-      transform: scale(1.05);
-    }
-
-    /* TELEFONY */
-    @media (max-width: 700px) {
-      .site-logo {
-        width: 130px;
-        top: 16px;
-        left: 16px;
-      }
-
-      .hero {
-        min-height: 100svh;
-        padding: 150px 16px 30px;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 25px;
-        overflow: auto;
-      }
-
-      .hero-title {
-        position: static;
-        transform: none;
-        padding: 0;
-      }
-
-      .quiz {
-        position: static;
-        transform: none;
-        width: min(100%, 350px);
-        margin: 0 auto;
-      }
-    }
-  </style>
+            .quiz {
+                margin-top: 35px;
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <main class="hero">
+    <!-- Logo w rogu strony -->
+    <img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
 
-    <!-- LOGO -->
-    <img
-      src="images/logoo.png"
-      class="site-logo"
-      alt="XO Crush"
-    >
+    <main class="hero">
 
-    <!-- TYTUŁ -->
-    <div class="hero-title">
-      <div class="title">XoCrush</div>
+        <!-- Logo zamiast napisu XoCrush -->
+        <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
 
-      <div class="subtitle">
-        <span id="typing-text"></span>
-        <span class="typing-cursor">|</span>
-      </div>
-    </div>
+        <p class="subtitle">Jeszcze trochę...</p>
 
-    <!-- QUIZ -->
-    <section class="quiz">
-      <h2>GUESS MY CRUSH</h2>
+        <section class="quiz" id="quiz">
 
-      <div class="hint">
-        JAK SIĘ DOWIESZ,<br>
-        TO NIKOMU NIE MÓW 🤫
-      </div>
+            <h2>💌 Mały quiz</h2>
 
-      <div id="quiz-content"></div>
-    </section>
+            <p class="hint">
+                JAK SIĘ DOWIESZ, TO NIKOMU NIE MÓW 🤫
+            </p>
 
-  </main>
+            <div id="quizContent"></div>
 
-  <script>
-    // ANIMOWANY NAPIS
-    const typingText = document.getElementById("typing-text");
-    const textToType = "Jeszcze trochę...";
-    let currentIndex = 0;
+            <p id="feedback"></p>
 
-    function typeText() {
-      if (currentIndex < textToType.length) {
-        typingText.textContent += textToType[currentIndex];
-        currentIndex++;
-        setTimeout(typeText, 90);
-      }
-    }
+        </section>
 
-    setTimeout(typeText, 500);
+    </main>
 
+    <script>
+        const questions = [
+            {
+                question: "Z której jest klasy?",
+                type: "text",
+                answers: ["7a", "8b"]
+            },
+            {
+                question: "Jaki ma kolor włosów?",
+                type: "text",
+                answers: ["brązowe"]
+            },
+            {
+                question: "Jak ma na imię?",
+                type: "text",
+                answers: ["heniek", "henryk"]
+            },
+            {
+                question: "Jakiej jest płci?",
+                type: "gender",
+                answer: "♂️"
+            }
+        ];
 
-    // PYTANIA QUIZU
-    const questions = [
-      {
-        question: "Z której jest klasy?",
-        accepted: ["7a", "8b"],
-        type: "text"
-      },
-      {
-        question: "Jaki ma kolor włosów?",
-        accepted: ["brązowe"],
-        type: "text"
-      },
-      {
-        question: "Jak ma na imię?",
-        accepted: ["heniek", "henryk"],
-        type: "text"
-      },
-      {
-        question: "Jakiej jest płci?",
-        accepted: ["♂️"],
-        type: "gender"
-      }
-    ];
+        let currentQuestion = 0;
+        let score = 0;
 
-    let currentQuestion = 0;
-    let score = 0;
+        const quizContent = document.getElementById("quizContent");
+        const feedback = document.getElementById("feedback");
 
-    const quizContent = document.getElementById("quiz-content");
+        function showQuestion() {
+            feedback.textContent = "";
 
-    // NORMALIZOWANIE WPISYWANYCH ODPOWIEDZI
-    function normalizeAnswer(answer) {
-      return answer
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, " ");
-    }
+            if (currentQuestion >= questions.length) {
+                showResult();
+                return;
+            }
 
-    // WYŚWIETLANIE PYTANIA
-    function showQuestion() {
-      const q = questions[currentQuestion];
+            const q = questions[currentQuestion];
 
-      let answerHTML = "";
+            let html = `
+                <p class="question">${q.question}</p>
+            `;
 
-      if (q.type === "gender") {
-        answerHTML = `
-          <div class="gender-buttons">
-            <button
-              type="button"
-              class="gender-button"
-              onclick="checkGender('♂️')"
-              aria-label="Mężczyzna"
-            >
-              ♂️
-            </button>
+            if (q.type === "text") {
+                html += `
+                    <input
+                        type="text"
+                        id="answerInput"
+                        placeholder="Wpisz odpowiedź..."
+                        autocomplete="off"
+                    >
 
-            <button
-              type="button"
-              class="gender-button"
-              onclick="checkGender('♀️')"
-              aria-label="Kobieta"
-            >
-              ♀️
-            </button>
-          </div>
-        `;
-      } else {
-        answerHTML = `
-          <form id="answer-form">
-            <input
-              type="text"
-              id="answer-input"
-              placeholder="Wpisz odpowiedź..."
-              autocomplete="off"
-              required
-            >
+                    <button type="button" onclick="checkAnswer()">
+                        Sprawdź 💗
+                    </button>
+                `;
+            }
 
-            <button type="submit" class="check-button">
-              SPRAWDŹ
-            </button>
-          </form>
-        `;
-      }
+            if (q.type === "gender") {
+                html += `
+                    <div class="gender-buttons">
+                        <button
+                            type="button"
+                            class="gender-button"
+                            onclick="checkGender('♂️')"
+                        >♂️</button>
 
-      quizContent.innerHTML = `
-        <div class="question">${q.question}</div>
+                        <button
+                            type="button"
+                            class="gender-button"
+                            onclick="checkGender('♀️')"
+                        >♀️</button>
+                    </div>
+                `;
+            }
 
-        ${answerHTML}
+            quizContent.innerHTML = html;
+        }
 
-        <div class="progress">
-          Pytanie ${currentQuestion + 1} z ${questions.length}
-        </div>
-      `;
+        function checkAnswer() {
+            const input = document.getElementById("answerInput");
 
-      if (q.type === "text") {
-        const form = document.getElementById("answer-form");
-        const input = document.getElementById("answer-input");
+            if (!input) return;
 
-        form.addEventListener("submit", function(event) {
-          event.preventDefault();
+            const answer = input.value
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, " ");
 
-          const answer = normalizeAnswer(input.value);
+            if (answer === "") {
+                feedback.textContent = "Wpisz odpowiedź najpierw 🥺";
+                return;
+            }
 
-          if (q.accepted.includes(answer)) {
-            score++;
-          }
+            const correctAnswers = questions[currentQuestion].answers;
 
-          nextQuestion();
-        });
-      }
-    }
+            if (correctAnswers.includes(answer)) {
+                score++;
+                feedback.textContent = "Dobrze! 💗";
+                currentQuestion++;
 
-    // SPRAWDZANIE PŁCI
-    function checkGender(answer) {
-      if (answer === "♂️") {
-        score++;
-      }
+                setTimeout(showQuestion, 700);
+            } else {
+                feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
+            }
+        }
 
-      nextQuestion();
-    }
+        function checkGender(answer) {
+            if (answer === questions[currentQuestion].answer) {
+                score++;
+                feedback.textContent = "Dobrze! 💗";
+                currentQuestion++;
 
-    // NASTĘPNE PYTANIE
-    function nextQuestion() {
-      currentQuestion++;
-
-      if (currentQuestion < questions.length) {
-        showQuestion();
-      } else {
-        showResult();
-      }
-    }
-
-    // WYNIK
-    function showResult() {
-      quizContent.innerHTML = `
-        <div class="result">
-          Twój wynik:<br>
-          ${score} / ${questions.length}<br><br>
-
-          ${
-            score === 4
-              ? "OMG, odkryłeś/aś mój sekret! 🖤"
-              : score === 3
-              ? "Prawie idealnie! 👀"
-              : score === 2
-              ? "Całkiem nieźle! 😭"
-              : score === 1
-              ? "Coś tam wiesz..."
-              : "Musisz jeszcze zgadywać!"
-          }
-        </div>
-
-        <button
-          type="button"
-          class="restart"
-          onclick="restartQuiz()"
-        >
-          Spróbuj jeszcze raz
-        </button>
-      `;
-    }
-
-    // RESET QUIZU
-    function restartQuiz() {
-      currentQuestion = 0;
-      score = 0;
-      showQuestion();
-    }
-
-    // START
-    showQuestion();
-  </script>
-
-</body>
-</html>
-```
+                setTimeout(showQuestion, 700);
+            }
