@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XO Crush</title>
 <link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="XO Crush 💌 Poznaj mój mały sekret… Rozwiąż quiz i sprawdź, czy wiesz, o kogo chodzi! 🤫🖤">
+<meta name="description" content="XO Crush 💌 Nie wiemy, co autor miał na myśli 🖤">
 
 <style>
 @font-face {
@@ -29,7 +29,6 @@ body {
     background: #171017 url("images/tlo.png") center center / cover fixed no-repeat;
 }
 
-/* Logo w lewym górnym rogu */
 .logo {
     position: absolute;
     top: 18px;
@@ -39,7 +38,6 @@ body {
     z-index: 10;
 }
 
-/* Główna zawartość */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -50,7 +48,6 @@ body {
     padding: 70px 20px 50px;
 }
 
-/* Logo na środku */
 .hero-logo {
     width: 480px;
     max-width: 90%;
@@ -59,97 +56,44 @@ body {
     margin: 0 auto 20px;
 }
 
-/* Napis pod logo */
+/* Animowany napis pod logo */
 .subtitle {
-    font-family: "Margarine", "Cooper Black", Arial, sans-serif;
+    font-family: "Margarine", cursive;
     font-size: 46px;
     font-weight: normal;
     color: white;
     text-shadow: 0 3px 12px #000, 0 0 20px #000;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.4;
     max-width: 950px;
+
+    opacity: 0;
+    transform: translateY(22px);
+    animation:
+        subtitleAppear 1.4s ease-out 0.3s forwards,
+        subtitleFloat 3.5s ease-in-out 1.8s infinite;
 }
 
-/* Panel quizu */
-.quiz {
-    width: min(400px, 92%);
-    margin-top: 40px;
-    padding: 25px;
-    background: rgba(25, 12, 25, 0.92);
-    border: 1px solid rgba(255, 180, 210, 0.65);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 80, 150, 0.25);
+@keyframes subtitleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.quiz h2 {
-    margin: 0 0 20px;
-    color: #ffb5d2;
-    font-size: 25px;
-}
+@keyframes subtitleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-.hint {
-    font-size: 14px;
-    color: #ffc2dc;
-    margin-bottom: 22px;
-    line-height: 1.5;
-}
-
-.question {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px 0;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    border: 1px solid #ff9dc5;
-    background: white;
-    color: #222;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 13px 20px;
-    background: #ff8fbd;
-    color: #3b1025;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #ffc1da;
-}
-
-.gender-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.gender-button {
-    font-size: 35px;
-    width: 100px;
-    height: 75px;
-}
-
-#feedback {
-    margin-top: 15px;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.score {
-    font-size: 34px;
-    color: #ffb5d2;
-    margin: 20px 0;
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 /* Telefon */
@@ -173,9 +117,17 @@ button:hover {
         font-size: 32px;
     }
 
-    .quiz {
-        margin-top: 30px;
-        padding: 20px;
+    body {
+        background-attachment: scroll;
+    }
+}
+
+/* Ograniczenie animacji */
+@media (prefers-reduced-motion: reduce) {
+    .subtitle {
+        opacity: 1;
+        transform: none;
+        animation: none;
     }
 }
 </style>
@@ -189,191 +141,11 @@ button:hover {
 
     <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
 
-    <p class="subtitle">Tutaj poznasz mój sekret🖤</p>
+    <p class="subtitle">
+        Did you know? Having a crush can make your brain release dopamine, the chemical linked to pleasure and motivation 🖤
+    </p>
 
-    
 </main>
-
-<script>
-const questions = [
-    {
-        question: "Z której jest klasy?",
-        type: "text",
-        answers: ["7a", "8b"]
-    },
-    {
-        question: "Jaki ma kolor włosów?",
-        type: "text",
-        answers: ["brązowy", "brąz", "brązowe"]
-    },
-    {
-        question: "Jakiej jest płci?",
-        type: "gender",
-        answer: "♂️"
-    },
-    {
-        question: "Jak ma na imię?",
-        type: "text",
-        answers: ["heniek", "henryk"]
-    }
-];
-
-let currentQuestion = 0;
-let score = 0;
-let locked = false;
-
-const quizContent = document.getElementById("quizContent");
-const feedback = document.getElementById("feedback");
-
-function showQuestion() {
-    locked = false;
-    feedback.textContent = "";
-
-    if (currentQuestion >= questions.length) {
-        showResult();
-        return;
-    }
-
-    const q = questions[currentQuestion];
-
-    quizContent.innerHTML = "";
-
-    const questionText = document.createElement("p");
-    questionText.className = "question";
-    questionText.textContent = q.question;
-    quizContent.appendChild(questionText);
-
-    if (q.type === "text") {
-        const input = document.createElement("input");
-        input.type = "text";
-        input.id = "answerInput";
-        input.placeholder = "Wpisz odpowiedź...";
-        input.autocomplete = "off";
-
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = "Sprawdź 💗";
-        button.addEventListener("click", checkAnswer);
-
-        input.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                checkAnswer();
-            }
-        });
-
-        quizContent.appendChild(input);
-        quizContent.appendChild(button);
-        input.focus();
-    }
-
-    if (q.type === "gender") {
-        const buttons = document.createElement("div");
-        buttons.className = "gender-buttons";
-
-        ["♂️", "♀️"].forEach(function(symbol) {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "gender-button";
-            button.textContent = symbol;
-
-            button.addEventListener("click", function() {
-                checkGender(symbol);
-            });
-
-            buttons.appendChild(button);
-        });
-
-        quizContent.appendChild(buttons);
-    }
-}
-
-function checkAnswer() {
-    if (locked) return;
-
-    const input = document.getElementById("answerInput");
-    if (!input) return;
-
-    const answer = input.value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, " ");
-
-    if (answer === "") {
-        feedback.textContent = "Wpisz odpowiedź najpierw 🥺";
-        return;
-    }
-
-    const correctAnswers = questions[currentQuestion].answers;
-
-    if (correctAnswers.includes(answer)) {
-        nextQuestion();
-    } else {
-        feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
-    }
-}
-
-function checkGender(answer) {
-    if (locked) return;
-
-    if (answer === questions[currentQuestion].answer) {
-        nextQuestion();
-    } else {
-        feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
-    }
-}
-
-function nextQuestion() {
-    locked = true;
-    score++;
-    feedback.textContent = "Dobrze! 💗";
-
-    setTimeout(function() {
-        currentQuestion++;
-        showQuestion();
-    }, 700);
-}
-
-function showResult() {
-    feedback.textContent = "";
-    quizContent.innerHTML = "";
-
-    const heading = document.createElement("h2");
-    heading.textContent = "Quiz ukończony! 💌";
-
-    const result = document.createElement("p");
-    result.className = "score";
-    result.textContent = score + " / " + questions.length;
-
-    const message = document.createElement("p");
-
-    if (score === 4) {
-        message.textContent = "OHOHO, poznałeś/aś mój sekret... 😭🖤";
-    } else if (score >= 2) {
-        message.textContent = "Całkiem nieźle! Ale jeszcze trochę tajemnic zostało...";
-    } else {
-        message.textContent = "Nooo, chyba trzeba jeszcze trochę się dowiedzieć 👀";
-    }
-
-    const restart = document.createElement("button");
-    restart.type = "button";
-    restart.textContent = "Spróbuj jeszcze raz 💕";
-    restart.addEventListener("click", restartQuiz);
-
-    quizContent.appendChild(heading);
-    quizContent.appendChild(result);
-    quizContent.appendChild(message);
-    quizContent.appendChild(restart);
-}
-
-function restartQuiz() {
-    currentQuestion = 0;
-    score = 0;
-    locked = false;
-    showQuestion();
-}
-
-showQuestion();
-</script>
 
 </body>
 </html>
