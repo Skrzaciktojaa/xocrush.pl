@@ -26,35 +26,35 @@
         /* Logo w lewym górnym rogu */
         .logo {
             position: absolute;
-            top: 25px;
-            left: 30px;
+            top: 20px;
+            left: 25px;
             width: 180px;
             height: auto;
             z-index: 10;
         }
 
-        /* Główna zawartość strony */
+        /* Główna zawartość */
         .hero {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             text-align: center;
-            padding: 150px 20px 50px;
+            padding: 55px 20px 50px;
         }
 
-        /* Logo zamiast tytułu */
+        /* Duże logo na środku */
         .hero-logo {
-            width: 300px;
-            max-width: 85%;
+            width: 500px;
+            max-width: 95%;
             height: auto;
             display: block;
-            margin: 0 auto 20px;
+            margin: 0 auto 10px;
         }
 
         .subtitle {
-            font-size: 22px;
+            font-size: 24px;
             color: #ffffff;
             text-shadow: 0 2px 10px #000;
             margin: 0;
@@ -63,7 +63,7 @@
         /* Panel quizu */
         .quiz {
             width: min(400px, 90%);
-            margin-top: 45px;
+            margin-top: 35px;
             padding: 25px;
             background: rgba(20, 10, 20, 0.85);
             border: 1px solid rgba(255, 180, 210, 0.5);
@@ -119,12 +119,6 @@
             transform: scale(1.03);
         }
 
-        .answer-button {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-        }
-
         .gender-buttons {
             display: flex;
             justify-content: center;
@@ -152,26 +146,26 @@
         /* Telefon */
         @media (max-width: 700px) {
             .logo {
-                width: 130px;
-                top: 15px;
-                left: 15px;
+                width: 120px;
+                top: 12px;
+                left: 12px;
             }
 
             .hero {
-                padding-top: 130px;
-                justify-content: flex-start;
+                padding-top: 90px;
             }
 
             .hero-logo {
-                width: 250px;
+                width: 350px;
+                max-width: 100%;
             }
 
             .subtitle {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .quiz {
-                margin-top: 35px;
+                margin-top: 30px;
                 padding: 20px;
             }
         }
@@ -180,12 +174,12 @@
 
 <body>
 
-    <!-- Logo w rogu strony -->
+    <!-- Logo w rogu -->
     <img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
 
     <main class="hero">
 
-        <!-- Logo zamiast napisu XoCrush -->
+        <!-- Duże logo zamiast tytułu -->
         <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
 
         <p class="subtitle">Jeszcze trochę...</p>
@@ -321,4 +315,42 @@
                 currentQuestion++;
 
                 setTimeout(showQuestion, 700);
+            } else {
+                feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
             }
+        }
+
+        function showResult() {
+            quizContent.innerHTML = `
+                <h2>Quiz ukończony! 💌</h2>
+
+                <p class="score">${score} / ${questions.length}</p>
+
+                <p>
+                    ${
+                        score === 4
+                        ? "OHOHO, ktoś tu dobrze zna HENIA 😭💗"
+                        : score >= 2
+                        ? "Całkiem nieźle! Ale jeszcze trochę tajemnic zostało..."
+                        : "Nooo, chyba trzeba jeszcze trochę się dowiedzieć 👀"
+                    }
+                </p>
+
+                <button type="button" onclick="restartQuiz()">
+                    Spróbuj jeszcze raz 💕
+                </button>
+            `;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+
+            showQuestion();
+        }
+
+        showQuestion();
+    </script>
+
+</body>
+</html>
