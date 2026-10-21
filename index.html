@@ -6,6 +6,15 @@
 <title>XO Crush</title>
 
 <style>
+/* Czcionka Margarine */
+@font-face {
+    font-family: "Margarine";
+    src: url("images/Margarine-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -18,7 +27,7 @@ body {
     background: #171017 url("images/tlo.png") center center / cover fixed no-repeat;
 }
 
-/* Logo w rogu */
+/* Logo w lewym górnym rogu */
 .logo {
     position: absolute;
     top: 18px;
@@ -36,17 +45,28 @@ body {
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 325px 20px 50px;
+    padding: 70px 20px 50px;
 }
 
-/* DUŻY napis */
+/* Logo na środku */
+.hero-logo {
+    width: 480px;
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+/* Duży napis Margarine */
 .subtitle {
-    font-size: 42px;
-    font-weight: bold;
+    font-family: "Margarine", "Cooper Black", Arial, sans-serif;
+    font-size: 46px;
+    font-weight: normal;
     color: white;
     text-shadow: 0 3px 12px #000, 0 0 20px #000;
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.3;
+    max-width: 950px;
 }
 
 /* Quiz */
@@ -139,11 +159,16 @@ button:hover {
     }
 
     .hero {
-        padding-top: 240px;
+        padding-top: 100px;
+    }
+
+    .hero-logo {
+        width: 340px;
+        max-width: 95%;
     }
 
     .subtitle {
-        font-size: 30px;
+        font-size: 32px;
     }
 
     .quiz {
@@ -156,11 +181,16 @@ button:hover {
 
 <body>
 
+<!-- Logo w rogu -->
 <img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
 
 <main class="hero">
 
-    <p class="subtitle">Jeszcze trochę...</p>
+    <!-- Logo na środku -->
+    <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
+
+    <!-- Nowy napis -->
+    <p class="subtitle">Tutaj poznasz mój sekret🖤</p>
 
     <section class="quiz">
 
@@ -258,9 +288,11 @@ function showQuestion() {
             button.type = "button";
             button.className = "gender-button";
             button.textContent = symbol;
+
             button.addEventListener("click", function() {
                 checkGender(symbol);
             });
+
             buttons.appendChild(button);
         });
 
