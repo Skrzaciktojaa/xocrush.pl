@@ -45,6 +45,16 @@
       color: white;
     }
 
+    /* LOGO W LEWYM GÓRNYM ROGU */
+    .site-logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 180px;
+      height: auto;
+      z-index: 10;
+    }
+
     .hero-title {
       text-align: center;
       padding: 20px;
@@ -79,12 +89,30 @@
         opacity: 0;
       }
     }
+
+    /* MNIEJSZE LOGO NA TELEFONIE */
+    @media (max-width: 600px) {
+      .site-logo {
+        width: 130px;
+        top: 16px;
+        left: 16px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
   <main class="hero">
+
+    <!-- Logo -->
+    <img
+      src="images/logoo.png"
+      class="site-logo"
+      alt="XO Crush"
+    >
+
+    <!-- Napis na środku -->
     <div class="hero-title">
 
       <div class="title">
