@@ -6,7 +6,6 @@
 <title>XO Crush</title>
 
 <style>
-/* Czcionka Margarine */
 @font-face {
     font-family: "Margarine";
     src: url("images/Margarine-Regular.ttf") format("truetype");
@@ -57,7 +56,7 @@ body {
     margin: 0 auto 20px;
 }
 
-/* Duży napis Margarine */
+/* Napis pod logo */
 .subtitle {
     font-family: "Margarine", "Cooper Black", Arial, sans-serif;
     font-size: 46px;
@@ -69,7 +68,7 @@ body {
     max-width: 950px;
 }
 
-/* Quiz */
+/* Panel quizu */
 .quiz {
     width: min(400px, 92%);
     margin-top: 40px;
@@ -181,15 +180,12 @@ button:hover {
 
 <body>
 
-<!-- Logo w rogu -->
 <img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
 
 <main class="hero">
 
-    <!-- Logo na środku -->
     <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
 
-    <!-- Nowy napis -->
     <p class="subtitle">Tutaj poznasz mój sekret🖤</p>
 
     <section class="quiz">
@@ -217,7 +213,7 @@ const questions = [
     {
         question: "Jaki ma kolor włosów?",
         type: "text",
-        answers: ["brązowe"]
+        answers: ["brązowy", "brąz", "brązowe"]
     },
     {
         question: "Jak ma na imię?",
