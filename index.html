@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -54,10 +55,10 @@
       z-index: 10;
     }
 
-    /* TYTUŁ PRZESUNIĘTY WYŻEJ */
+    /* TYTUŁ */
     .hero-title {
       position: absolute;
-      top: 23%;
+      top: 12%;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
@@ -93,15 +94,18 @@
     /* QUIZ */
     .quiz {
       position: absolute;
-      top: 50%;
+      top: 53%;
       right: 6%;
       transform: translateY(-50%);
-      width: min(300px, 90%);
+      width: min(340px, 90%);
       padding: 24px;
+
       border: 2px solid rgba(255, 255, 255, 0.65);
       border-radius: 18px;
-      background: rgba(20, 20, 20, 0.75);
+
+      background: rgba(20, 20, 20, 0.78);
       backdrop-filter: blur(5px);
+
       text-align: center;
       box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
     }
@@ -109,39 +113,73 @@
     .quiz h2 {
       font-family: "Margarine", sans-serif;
       font-size: 25px;
-      margin: 0 0 20px;
+      margin: 0 0 10px;
+    }
+
+    .hint {
+      font-family: "Margarine", sans-serif;
+      font-size: 13px;
+      color: #ffd6e4;
+      margin-bottom: 22px;
+      line-height: 1.5;
     }
 
     .question {
       font-family: "Margarine", sans-serif;
       font-size: 21px;
-      min-height: 65px;
+      min-height: 55px;
       margin-bottom: 18px;
     }
 
-    .answers {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    /* WPISYWANIE ODPOWIEDZI */
+    #answer-input {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 12px;
 
-    .answers button,
-    .restart {
+      border-radius: 12px;
+      border: 1px solid white;
+
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+
       font-family: "Margarine", sans-serif;
       font-size: 18px;
-      color: white;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid white;
-      border-radius: 12px;
+      text-align: center;
+      outline: none;
+    }
+
+    #answer-input::placeholder {
+      color: #bbb;
+    }
+
+    #answer-input:focus {
+      border-color: #ffb7d0;
+      box-shadow: 0 0 10px rgba(255, 183, 208, 0.3);
+    }
+
+    /* PRZYCISKI */
+    .check-button,
+    .restart {
+      width: 100%;
       padding: 12px;
+
+      border-radius: 12px;
+      border: 1px solid white;
+
+      background: white;
+      color: #222;
+
+      font-family: "Margarine", sans-serif;
+      font-size: 18px;
       cursor: pointer;
+
       transition: 0.2s;
     }
 
-    .answers button:hover,
+    .check-button:hover,
     .restart:hover {
-      background: white;
-      color: #111;
+      background: #ffd6e4;
       transform: scale(1.03);
     }
 
@@ -151,6 +189,7 @@
       opacity: 0.8;
     }
 
+    /* WYNIK */
     .result {
       font-family: "Margarine", sans-serif;
       font-size: 22px;
@@ -158,9 +197,36 @@
     }
 
     .restart {
-      margin-top: 15px;
+      margin-top: 18px;
     }
 
+    /* PYTANIE O PŁEĆ */
+    .gender-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .gender-button {
+      width: 50%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid white;
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .gender-button:hover {
+      background: white;
+      color: #222;
+      transform: scale(1.05);
+    }
+
+    /* TELEFONY */
     @media (max-width: 700px) {
       .site-logo {
         width: 130px;
@@ -197,12 +263,14 @@
 
   <main class="hero">
 
+    <!-- LOGO -->
     <img
       src="images/logoo.png"
       class="site-logo"
       alt="XO Crush"
     >
 
+    <!-- TYTUŁ -->
     <div class="hero-title">
       <div class="title">XoCrush</div>
 
@@ -212,16 +280,16 @@
       </div>
     </div>
 
+    <!-- QUIZ -->
     <section class="quiz">
       <h2>GUESS MY CRUSH</h2>
 
-      <div id="quiz-content">
-        <div class="question" id="question"></div>
-
-        <div class="answers" id="answers"></div>
-
-        <div class="progress" id="progress"></div>
+      <div class="hint">
+        JAK SIĘ DOWIESZ,<br>
+        TO NIKOMU NIE MÓW 🤫
       </div>
+
+      <div id="quiz-content"></div>
     </section>
 
   </main>
@@ -247,55 +315,124 @@
     const questions = [
       {
         question: "Z której jest klasy?",
-        answers: ["7A", "7B", "8A"],
-        correct: 0
+        accepted: ["7a", "8b"],
+        type: "text"
       },
       {
         question: "Jaki ma kolor włosów?",
-        answers: ["Blond", "Brązowe", "Czarne"],
-        correct: 1
+        accepted: ["brązowe"],
+        type: "text"
       },
       {
         question: "Jak ma na imię?",
-        answers: ["Kuba", "Heniek / Henryk", "Michał"],
-        correct: 1
+        accepted: ["heniek", "henryk"],
+        type: "text"
+      },
+      {
+        question: "Jakiej jest płci?",
+        accepted: ["♂️"],
+        type: "gender"
       }
     ];
 
     let currentQuestion = 0;
     let score = 0;
 
-    const questionElement = document.getElementById("question");
-    const answersElement = document.getElementById("answers");
-    const progressElement = document.getElementById("progress");
     const quizContent = document.getElementById("quiz-content");
 
+    // NORMALIZOWANIE WPISYWANYCH ODPOWIEDZI
+    function normalizeAnswer(answer) {
+      return answer
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
+    }
+
+    // WYŚWIETLANIE PYTANIA
     function showQuestion() {
       const q = questions[currentQuestion];
 
-      questionElement.textContent = q.question;
-      answersElement.innerHTML = "";
+      let answerHTML = "";
 
-      q.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.textContent = answer;
+      if (q.type === "gender") {
+        answerHTML = `
+          <div class="gender-buttons">
+            <button
+              type="button"
+              class="gender-button"
+              onclick="checkGender('♂️')"
+              aria-label="Mężczyzna"
+            >
+              ♂️
+            </button>
 
-        button.addEventListener("click", () => {
-          checkAnswer(index);
+            <button
+              type="button"
+              class="gender-button"
+              onclick="checkGender('♀️')"
+              aria-label="Kobieta"
+            >
+              ♀️
+            </button>
+          </div>
+        `;
+      } else {
+        answerHTML = `
+          <form id="answer-form">
+            <input
+              type="text"
+              id="answer-input"
+              placeholder="Wpisz odpowiedź..."
+              autocomplete="off"
+              required
+            >
+
+            <button type="submit" class="check-button">
+              SPRAWDŹ
+            </button>
+          </form>
+        `;
+      }
+
+      quizContent.innerHTML = `
+        <div class="question">${q.question}</div>
+
+        ${answerHTML}
+
+        <div class="progress">
+          Pytanie ${currentQuestion + 1} z ${questions.length}
+        </div>
+      `;
+
+      if (q.type === "text") {
+        const form = document.getElementById("answer-form");
+        const input = document.getElementById("answer-input");
+
+        form.addEventListener("submit", function(event) {
+          event.preventDefault();
+
+          const answer = normalizeAnswer(input.value);
+
+          if (q.accepted.includes(answer)) {
+            score++;
+          }
+
+          nextQuestion();
         });
-
-        answersElement.appendChild(button);
-      });
-
-      progressElement.textContent =
-        `Pytanie ${currentQuestion + 1} z ${questions.length}`;
+      }
     }
 
-    function checkAnswer(selectedIndex) {
-      if (selectedIndex === questions[currentQuestion].correct) {
+    // SPRAWDZANIE PŁCI
+    function checkGender(answer) {
+      if (answer === "♂️") {
         score++;
       }
 
+      nextQuestion();
+    }
+
+    // NASTĘPNE PYTANIE
+    function nextQuestion() {
       currentQuestion++;
 
       if (currentQuestion < questions.length) {
@@ -305,36 +442,47 @@
       }
     }
 
+    // WYNIK
     function showResult() {
       quizContent.innerHTML = `
         <div class="result">
           Twój wynik:<br>
           ${score} / ${questions.length}<br><br>
+
           ${
-            score === 3
-              ? "OMG, znasz go na wylot! 👀"
+            score === 4
+              ? "OMG, odkryłeś/aś mój sekret! 🖤"
+              : score === 3
+              ? "Prawie idealnie! 👀"
               : score === 2
-              ? "Prawie idealnie! 🖤"
+              ? "Całkiem nieźle! 😭"
               : score === 1
-              ? "Coś tam wiesz... 😭"
+              ? "Coś tam wiesz..."
               : "Musisz jeszcze zgadywać!"
           }
         </div>
 
-        <button class="restart" onclick="restartQuiz()">
-          Zagraj ponownie
+        <button
+          type="button"
+          class="restart"
+          onclick="restartQuiz()"
+        >
+          Spróbuj jeszcze raz
         </button>
       `;
     }
 
+    // RESET QUIZU
     function restartQuiz() {
       currentQuestion = 0;
       score = 0;
       showQuestion();
     }
 
+    // START
     showQuestion();
   </script>
 
 </body>
 </html>
+```
