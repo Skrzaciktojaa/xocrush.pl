@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>O stronie - XO Crush</title>
+
+    <meta name="description" content="Dowiedz się więcej o XO Crush – stronie poświęconej crushom, uczuciom i emocjom.">
+
+    <link rel="icon" href="images/calus.png">
+
+    <style>
+        @font-face {
+            font-family: Margarine;
+            src: url("images/Margarine-Regular.ttf");
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: #171017 url("images/tlo.png")
+                center center / cover fixed no-repeat;
+
+            font-family: Margarine, sans-serif;
+            color: #222;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 35px 20px 45px;
+        }
+
+        .logo {
+            width: 220px;
+            max-width: 80%;
+            height: auto;
+
+            margin-bottom: 25px;
+        }
+
+        .panel {
+            width: 100%;
+            max-width: 700px;
+
+            background: rgba(220, 220, 220, 0.95);
+
+            padding: 35px;
+            border-radius: 20px;
+
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin: 0 0 25px;
+
+            text-align: center;
+            font-size: 32px;
+            font-weight: normal;
+
+            color: #241522;
+        }
+
+        .about-text {
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin: 0 0 20px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .back-button {
+            display: block;
+            width: fit-content;
+
+            margin: 30px auto 0;
+            padding: 12px 28px;
+
+            background: #241522;
+            color: white;
+
+            text-decoration: none;
+            text-align: center;
+
+            border-radius: 12px;
+            font-size: 16px;
+
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background: #493047;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 25px;
+
+            color: white;
+            text-align: center;
+            font-size: 13px;
+
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px 15px 35px;
+            }
+
+            .logo {
+                width: 180px;
+            }
+
+            .panel {
+                padding: 25px 20px;
+                border-radius: 16px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .about-text {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <img
+            src="images/logoo.png"
+            alt="XO Crush"
+            class="logo"
+        >
+
+        <section class="panel">
+
+            <h1>O stronie 🤍</h1>
+
+            <div class="about-text">
+
+                <p>
+                    XO Crush to strona stworzona z myślą o osobach,
+                    które mają swojego crusha, przeżywają różne emocje
+                    i czasem nie wiedzą, co zrobić ze swoimi uczuciami.
+                </p>
+
+                <p>
+                    Znajdziesz tutaj miejsce, w którym możesz pomyśleć
+                    o swoich uczuciach, odpowiedzieć na kilka pytań
+                    i po prostu pobawić się tematem crushów.
+                </p>
+
+                <p>
+                    Strona powstała z pasji do tworzenia stron
+                    internetowych oraz z pomysłu, aby stworzyć coś,
+                    co będzie jednocześnie ciekawe, przyjemne
+                    i trochę pomocne.
+                </p>
+
+                <p>
+                    XO Crush jest projektem niezależnym i nie jest
+                    powiązany z żadną oficjalną organizacją.
+                </p>
+
+                <p>
+                    Miło, że tu jesteś! 💗
+                </p>
+
+            </div>
+
+            <a href="index.html" class="back-button">
+                ← Wróć na stronę główną
+            </a>
+
+        </section>
+
+        <footer>
+            XO Crush © 2026
+        </footer>
+
+    </main>
+
+</body>
+</html>
