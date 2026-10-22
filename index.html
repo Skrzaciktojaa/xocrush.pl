@@ -7,7 +7,7 @@
 
 <title>XO Crush</title>
 <link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="XO Crush 💌 Nie wiemy, co autor miał na myśli 🖤">
+<meta name="description" content="XO Crush 💌 Pamiętaj! Twoje uczucia należą do CIEBIE. Nie pozwól nikomu manipulować ani nimi, ani Tobą 🖤">
 
 <style>
 @font-face {
@@ -112,12 +112,12 @@ body {
     align-items: stretch;
 }
 
-/* WSPÓLNY WYGLĄD PANELI */
+/* WSPÓLNY WYGLĄD OBU PANELI */
 
 .panel {
     padding: 35px;
-    background: rgba(35, 24, 36, 0.88);
-    border: 1px solid rgba(255, 220, 235, 0.28);
+    background: rgba(25, 25, 25, 0.92);
+    border: 1px solid rgba(180, 180, 180, 0.25);
     border-radius: 25px;
     backdrop-filter: blur(8px);
 }
@@ -133,7 +133,7 @@ body {
 
 .panel-description {
     text-align: center;
-    color: #e8d8e2;
+    color: #dddddd;
     font-size: 15px;
     line-height: 1.6;
     margin: 0 0 28px;
@@ -153,21 +153,23 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1px solid #b77b9d;
+    border: 1px solid #777777;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #e8b4d3;
+    color: #cccccc;
     font-size: 13px;
 }
 
 .progress-number.active {
-    background: #b77b9d;
+    background: #111111;
+    border-color: #aaaaaa;
     color: white;
 }
 
 .progress-number.done {
-    background: #69485f;
+    background: #444444;
+    color: white;
 }
 
 .quiz-question {
@@ -190,8 +192,8 @@ body {
     padding: 14px 18px;
     text-align: left;
     color: white;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 220, 235, 0.25);
+    background: #292929;
+    border: 1px solid #555555;
     border-radius: 15px;
     cursor: pointer;
     font-size: 15px;
@@ -199,12 +201,13 @@ body {
 }
 
 .quiz-answer:hover {
-    background: rgba(201, 121, 161, 0.25);
+    background: #3b3b3b;
+    border-color: #888888;
 }
 
 .quiz-answer.selected {
-    background: #b77b9d;
-    border-color: #e3b0cf;
+    background: #111111;
+    border-color: #aaaaaa;
 }
 
 .quiz-controls {
@@ -217,8 +220,8 @@ body {
 .main-button {
     padding: 12px 22px;
     color: white;
-    background: #b77b9d;
-    border: none;
+    background: #222222;
+    border: 1px solid #666666;
     border-radius: 30px;
     cursor: pointer;
     font-size: 15px;
@@ -226,7 +229,8 @@ body {
 }
 
 .main-button:hover {
-    background: #ce91b5;
+    background: #444444;
+    border-color: #aaaaaa;
 }
 
 .main-button:disabled {
@@ -237,7 +241,7 @@ body {
 .quiz-message {
     min-height: 24px;
     text-align: center;
-    color: #e8b4d3;
+    color: #cccccc;
     font-size: 14px;
     margin-top: 15px;
     line-height: 1.5;
@@ -260,8 +264,8 @@ body {
     padding: 18px;
     text-align: left;
     color: white;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 220, 235, 0.25);
+    background: #292929;
+    border: 1px solid #555555;
     border-radius: 16px;
     cursor: pointer;
     font-family: Arial, sans-serif;
@@ -269,12 +273,13 @@ body {
 }
 
 .crush-question:hover {
-    background: rgba(201, 121, 161, 0.25);
+    background: #3b3b3b;
+    border-color: #888888;
     transform: translateY(-3px);
 }
 
 .question-number {
-    color: #d99abd;
+    color: #cccccc;
     font-size: 13px;
 }
 
@@ -286,7 +291,7 @@ body {
 }
 
 .question-arrow {
-    color: #d99abd;
+    color: #cccccc;
     font-size: 22px;
 }
 
@@ -314,8 +319,8 @@ body {
     padding: 40px 35px 35px;
     text-align: center;
     color: white;
-    background: #281b28;
-    border: 1px solid #b77b9d;
+    background: #222222;
+    border: 1px solid #666666;
     border-radius: 25px;
     box-shadow: 0 15px 60px #0008;
     animation: modalAppear 0.25s ease-out;
@@ -336,7 +341,7 @@ body {
 .modal-heart {
     display: block;
     font-size: 42px;
-    color: #d99abd;
+    color: #cccccc;
 }
 
 .crush-modal-content h2 {
@@ -349,7 +354,7 @@ body {
 .crush-modal-content p {
     font-size: 16px;
     line-height: 1.8;
-    color: #eadde7;
+    color: #dddddd;
 }
 
 .modal-close {
@@ -504,7 +509,7 @@ body {
 
         <section class="panel crush-panel">
 
-            <h2 class="panel-title">O czym myślisz? 💜</h2>
+            <h2 class="panel-title">O czym myślisz? 🖤</h2>
 
             <p class="panel-description">
                 Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
@@ -523,7 +528,7 @@ body {
 
                 <button class="crush-question"
                     data-title="Czy to już zakochanie?"
-                    data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz. 🌷">
+                    data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.">
 
                     <span class="question-number">02</span>
                     <strong>Czy to już zakochanie?</strong>
@@ -532,7 +537,7 @@ body {
 
                 <button class="crush-question"
                     data-title="Dlaczego się przy nim/niej stresuję?"
-                    data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja. 😭">
+                    data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.">
 
                     <span class="question-number">03</span>
                     <strong>Dlaczego się przy nim/niej stresuję?</strong>
@@ -624,6 +629,7 @@ const questions = [
 
 let currentQuestion = 0;
 let chosenAnswers = [];
+let quizFinished = false;
 
 const quizProgress = document.getElementById("quizProgress");
 const quizQuestion = document.getElementById("quizQuestion");
@@ -656,6 +662,7 @@ function renderProgress() {
 function renderQuiz() {
     const q = questions[currentQuestion];
 
+    quizFinished = false;
     quizQuestion.textContent = q.question;
     quizAnswers.innerHTML = "";
     quizMessage.textContent = "";
@@ -689,7 +696,7 @@ function renderQuiz() {
 }
 
 previousQuestion.addEventListener("click", () => {
-    if (currentQuestion > 0) {
+    if (!quizFinished && currentQuestion > 0) {
         currentQuestion--;
         renderQuiz();
     }
@@ -697,8 +704,15 @@ previousQuestion.addEventListener("click", () => {
 
 nextQuestion.addEventListener("click", () => {
 
+    if (quizFinished) {
+        currentQuestion = 0;
+        chosenAnswers = [];
+        renderQuiz();
+        return;
+    }
+
     if (chosenAnswers[currentQuestion] === undefined) {
-        quizMessage.textContent = "Najpierw wybierz odpowiedź 🌷";
+        quizMessage.textContent = "Najpierw wybierz odpowiedź 🖤";
         return;
     }
 
@@ -713,7 +727,9 @@ nextQuestion.addEventListener("click", () => {
 
 function showQuizResult() {
 
-    quizQuestion.textContent = "Twój wynik 🌷";
+    quizFinished = true;
+
+    quizQuestion.textContent = "Twój wynik 🖤";
     quizAnswers.innerHTML = "";
     quizProgress.innerHTML = "";
 
@@ -727,18 +743,9 @@ function showQuizResult() {
 
     quizAnswers.appendChild(result);
 
-    nextQuestion.textContent = "Spróbuj ponownie ↻";
     previousQuestion.disabled = true;
+    nextQuestion.textContent = "Spróbuj ponownie ↻";
     quizMessage.textContent = "";
-
-    nextQuestion.onclick = () => {
-        currentQuestion = 0;
-        chosenAnswers = [];
-
-        nextQuestion.onclick = null;
-
-        renderQuiz();
-    };
 }
 
 /* OKIENKA PYTAŃ */
