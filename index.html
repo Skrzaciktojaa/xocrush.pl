@@ -1,122 +1,268 @@
 
-<!-- PANEL PYTAŃ O CRUSHA -->
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<section class="crush-panel">
-
-    <h2 class="crush-title">O czym myślisz? 🖤</h2>
-    <p class="crush-description">
-        Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
-    </p>
-
-    <div class="crush-questions">
-
-        <button class="crush-question"
-            data-title="Czemu o nim/niej tyle myślę?"
-            data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
-            <span>01</span>
-            <strong>Czemu o nim/niej tyle myślę?</strong>
-            <span class="question-arrow">↗</span>
-        </button>
-
-        <button class="crush-question"
-            data-title="Czy to już zakochanie?"
-            data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz. 🌷">
-            <span>02</span>
-            <strong>Czy to już zakochanie?</strong>
-            <span class="question-arrow">↗</span>
-        </button>
-
-        <button class="crush-question"
-            data-title="Dlaczego się przy nim/niej stresuję?"
-            data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja. 😭">
-            <span>03</span>
-            <strong>Dlaczego się przy nim/niej stresuję?</strong>
-            <span class="question-arrow">↗</span>
-        </button>
-
-        <button class="crush-question"
-            data-title="Czy on/ona też może coś czuć?"
-            data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
-            <span>04</span>
-            <strong>Czy on/ona też może coś czuć?</strong>
-            <span class="question-arrow">↗</span>
-        </button>
-
-</div>
-</section>
-
-<!-- OKIENKO Z ODPOWIEDZIĄ -->
-
-<div class="crush-modal" id="crushModal" aria-hidden="true">
-
-    <div class="crush-modal-content"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="modalTitle">
-
-        <button class="modal-close" id="modalClose"
-                aria-label="Zamknij okienko">×</button>
-
-        <span class="modal-heart">♡</span>
-
-        <h2 id="modalTitle"></h2>
-
-        <p id="modalAnswer"></p>
-
-        <button class="modal-button" id="modalOkay">
-            Rozumiem 🖤
-        </button>
-
-    </div>
-</div>
+<title>XO Crush</title>
+<link rel="icon" type="image/png" href="images/calus.png">
+<meta name="description" content="XO Crush 💌 Nie wiemy, co autor miał na myśli 🖤">
 
 <style>
+@font-face {
+    font-family: "Margarine";
+    src: url("images/Margarine-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
-/* SEKCJA PYTAŃ */
+* {
+    box-sizing: border-box;
+}
 
-.crush-panel {
-    max-width: 1050px;
-    margin: 60px auto;
-    padding: 45px 35px;
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
     color: white;
+    background: #171017 url("images/tlo.png") center center / cover fixed no-repeat;
+}
+
+/* LOGO W LEWYM GÓRNYM ROGU */
+
+.logo {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    width: 135px;
+    height: auto;
+    z-index: 10;
+}
+
+/* GÓRA STRONY */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     text-align: center;
-    background: rgba(23, 12, 22, 0.82);
-    border: 1px solid rgba(255, 220, 235, 0.3);
-    border-radius: 28px;
+    padding: 70px 20px 30px;
+}
+
+.hero-logo {
+    width: 480px;
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.subtitle {
+    font-family: "Margarine", cursive;
+    font-size: 46px;
+    font-weight: normal;
+    color: white;
+    text-shadow: 0 3px 12px #000, 0 0 20px #000;
+    margin: 0;
+    line-height: 1.4;
+    max-width: 950px;
+
+    opacity: 0;
+    transform: translateY(22px);
+
+    animation:
+        subtitleAppear 1.4s ease-out 0.3s forwards,
+        subtitleFloat 3.5s ease-in-out 1.8s infinite;
+}
+
+@keyframes subtitleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes subtitleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* DWA PANELE OBOK SIEBIE */
+
+.panels {
+    width: min(1250px, 94%);
+    margin: -100px auto 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+/* WSPÓLNY WYGLĄD PANELI */
+
+.panel {
+    padding: 35px;
+    background: rgba(35, 24, 36, 0.88);
+    border: 1px solid rgba(255, 220, 235, 0.28);
+    border-radius: 25px;
     backdrop-filter: blur(8px);
 }
 
-.crush-title {
+.panel-title {
     font-family: "Margarine", cursive;
-    font-size: 42px;
     font-weight: normal;
+    font-size: 34px;
+    text-align: center;
     margin: 0 0 12px;
-    text-shadow: 0 2px 12px #000;
+    text-shadow: 0 2px 10px #000;
 }
 
-.crush-description {
+.panel-description {
+    text-align: center;
     color: #e8d8e2;
-    font-size: 17px;
-    margin-bottom: 35px;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 28px;
 }
+
+/* LEWY PANEL: QUIZ */
+
+.quiz-progress {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.progress-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #b77b9d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8b4d3;
+    font-size: 13px;
+}
+
+.progress-number.active {
+    background: #b77b9d;
+    color: white;
+}
+
+.progress-number.done {
+    background: #69485f;
+}
+
+.quiz-question {
+    font-family: "Margarine", cursive;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 1.5;
+    margin: 25px 0;
+}
+
+.quiz-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.quiz-answer {
+    width: 100%;
+    padding: 14px 18px;
+    text-align: left;
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 220, 235, 0.25);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.quiz-answer:hover {
+    background: rgba(201, 121, 161, 0.25);
+}
+
+.quiz-answer.selected {
+    background: #b77b9d;
+    border-color: #e3b0cf;
+}
+
+.quiz-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.main-button {
+    padding: 12px 22px;
+    color: white;
+    background: #b77b9d;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.main-button:hover {
+    background: #ce91b5;
+}
+
+.main-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.quiz-message {
+    min-height: 24px;
+    text-align: center;
+    color: #e8b4d3;
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+/* PRAWY PANEL: PYTANIA */
 
 .crush-questions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
 }
 
 .crush-question {
     display: flex;
     align-items: center;
-    gap: 16px;
-    min-height: 100px;
-    padding: 22px;
+    gap: 14px;
+    min-height: 78px;
+    width: 100%;
+    padding: 18px;
     text-align: left;
     color: white;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 220, 235, 0.25);
-    border-radius: 18px;
+    border-radius: 16px;
     cursor: pointer;
     font-family: Arial, sans-serif;
     transition: background 0.25s, transform 0.25s;
@@ -127,23 +273,24 @@
     transform: translateY(-3px);
 }
 
-.crush-question > span:first-child {
+.question-number {
     color: #d99abd;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .crush-question strong {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: normal;
     flex: 1;
+    line-height: 1.5;
 }
 
 .question-arrow {
     color: #d99abd;
-    font-size: 24px;
+    font-size: 22px;
 }
 
-/* OKIENKO */
+/* OKIENKO Z ODPOWIEDZIĄ */
 
 .crush-modal {
     position: fixed;
@@ -164,7 +311,7 @@
     position: relative;
     width: 100%;
     max-width: 500px;
-    padding: 45px 35px 35px;
+    padding: 40px 35px 35px;
     text-align: center;
     color: white;
     background: #281b28;
@@ -188,68 +335,88 @@
 
 .modal-heart {
     display: block;
-    font-size: 45px;
+    font-size: 42px;
     color: #d99abd;
 }
 
 .crush-modal-content h2 {
     font-family: "Margarine", cursive;
     font-weight: normal;
-    font-size: 29px;
+    font-size: 28px;
     margin: 15px 0;
 }
 
 .crush-modal-content p {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.8;
     color: #eadde7;
 }
 
 .modal-close {
     position: absolute;
-    top: 12px;
-    right: 17px;
+    top: 10px;
+    right: 16px;
     font-size: 32px;
-    color: #fff;
+    color: white;
     background: transparent;
     border: none;
     cursor: pointer;
 }
 
-.modal-button {
-    margin-top: 20px;
-    padding: 12px 28px;
-    color: white;
-    background: #b77b9d;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-}
+/* TELEFONY I MNIEJSZE EKRANY */
 
-.modal-button:hover {
-    background: #ce91b5;
-}
-
-/* TELEFONY */
-
-@media (max-width: 700px) {
-    .crush-panel {
-        margin: 30px 15px;
-        padding: 30px 18px;
+@media (max-width: 900px) {
+    .panels {
+        grid-template-columns: 1fr;
+        width: min(650px, 94%);
+        margin: 20px auto 50px;
     }
 
-    .crush-title {
+    .hero {
+        min-height: auto;
+        padding-bottom: 35px;
+    }
+
+    .panel {
+        padding: 30px 22px;
+    }
+}
+
+@media (max-width: 700px) {
+    .logo {
+        width: 105px;
+        top: 12px;
+        left: 12px;
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    .hero-logo {
+        width: 340px;
+        max-width: 95%;
+    }
+
+    .subtitle {
         font-size: 32px;
     }
 
-    .crush-questions {
-        grid-template-columns: 1fr;
+    body {
+        background-attachment: scroll;
+    }
+
+    .panel-title {
+        font-size: 29px;
+    }
+
+    .quiz-question {
+        font-size: 21px;
     }
 
     .crush-question {
-        min-height: 85px;
-        padding: 17px;
+        min-height: 75px;
+        padding: 15px;
     }
 
     .crush-modal-content {
@@ -257,21 +424,324 @@
     }
 }
 
+/* OGRANICZENIE ANIMACJI */
+
 @media (prefers-reduced-motion: reduce) {
-    .crush-modal-content {
+    .subtitle {
+        opacity: 1;
+        transform: none;
         animation: none;
     }
 
+    .crush-modal-content,
     .crush-question {
+        animation: none;
         transition: none;
     }
 }
-
 </style>
+</head>
+
+<body>
+
+<!-- MAŁE LOGO W ROGU -->
+
+<img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
+
+<!-- GŁÓWNA CZĘŚĆ STRONY -->
+
+<main>
+
+    <section class="hero">
+
+        <!-- DUŻE LOGO NA ŚRODKU -->
+
+        <img src="images/logoo.png"
+             alt="XO CRUSH.pl"
+             class="hero-logo">
+
+        <p class="subtitle">
+            Did you know? Having a crush can make your brain release dopamine, the chemical linked to pleasure and motivation 🖤
+        </p>
+
+    </section>
+
+    <!-- DWA PANELE -->
+
+    <section class="panels">
+
+        <!-- LEWY PANEL: QUIZ -->
+
+        <section class="panel quiz-panel">
+
+            <h2 class="panel-title">Twój Crush Quiz 💌</h2>
+
+            <p class="panel-description">
+                Odpowiedz na pytania i odkryj coś o swoich uczuciach.
+            </p>
+
+            <div class="quiz-progress" id="quizProgress"></div>
+
+            <h3 class="quiz-question" id="quizQuestion"></h3>
+
+            <div class="quiz-answers" id="quizAnswers"></div>
+
+            <div class="quiz-controls">
+                <button class="main-button" id="previousQuestion">
+                    ← Wstecz
+                </button>
+
+                <button class="main-button" id="nextQuestion">
+                    Dalej →
+                </button>
+            </div>
+
+            <div class="quiz-message" id="quizMessage"></div>
+
+        </section>
+
+        <!-- PRAWY PANEL: PYTANIA I ODPOWIEDZI -->
+
+        <section class="panel crush-panel">
+
+            <h2 class="panel-title">O czym myślisz? 💜</h2>
+
+            <p class="panel-description">
+                Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
+            </p>
+
+            <div class="crush-questions">
+
+                <button class="crush-question"
+                    data-title="Czemu o nim/niej tyle myślę?"
+                    data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
+
+                    <span class="question-number">01</span>
+                    <strong>Czemu o nim/niej tyle myślę?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+                <button class="crush-question"
+                    data-title="Czy to już zakochanie?"
+                    data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz. 🌷">
+
+                    <span class="question-number">02</span>
+                    <strong>Czy to już zakochanie?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+                <button class="crush-question"
+                    data-title="Dlaczego się przy nim/niej stresuję?"
+                    data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja. 😭">
+
+                    <span class="question-number">03</span>
+                    <strong>Dlaczego się przy nim/niej stresuję?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+                <button class="crush-question"
+                    data-title="Czy on/ona też może coś czuć?"
+                    data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
+
+                    <span class="question-number">04</span>
+                    <strong>Czy on/ona też może coś czuć?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+</main>
+
+<!-- OKIENKO Z ODPOWIEDZIĄ -->
+
+<div class="crush-modal" id="crushModal" aria-hidden="true">
+
+    <div class="crush-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modalTitle">
+
+        <button class="modal-close"
+                id="modalClose"
+                aria-label="Zamknij okienko">×</button>
+
+        <span class="modal-heart">♡</span>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalAnswer"></p>
+
+        <button class="main-button" id="modalOkay">
+            Rozumiem 🖤
+        </button>
+
+    </div>
+
+</div>
 
 <script>
 
-/* OTWIERANIE I ZAMYKANIE OKIENKA */
+/* QUIZ */
+
+const questions = [
+    {
+        question: "Czy warto zrobić pierwszy krok?",
+        answers: ["Tak, odważnie!", "Może kiedyś...", "Wolę poczekać"]
+    },
+    {
+        question: "Czy wierzysz w miłość od pierwszego wejrzenia?",
+        answers: ["Tak!", "Nie wiem", "Raczej nie"]
+    },
+    {
+        question: "Co najbardziej cenisz w drugiej osobie?",
+        answers: ["Poczucie humoru", "Szczerość", "Czułość"]
+    },
+    {
+        question: "Jak reagujesz na komplement?",
+        answers: ["Uśmiecham się", "Rumienię się", "Nie wiem, co powiedzieć"]
+    },
+    {
+        question: "Czy zdarza Ci się myśleć o kimś przed snem?",
+        answers: ["Często!", "Czasami", "Rzadko"]
+    },
+    {
+        question: "Co jest ważniejsze?",
+        answers: ["Zaufanie", "Wspólne zainteresowania", "Dobra komunikacja"]
+    },
+    {
+        question: "Czy lubisz romantyczne niespodzianki?",
+        answers: ["Uwielbiam!", "Zależy jakie", "Wolę spokój"]
+    },
+    {
+        question: "Gotowy na odkrycie swojego wyniku?",
+        answers: ["Tak!", "Jeszcze chwilę", "Dawaj wynik!"]
+    }
+];
+
+let currentQuestion = 0;
+let chosenAnswers = [];
+
+const quizProgress = document.getElementById("quizProgress");
+const quizQuestion = document.getElementById("quizQuestion");
+const quizAnswers = document.getElementById("quizAnswers");
+const quizMessage = document.getElementById("quizMessage");
+const previousQuestion = document.getElementById("previousQuestion");
+const nextQuestion = document.getElementById("nextQuestion");
+
+function renderProgress() {
+    quizProgress.innerHTML = "";
+
+    questions.forEach((question, index) => {
+        const number = document.createElement("div");
+
+        number.className = "progress-number";
+        number.textContent = index + 1;
+
+        if (index === currentQuestion) {
+            number.classList.add("active");
+        }
+
+        if (chosenAnswers[index] !== undefined) {
+            number.classList.add("done");
+        }
+
+        quizProgress.appendChild(number);
+    });
+}
+
+function renderQuiz() {
+    const q = questions[currentQuestion];
+
+    quizQuestion.textContent = q.question;
+    quizAnswers.innerHTML = "";
+    quizMessage.textContent = "";
+
+    q.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+
+        button.className = "quiz-answer";
+        button.textContent = answer;
+
+        if (chosenAnswers[currentQuestion] === index) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", () => {
+            chosenAnswers[currentQuestion] = index;
+            renderQuiz();
+        });
+
+        quizAnswers.appendChild(button);
+    });
+
+    previousQuestion.disabled = currentQuestion === 0;
+
+    nextQuestion.textContent =
+        currentQuestion === questions.length - 1
+        ? "Zobacz wynik ♥"
+        : "Dalej →";
+
+    renderProgress();
+}
+
+previousQuestion.addEventListener("click", () => {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuiz();
+    }
+});
+
+nextQuestion.addEventListener("click", () => {
+
+    if (chosenAnswers[currentQuestion] === undefined) {
+        quizMessage.textContent = "Najpierw wybierz odpowiedź 🌷";
+        return;
+    }
+
+    if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        renderQuiz();
+        return;
+    }
+
+    showQuizResult();
+});
+
+function showQuizResult() {
+
+    quizQuestion.textContent = "Twój wynik 🌷";
+    quizAnswers.innerHTML = "";
+    quizProgress.innerHTML = "";
+
+    const result = document.createElement("p");
+
+    result.style.textAlign = "center";
+    result.style.lineHeight = "1.8";
+    result.textContent =
+        "Jesteś osobą, która ma przed sobą wiele pięknych możliwości. " +
+        "Daj sobie czas i odkrywaj świat po swojemu.";
+
+    quizAnswers.appendChild(result);
+
+    nextQuestion.textContent = "Spróbuj ponownie ↻";
+    previousQuestion.disabled = true;
+    quizMessage.textContent = "";
+
+    nextQuestion.onclick = () => {
+        currentQuestion = 0;
+        chosenAnswers = [];
+
+        nextQuestion.onclick = null;
+
+        renderQuiz();
+    };
+}
+
+/* OKIENKA PYTAŃ */
 
 const crushModal = document.getElementById("crushModal");
 const modalTitle = document.getElementById("modalTitle");
@@ -329,4 +799,9 @@ document.addEventListener("keydown", event => {
 
 });
 
+renderQuiz();
+
 </script>
+
+</body>
+</html>
