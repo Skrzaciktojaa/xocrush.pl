@@ -70,12 +70,6 @@ body {
     line-height: 1.4;
     max-width: 950px;
 
-    opacity: 0;
-    overflow: hidden;
-    border-right: 3px solid white;
-    white-space: normal;
-
-    animation: subtitleAppear 0.1s forwards;
 }
 
 @keyframes subtitleAppear {
@@ -860,6 +854,33 @@ document.addEventListener("keydown", event => {
 });
 
 renderQuiz();
+
+/* ANIMACJA PISANIA NAPISU */
+
+const subtitle = document.querySelector(".subtitle");
+
+if (subtitle) {
+    const text = subtitle.textContent.trim();
+    subtitle.textContent = "";
+
+    let index = 0;
+
+    const cursor = document.createElement("span");
+    cursor.style.borderRight = "3px solid white";
+    cursor.style.paddingRight = "3px";
+
+    subtitle.appendChild(cursor);
+
+    const typing = setInterval(() => {
+        cursor.textContent += text.charAt(index);
+        index++;
+
+        if (index >= text.length) {
+            clearInterval(typing);
+            cursor.style.borderRight = "none";
+        }
+    }, 50);
+}  
 
 </script>
 
