@@ -1,151 +1,332 @@
 
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>XO Crush</title>
-<link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="XO Crush 💌 Nie wiemy, co autor miał na myśli 🖤">
+<!-- PANEL PYTAŃ O CRUSHA -->
+
+<section class="crush-panel">
+
+    <h2 class="crush-title">O czym myślisz? 🖤</h2>
+    <p class="crush-description">
+        Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
+    </p>
+
+    <div class="crush-questions">
+
+        <button class="crush-question"
+            data-title="Czemu o nim/niej tyle myślę?"
+            data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
+            <span>01</span>
+            <strong>Czemu o nim/niej tyle myślę?</strong>
+            <span class="question-arrow">↗</span>
+        </button>
+
+        <button class="crush-question"
+            data-title="Czy to już zakochanie?"
+            data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz. 🌷">
+            <span>02</span>
+            <strong>Czy to już zakochanie?</strong>
+            <span class="question-arrow">↗</span>
+        </button>
+
+        <button class="crush-question"
+            data-title="Dlaczego się przy nim/niej stresuję?"
+            data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja. 😭">
+            <span>03</span>
+            <strong>Dlaczego się przy nim/niej stresuję?</strong>
+            <span class="question-arrow">↗</span>
+        </button>
+
+        <button class="crush-question"
+            data-title="Czy on/ona też może coś czuć?"
+            data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
+            <span>04</span>
+            <strong>Czy on/ona też może coś czuć?</strong>
+            <span class="question-arrow">↗</span>
+        </button>
+
+</div>
+</section>
+
+<!-- OKIENKO Z ODPOWIEDZIĄ -->
+
+<div class="crush-modal" id="crushModal" aria-hidden="true">
+
+    <div class="crush-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modalTitle">
+
+        <button class="modal-close" id="modalClose"
+                aria-label="Zamknij okienko">×</button>
+
+        <span class="modal-heart">♡</span>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalAnswer"></p>
+
+        <button class="modal-button" id="modalOkay">
+            Rozumiem 🖤
+        </button>
+
+    </div>
+</div>
 
 <style>
-@font-face {
-    font-family: "Margarine";
-    src: url("images/Margarine-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
 
-* {
-    box-sizing: border-box;
-}
+/* SEKCJA PYTAŃ */
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
+.crush-panel {
+    max-width: 1050px;
+    margin: 60px auto;
+    padding: 45px 35px;
     color: white;
-    background: #171017 url("images/tlo.png") center center / cover fixed no-repeat;
-}
-
-.logo {
-    position: absolute;
-    top: 18px;
-    left: 22px;
-    width: 135px;
-    height: auto;
-    z-index: 10;
-}
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
     text-align: center;
-    padding: 70px 20px 50px;
+    background: rgba(23, 12, 22, 0.82);
+    border: 1px solid rgba(255, 220, 235, 0.3);
+    border-radius: 28px;
+    backdrop-filter: blur(8px);
 }
 
-.hero-logo {
-    width: 480px;
-    max-width: 90%;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px;
-}
-
-/* Animowany napis pod logo */
-.subtitle {
+.crush-title {
     font-family: "Margarine", cursive;
-    font-size: 46px;
+    font-size: 42px;
     font-weight: normal;
-    color: white;
-    text-shadow: 0 3px 12px #000, 0 0 20px #000;
-    margin: 0;
-    line-height: 1.4;
-    max-width: 950px;
-
-    opacity: 0;
-    transform: translateY(22px);
-    animation:
-        subtitleAppear 1.4s ease-out 0.3s forwards,
-        subtitleFloat 3.5s ease-in-out 1.8s infinite;
+    margin: 0 0 12px;
+    text-shadow: 0 2px 12px #000;
 }
 
-@keyframes subtitleAppear {
+.crush-description {
+    color: #e8d8e2;
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+.crush-questions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.crush-question {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 100px;
+    padding: 22px;
+    text-align: left;
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 220, 235, 0.25);
+    border-radius: 18px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background 0.25s, transform 0.25s;
+}
+
+.crush-question:hover {
+    background: rgba(201, 121, 161, 0.25);
+    transform: translateY(-3px);
+}
+
+.crush-question > span:first-child {
+    color: #d99abd;
+    font-size: 14px;
+}
+
+.crush-question strong {
+    font-size: 17px;
+    font-weight: normal;
+    flex: 1;
+}
+
+.question-arrow {
+    color: #d99abd;
+    font-size: 24px;
+}
+
+/* OKIENKO */
+
+.crush-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 4, 9, 0.78);
+}
+
+.crush-modal.open {
+    display: flex;
+}
+
+.crush-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    padding: 45px 35px 35px;
+    text-align: center;
+    color: white;
+    background: #281b28;
+    border: 1px solid #b77b9d;
+    border-radius: 25px;
+    box-shadow: 0 15px 60px #0008;
+    animation: modalAppear 0.25s ease-out;
+}
+
+@keyframes modalAppear {
     from {
         opacity: 0;
-        transform: translateY(22px);
+        transform: translateY(15px) scale(0.97);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
-@keyframes subtitleFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+.modal-heart {
+    display: block;
+    font-size: 45px;
+    color: #d99abd;
 }
 
-/* Telefon */
+.crush-modal-content h2 {
+    font-family: "Margarine", cursive;
+    font-weight: normal;
+    font-size: 29px;
+    margin: 15px 0;
+}
+
+.crush-modal-content p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #eadde7;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 17px;
+    font-size: 32px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-button {
+    margin-top: 20px;
+    padding: 12px 28px;
+    color: white;
+    background: #b77b9d;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.modal-button:hover {
+    background: #ce91b5;
+}
+
+/* TELEFONY */
+
 @media (max-width: 700px) {
-    .logo {
-        width: 105px;
-        top: 12px;
-        left: 12px;
+    .crush-panel {
+        margin: 30px 15px;
+        padding: 30px 18px;
     }
 
-    .hero {
-        padding-top: 100px;
-    }
-
-    .hero-logo {
-        width: 340px;
-        max-width: 95%;
-    }
-
-    .subtitle {
+    .crush-title {
         font-size: 32px;
     }
 
-    body {
-        background-attachment: scroll;
+    .crush-questions {
+        grid-template-columns: 1fr;
+    }
+
+    .crush-question {
+        min-height: 85px;
+        padding: 17px;
+    }
+
+    .crush-modal-content {
+        padding: 40px 22px 25px;
     }
 }
 
-/* Ograniczenie animacji */
 @media (prefers-reduced-motion: reduce) {
-    .subtitle {
-        opacity: 1;
-        transform: none;
+    .crush-modal-content {
         animation: none;
     }
+
+    .crush-question {
+        transition: none;
+    }
 }
+
 </style>
-</head>
 
-<body>
+<script>
 
-<img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
+/* OTWIERANIE I ZAMYKANIE OKIENKA */
 
-<main class="hero">
+const crushModal = document.getElementById("crushModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalAnswer = document.getElementById("modalAnswer");
+const modalClose = document.getElementById("modalClose");
+const modalOkay = document.getElementById("modalOkay");
 
-    <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
+let previousFocus = null;
 
-    <p class="subtitle">
-        Did you know? Having a crush can make your brain release dopamine, the chemical linked to pleasure and motivation 🖤
-    </p>
+document.querySelectorAll(".crush-question").forEach(button => {
 
-</main>
+    button.addEventListener("click", () => {
 
-</body>
-</html>
+        previousFocus = button;
+
+        modalTitle.textContent = button.dataset.title;
+        modalAnswer.textContent = button.dataset.answer;
+
+        crushModal.classList.add("open");
+        crushModal.setAttribute("aria-hidden", "false");
+
+        modalClose.focus();
+
+    });
+
+});
+
+function closeCrushModal() {
+
+    crushModal.classList.remove("open");
+    crushModal.setAttribute("aria-hidden", "true");
+
+    if (previousFocus) {
+        previousFocus.focus();
+    }
+
+}
+
+modalClose.addEventListener("click", closeCrushModal);
+modalOkay.addEventListener("click", closeCrushModal);
+
+crushModal.addEventListener("click", event => {
+
+    if (event.target === crushModal) {
+        closeCrushModal();
+    }
+
+});
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape" && crushModal.classList.contains("open")) {
+        closeCrushModal();
+    }
+
+});
+
+</script>
