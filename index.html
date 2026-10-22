@@ -1,12 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>XO Crush</title>
 <link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="XO Crush 💌 Poznaj mój mały sekret… Rozwiąż quiz i sprawdź, czy wiesz, o kogo chodzi! 🤫🖤">
+<meta name="description" content="XO Crush 💌 Pamiętaj! Twoje uczucia należą do CIEBIE. Nie pozwól nikomu manipulować ani nimi, ani Tobą 🖤">
 
 <style>
 @font-face {
@@ -29,7 +29,8 @@ body {
     background: #171017 url("images/tlo.png") center center / cover fixed no-repeat;
 }
 
-/* Logo w lewym górnym rogu */
+/* LOGO W LEWYM GÓRNYM ROGU */
+
 .logo {
     position: absolute;
     top: 18px;
@@ -39,7 +40,8 @@ body {
     z-index: 10;
 }
 
-/* Główna zawartość */
+/* GÓRA STRONY */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -47,10 +49,9 @@ body {
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    padding: 70px 20px 50px;
+    padding: 70px 20px 30px;
 }
 
-/* Logo na środku */
 .hero-logo {
     width: 480px;
     max-width: 90%;
@@ -59,100 +60,332 @@ body {
     margin: 0 auto 20px;
 }
 
-/* Napis pod logo */
 .subtitle {
-    font-family: "Margarine", "Cooper Black", Arial, sans-serif;
+    font-family: "Margarine", cursive;
     font-size: 46px;
     font-weight: normal;
     color: white;
     text-shadow: 0 3px 12px #000, 0 0 20px #000;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.4;
     max-width: 950px;
+
+    opacity: 0;
+    transform: translateY(22px);
+
+    animation:
+        subtitleAppear 1.4s ease-out 0.3s forwards,
+        subtitleFloat 3.5s ease-in-out 1.8s infinite;
 }
 
-/* Panel quizu */
-.quiz {
-    width: min(400px, 92%);
-    margin-top: 40px;
-    padding: 25px;
-    background: rgba(25, 12, 25, 0.92);
-    border: 1px solid rgba(255, 180, 210, 0.65);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 80, 150, 0.25);
+@keyframes subtitleAppear {
+    from {
+        opacity: 0;
+        transform: translateY(22px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.quiz h2 {
-    margin: 0 0 20px;
-    color: #ffb5d2;
-    font-size: 25px;
+@keyframes subtitleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
-.hint {
-    font-size: 14px;
-    color: #ffc2dc;
-    margin-bottom: 22px;
+/* DWA PANELE OBOK SIEBIE */
+
+.panels {
+    width: min(1250px, 94%);
+    margin: -100px auto 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: stretch;
+}
+
+/* WSPÓLNY WYGLĄD OBU PANELI */
+
+.panel {
+    padding: 35px;
+    background: rgba(25, 25, 25, 0.92);
+    border: 1px solid rgba(180, 180, 180, 0.25);
+    border-radius: 25px;
+    backdrop-filter: blur(8px);
+}
+
+.panel-title {
+    font-family: "Margarine", cursive;
+    font-weight: normal;
+    font-size: 34px;
+    text-align: center;
+    margin: 0 0 12px;
+    text-shadow: 0 2px 10px #000;
+}
+
+.panel-description {
+    text-align: center;
+    color: #dddddd;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0 0 28px;
+}
+
+/* LEWY PANEL: QUIZ */
+
+.quiz-progress {
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin: 25px 0;
+}
+
+.progress-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #777777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cccccc;
+    font-size: 13px;
+}
+
+.progress-number.active {
+    background: #111111;
+    border-color: #aaaaaa;
+    color: white;
+}
+
+.progress-number.done {
+    background: #444444;
+    color: white;
+}
+
+.quiz-question {
+    font-family: "Margarine", cursive;
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
     line-height: 1.5;
+    margin: 25px 0;
 }
 
-.question {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px 0;
+.quiz-answers {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-input {
+.quiz-answer {
     width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    border: 1px solid #ff9dc5;
-    background: white;
-    color: #222;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 13px 20px;
-    background: #ff8fbd;
-    color: #3b1025;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 14px 18px;
+    text-align: left;
+    color: white;
+    background: #292929;
+    border: 1px solid #555555;
+    border-radius: 15px;
     cursor: pointer;
+    font-size: 15px;
     transition: 0.2s;
 }
 
-button:hover {
-    background: #ffc1da;
+.quiz-answer:hover {
+    background: #3b3b3b;
+    border-color: #888888;
 }
 
-.gender-buttons {
+.quiz-answer.selected {
+    background: #111111;
+    border-color: #aaaaaa;
+}
+
+.quiz-controls {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 25px;
 }
 
-.gender-button {
-    font-size: 35px;
-    width: 100px;
-    height: 75px;
+.main-button {
+    padding: 12px 22px;
+    color: white;
+    background: #222222;
+    border: 1px solid #666666;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
 }
 
-#feedback {
+.main-button:hover {
+    background: #444444;
+    border-color: #aaaaaa;
+}
+
+.main-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.quiz-message {
+    min-height: 24px;
+    text-align: center;
+    color: #cccccc;
+    font-size: 14px;
     margin-top: 15px;
-    font-size: 16px;
     line-height: 1.5;
 }
 
-.score {
-    font-size: 34px;
-    color: #ffb5d2;
-    margin: 20px 0;
+/* PRAWY PANEL: PYTANIA */
+
+.crush-questions {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
 }
 
-/* Telefon */
+.crush-question {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 78px;
+    width: 100%;
+    padding: 18px;
+    text-align: left;
+    color: white;
+    background: #292929;
+    border: 1px solid #555555;
+    border-radius: 16px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background 0.25s, transform 0.25s;
+}
+
+.crush-question:hover {
+    background: #3b3b3b;
+    border-color: #888888;
+    transform: translateY(-3px);
+}
+
+.question-number {
+    color: #cccccc;
+    font-size: 13px;
+}
+
+.crush-question strong {
+    font-size: 15px;
+    font-weight: normal;
+    flex: 1;
+    line-height: 1.5;
+}
+
+.question-arrow {
+    color: #cccccc;
+    font-size: 22px;
+}
+
+/* OKIENKO Z ODPOWIEDZIĄ */
+
+.crush-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(8, 4, 9, 0.78);
+}
+
+.crush-modal.open {
+    display: flex;
+}
+
+.crush-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    padding: 40px 35px 35px;
+    text-align: center;
+    color: white;
+    background: #222222;
+    border: 1px solid #666666;
+    border-radius: 25px;
+    box-shadow: 0 15px 60px #0008;
+    animation: modalAppear 0.25s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-heart {
+    display: block;
+    font-size: 42px;
+    color: #cccccc;
+}
+
+.crush-modal-content h2 {
+    font-family: "Margarine", cursive;
+    font-weight: normal;
+    font-size: 28px;
+    margin: 15px 0;
+}
+
+.crush-modal-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #dddddd;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    font-size: 32px;
+    color: white;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* TELEFONY I MNIEJSZE EKRANY */
+
+@media (max-width: 900px) {
+    .panels {
+        grid-template-columns: 1fr;
+        width: min(650px, 94%);
+        margin: 20px auto 50px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding-bottom: 35px;
+    }
+
+    .panel {
+        padding: 30px 22px;
+    }
+}
+
 @media (max-width: 700px) {
     .logo {
         width: 105px;
@@ -173,218 +406,460 @@ button:hover {
         font-size: 32px;
     }
 
-    .quiz {
-        margin-top: 30px;
-        padding: 20px;
+    body {
+        background-attachment: scroll;
+    }
+
+    .panel-title {
+        font-size: 29px;
+    }
+
+    .quiz-question {
+        font-size: 21px;
+    }
+
+    .crush-question {
+        min-height: 75px;
+        padding: 15px;
+    }
+
+    .crush-modal-content {
+        padding: 40px 22px 25px;
     }
 }
+
+/* OGRANICZENIE ANIMACJI */
+
+@media (prefers-reduced-motion: reduce) {
+    .subtitle {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .crush-modal-content,
+    .crush-question {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* MENU PODSTRON */
+.site-nav {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 20;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.site-nav a {
+    display: inline-block;
+    padding: 10px 17px;
+    color: white;
+    text-decoration: none;
+    background: rgba(25, 25, 25, 0.92);
+    border: 1px solid rgba(180, 180, 180, 0.35);
+    border-radius: 24px;
+    font-size: 14px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.site-nav a:hover {
+    background: #444444;
+    border-color: #aaaaaa;
+    transform: translateY(-2px);
+}
+
+
+@media (max-width: 700px) {
+    .site-nav {
+        top: 16px;
+        right: 12px;
+        gap: 6px;
+    }
+
+    .site-nav a {
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+}
+
+
 </style>
 </head>
 
 <body>
 
+<!-- MAŁE LOGO W ROGU -->
+
 <img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
 
-<main class="hero">
+<nav class="site-nav" aria-label="Nawigacja strony">
+    <a href="aboutweb.html">O stronie</a>
+    <a href="aboutme.html">O mnie</a>
+</nav>
 
-    <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
+<!-- GŁÓWNA CZĘŚĆ STRONY -->
 
-    <p class="subtitle">Tutaj poznasz mój sekret🖤</p>
+<main>
 
-    <section class="quiz">
+    <section class="hero">
 
-        <h2>💌 Mały quiz</h2>
+        <!-- DUŻE LOGO NA ŚRODKU -->
 
-        <p class="hint">
-            JAK SIĘ DOWIESZ, TO NIKOMU NIE MÓW 🤫
+        <img src="images/logoo.png"
+             alt="XO CRUSH.pl"
+             class="hero-logo">
+
+        <p class="subtitle">
+            Did you know? Having a crush can make your brain release dopamine, the chemical linked to pleasure and motivation 🖤
         </p>
-
-        <div id="quizContent"></div>
-        <p id="feedback" aria-live="polite"></p>
 
     </section>
 
+    <!-- DWA PANELE -->
+
+    <section class="panels">
+
+        <!-- LEWY PANEL: QUIZ -->
+
+        <section class="panel quiz-panel">
+
+            <h2 class="panel-title">Twój Crush Quiz 💌</h2>
+
+            <p class="panel-description">
+                Odpowiedz na pytania i odkryj coś o swoich uczuciach.
+            </p>
+
+            <div class="quiz-progress" id="quizProgress"></div>
+
+            <h3 class="quiz-question" id="quizQuestion"></h3>
+
+            <div class="quiz-answers" id="quizAnswers"></div>
+
+            <div class="quiz-controls">
+                <button class="main-button" id="previousQuestion">
+                    ← Wstecz
+                </button>
+
+                <button class="main-button" id="nextQuestion">
+                    Dalej →
+                </button>
+            </div>
+
+            <div class="quiz-message" id="quizMessage"></div>
+
+        </section>
+
+        <!-- PRAWY PANEL: PYTANIA I ODPOWIEDZI -->
+
+        <section class="panel crush-panel">
+
+            <h2 class="panel-title">O czym myślisz? 🖤</h2>
+
+            <p class="panel-description">
+                Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
+            </p>
+
+            <div class="crush-questions">
+
+                <button class="crush-question"
+                    data-title="Czemu o nim/niej tyle myślę?"
+                    data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
+
+                    <span class="question-number">01</span>
+                    <strong>Czemu o nim/niej tyle myślę?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+                <button class="crush-question"
+                    data-title="Czy to już zakochanie?"
+                    data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.">
+
+                    <span class="question-number">02</span>
+                    <strong>Czy to już zakochanie?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+                <button class="crush-question"
+                    data-title="Dlaczego się przy nim/niej stresuję?"
+                    data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.">
+
+                    <span class="question-number">03</span>
+                    <strong>Dlaczego się przy nim/niej stresuję?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+                <button class="crush-question"
+                    data-title="Czy on/ona też może coś czuć?"
+                    data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
+
+                    <span class="question-number">04</span>
+                    <strong>Czy on/ona też może coś czuć?</strong>
+                    <span class="question-arrow">↗</span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </section>
+
+
+        
+
 </main>
 
+<!-- OKIENKO Z ODPOWIEDZIĄ -->
+
+<div class="crush-modal" id="crushModal" aria-hidden="true">
+
+    <div class="crush-modal-content"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modalTitle">
+
+        <button class="modal-close"
+                id="modalClose"
+                aria-label="Zamknij okienko">×</button>
+
+        <span class="modal-heart">♡</span>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalAnswer"></p>
+
+        <button class="main-button" id="modalOkay">
+            Rozumiem 🖤
+        </button>
+
+    </div>
+
+</div>
+
 <script>
+
+/* QUIZ */
+
 const questions = [
     {
-        question: "Z której jest klasy?",
-        type: "text",
-        answers: ["7a", "8b"]
+        question: "Czy warto zrobić pierwszy krok?",
+        answers: ["Tak, odważnie!", "Może kiedyś...", "Wolę poczekać"]
     },
     {
-        question: "Jaki ma kolor włosów?",
-        type: "text",
-        answers: ["brązowy", "brąz", "brązowe"]
+        question: "Czy wierzysz w miłość od pierwszego wejrzenia?",
+        answers: ["Tak!", "Nie wiem", "Raczej nie"]
     },
     {
-        question: "Jakiej jest płci?",
-        type: "gender",
-        answer: "♂️"
+        question: "Co najbardziej cenisz w drugiej osobie?",
+        answers: ["Poczucie humoru", "Szczerość", "Czułość"]
     },
     {
-        question: "Jak ma na imię?",
-        type: "text",
-        answers: ["heniek", "henryk"]
+        question: "Jak reagujesz na komplement?",
+        answers: ["Uśmiecham się", "Rumienię się", "Nie wiem, co powiedzieć"]
+    },
+    {
+        question: "Czy zdarza Ci się myśleć o kimś przed snem?",
+        answers: ["Często!", "Czasami", "Rzadko"]
+    },
+    {
+        question: "Co jest ważniejsze?",
+        answers: ["Zaufanie", "Wspólne zainteresowania", "Dobra komunikacja"]
+    },
+    {
+        question: "Czy lubisz romantyczne niespodzianki?",
+        answers: ["Uwielbiam!", "Zależy jakie", "Wolę spokój"]
+    },
+    {
+        question: "Gotowy na odkrycie swojego wyniku?",
+        answers: ["Tak!", "Jeszcze chwilę", "Dawaj wynik!"]
     }
 ];
 
 let currentQuestion = 0;
-let score = 0;
-let locked = false;
+let chosenAnswers = [];
+let quizFinished = false;
 
-const quizContent = document.getElementById("quizContent");
-const feedback = document.getElementById("feedback");
+const quizProgress = document.getElementById("quizProgress");
+const quizQuestion = document.getElementById("quizQuestion");
+const quizAnswers = document.getElementById("quizAnswers");
+const quizMessage = document.getElementById("quizMessage");
+const previousQuestion = document.getElementById("previousQuestion");
+const nextQuestion = document.getElementById("nextQuestion");
 
-function showQuestion() {
-    locked = false;
-    feedback.textContent = "";
+function renderProgress() {
+    quizProgress.innerHTML = "";
 
-    if (currentQuestion >= questions.length) {
-        showResult();
-        return;
-    }
+    questions.forEach((question, index) => {
+        const number = document.createElement("div");
 
+        number.className = "progress-number";
+        number.textContent = index + 1;
+
+        if (index === currentQuestion) {
+            number.classList.add("active");
+        }
+
+        if (chosenAnswers[index] !== undefined) {
+            number.classList.add("done");
+        }
+
+        quizProgress.appendChild(number);
+    });
+}
+
+function renderQuiz() {
     const q = questions[currentQuestion];
 
-    quizContent.innerHTML = "";
+    quizFinished = false;
+    quizQuestion.textContent = q.question;
+    quizAnswers.innerHTML = "";
+    quizMessage.textContent = "";
 
-    const questionText = document.createElement("p");
-    questionText.className = "question";
-    questionText.textContent = q.question;
-    quizContent.appendChild(questionText);
-
-    if (q.type === "text") {
-        const input = document.createElement("input");
-        input.type = "text";
-        input.id = "answerInput";
-        input.placeholder = "Wpisz odpowiedź...";
-        input.autocomplete = "off";
-
+    q.answers.forEach((answer, index) => {
         const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = "Sprawdź 💗";
-        button.addEventListener("click", checkAnswer);
 
-        input.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                checkAnswer();
-            }
+        button.className = "quiz-answer";
+        button.textContent = answer;
+
+        if (chosenAnswers[currentQuestion] === index) {
+            button.classList.add("selected");
+        }
+
+        button.addEventListener("click", () => {
+            chosenAnswers[currentQuestion] = index;
+            renderQuiz();
         });
 
-        quizContent.appendChild(input);
-        quizContent.appendChild(button);
-        input.focus();
-    }
+        quizAnswers.appendChild(button);
+    });
 
-    if (q.type === "gender") {
-        const buttons = document.createElement("div");
-        buttons.className = "gender-buttons";
+    previousQuestion.disabled = currentQuestion === 0;
 
-        ["♂️", "♀️"].forEach(function(symbol) {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "gender-button";
-            button.textContent = symbol;
+    nextQuestion.textContent =
+        currentQuestion === questions.length - 1
+        ? "Zobacz wynik ♥"
+        : "Dalej →";
 
-            button.addEventListener("click", function() {
-                checkGender(symbol);
-            });
-
-            buttons.appendChild(button);
-        });
-
-        quizContent.appendChild(buttons);
-    }
+    renderProgress();
 }
 
-function checkAnswer() {
-    if (locked) return;
+previousQuestion.addEventListener("click", () => {
+    if (!quizFinished && currentQuestion > 0) {
+        currentQuestion--;
+        renderQuiz();
+    }
+});
 
-    const input = document.getElementById("answerInput");
-    if (!input) return;
+nextQuestion.addEventListener("click", () => {
 
-    const answer = input.value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, " ");
-
-    if (answer === "") {
-        feedback.textContent = "Wpisz odpowiedź najpierw 🥺";
+    if (quizFinished) {
+        currentQuestion = 0;
+        chosenAnswers = [];
+        renderQuiz();
         return;
     }
 
-    const correctAnswers = questions[currentQuestion].answers;
-
-    if (correctAnswers.includes(answer)) {
-        nextQuestion();
-    } else {
-        feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
+    if (chosenAnswers[currentQuestion] === undefined) {
+        quizMessage.textContent = "Najpierw wybierz odpowiedź 🖤";
+        return;
     }
-}
 
-function checkGender(answer) {
-    if (locked) return;
-
-    if (answer === questions[currentQuestion].answer) {
-        nextQuestion();
-    } else {
-        feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
-    }
-}
-
-function nextQuestion() {
-    locked = true;
-    score++;
-    feedback.textContent = "Dobrze! 💗";
-
-    setTimeout(function() {
+    if (currentQuestion < questions.length - 1) {
         currentQuestion++;
-        showQuestion();
-    }, 700);
-}
+        renderQuiz();
+        return;
+    }
 
-function showResult() {
-    feedback.textContent = "";
-    quizContent.innerHTML = "";
+    showQuizResult();
+});
 
-    const heading = document.createElement("h2");
-    heading.textContent = "Quiz ukończony! 💌";
+function showQuizResult() {
+
+    quizFinished = true;
+
+    quizQuestion.textContent = "Twój wynik 🖤";
+    quizAnswers.innerHTML = "";
+    quizProgress.innerHTML = "";
 
     const result = document.createElement("p");
-    result.className = "score";
-    result.textContent = score + " / " + questions.length;
 
-    const message = document.createElement("p");
+    result.style.textAlign = "center";
+    result.style.lineHeight = "1.8";
+    result.textContent =
+        "Jesteś osobą, która ma przed sobą wiele pięknych możliwości. " +
+        "Daj sobie czas i odkrywaj świat po swojemu.";
 
-    if (score === 4) {
-        message.textContent = "OHOHO, poznałeś/aś mój sekret... 😭🖤";
-    } else if (score >= 2) {
-        message.textContent = "Całkiem nieźle! Ale jeszcze trochę tajemnic zostało...";
-    } else {
-        message.textContent = "Nooo, chyba trzeba jeszcze trochę się dowiedzieć 👀";
+    quizAnswers.appendChild(result);
+
+    previousQuestion.disabled = true;
+    nextQuestion.textContent = "Spróbuj ponownie ↻";
+    quizMessage.textContent = "";
+}
+
+/* OKIENKA PYTAŃ */
+
+const crushModal = document.getElementById("crushModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalAnswer = document.getElementById("modalAnswer");
+const modalClose = document.getElementById("modalClose");
+const modalOkay = document.getElementById("modalOkay");
+
+let previousFocus = null;
+
+document.querySelectorAll(".crush-question").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        previousFocus = button;
+
+        modalTitle.textContent = button.dataset.title;
+        modalAnswer.textContent = button.dataset.answer;
+
+        crushModal.classList.add("open");
+        crushModal.setAttribute("aria-hidden", "false");
+
+        modalClose.focus();
+
+    });
+
+});
+
+function closeCrushModal() {
+
+    crushModal.classList.remove("open");
+    crushModal.setAttribute("aria-hidden", "true");
+
+    if (previousFocus) {
+        previousFocus.focus();
     }
 
-    const restart = document.createElement("button");
-    restart.type = "button";
-    restart.textContent = "Spróbuj jeszcze raz 💕";
-    restart.addEventListener("click", restartQuiz);
-
-    quizContent.appendChild(heading);
-    quizContent.appendChild(result);
-    quizContent.appendChild(message);
-    quizContent.appendChild(restart);
 }
 
-function restartQuiz() {
-    currentQuestion = 0;
-    score = 0;
-    locked = false;
-    showQuestion();
-}
+modalClose.addEventListener("click", closeCrushModal);
+modalOkay.addEventListener("click", closeCrushModal);
 
-showQuestion();
+crushModal.addEventListener("click", event => {
+
+    if (event.target === crushModal) {
+        closeCrushModal();
+    }
+
+});
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape" && crushModal.classList.contains("open")) {
+        closeCrushModal();
+    }
+
+});
+
+renderQuiz();
+
 </script>
 
 </body>
