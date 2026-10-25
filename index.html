@@ -854,28 +854,76 @@ nextQuestion.addEventListener("click", () => {
     showQuizResult();
 });
 
-function showQuizResult() {
 
+function showQuizResult() {
     quizFinished = true;
 
     quizQuestion.textContent = "Twój wynik 🖤";
     quizAnswers.innerHTML = "";
     quizProgress.innerHTML = "";
 
-    const result = document.createElement("p");
+    // Każda odpowiedź wnosi punkty do jednego z trzech profili.
+    const points = [0, 0, 0];
 
-    result.style.textAlign = "center";
-    result.style.lineHeight = "1.8";
-    result.textContent =
-        "Jesteś osobą, która ma przed sobą wiele pięknych możliwości. " +
-        "Daj sobie czas i odkrywaj świat po swojemu.";
+    chosenAnswers.forEach((answer, index) => {
+        if (answer === undefined) return;
 
-    quizAnswers.appendChild(result);
+        // Uwzględniamy również numer pytania, żeby wynik
+        // zależał od całego zestawu odpowiedzi.
+        const profile = (answer + index) % 3;
+        points[profile]++;
+    });
+
+    const maxPoints = Math.max(...points);
+    const winners = points
+        .map((value, index) => value === maxPoints ? index : -1)
+        .filter(index => index !== -1);
+
+    // Przy remisie wynik wybieramy na podstawie odpowiedzi
+    // na ostatnie pytanie, żeby rezultat był zawsze jeden.
+    const winner = winners.includes(
+        (chosenAnswers[chosenAnswers.length - 1] + 7) % 3
+    )
+        ? (chosenAnswers[chosenAnswers.length - 1] + 7) % 3
+        : winners[0];
+
+    const results = [
+        {
+            title: "Niepoprawny romantyk 🩷",
+            text: "Kiedy ktoś wpadnie Ci w oko, trudno przejść obok tego obojętnie. Potrafisz długo wracać myślami do małych momentów i wyobrażać sobie, co mogłoby się wydarzyć. Daj sobie przestrzeń na marzenia, ale pamiętaj też o tym, co dzieje się tu i teraz."
+        },
+        {
+            title: "Cichy marzyciel 🌙",
+            text: "Nie zawsze pokazujesz wszystko, co czujesz. Czasem wolisz najpierw przyjrzeć się sytuacji i poukładać myśli, zanim zrobisz kolejny krok. Nie musisz się spieszyć. Nawet małe gesty mogą być początkiem czegoś fajnego."
+        },
+        {
+            title: "Serce na dłoni 💌",
+            text: "Bliskość, szczerość i dobre relacje mają dla Ciebie znaczenie. Chcesz, żeby uczucia były czymś prawdziwym, a nie tylko domysłami. Pamiętaj, że nie musisz mieć wszystkich odpowiedzi od razu, a Twoje tempo jest w porządku."
+        }
+    ];
+
+    const result = results[winner];
+
+    const title = document.createElement("h3");
+    title.textContent = result.title;
+    title.style.textAlign = "center";
+    title.style.fontFamily = '"Margarine", "Nunito", sans-serif';
+    title.style.fontWeight = "normal";
+    title.style.fontSize = "25px";
+
+    const description = document.createElement("p");
+    description.textContent = result.text;
+    description.style.textAlign = "center";
+    description.style.lineHeight = "1.8";
+
+    quizAnswers.appendChild(title);
+    quizAnswers.appendChild(description);
 
     previousQuestion.disabled = true;
     nextQuestion.textContent = "Spróbuj ponownie ↻";
-    quizMessage.textContent = "";
+    quizMessage.textContent = "Twój wynik to jedna z wielu odsłon Twojego podejścia do uczuć 🖤";
 }
+
 
 /* OKIENKA PYTAŃ */
 
