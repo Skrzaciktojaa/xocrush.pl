@@ -75,9 +75,10 @@
       justify-content: space-between;
       gap: 16px;
       padding: 12px clamp(16px, 4vw, 42px);
-      background: rgba(22, 10, 21, 0.9);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(14px);
+      background: rgba(22, 10, 21, 0.24);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .brand {
@@ -418,9 +419,8 @@
         alt="Logo XO Crush"
         onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logoo.png'; } else { this.style.display = 'none'; }"
       >
-      <span>XO Crush</span>
     </a>
-    <a class="back-link" href="index.html">← Wróć na stronę główną</a>
+    <a class="back-link" href="index.html" aria-label="Wróć na stronę główną">← Wróć</a>
   </header>
 
   <main class="page">
@@ -695,7 +695,8 @@
     </section>
 
     <footer class="footer">
-      <p>XO Crush · Strona edukacyjna o homofobii i akceptacji</p>
+      <p><strong>XOcrush.pl</strong> · Strona edukacyjna o homofobii i akceptacji</p>
+      <p>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</p>
       <p>Treść ma charakter informacyjny i nie zastępuje profesjonalnej pomocy w sytuacji zagrożenia.</p>
     </footer>
   </main>
