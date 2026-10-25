@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -69,7 +70,6 @@ body {
     margin: 0;
     line-height: 1.4;
     max-width: 950px;
-
 }
 
 @keyframes subtitleAppear {
@@ -105,15 +105,16 @@ body {
     align-items: stretch;
 }
 
-/* WSPÓLNY WYGLĄD OBU PANELI */
+/* PANELE: DELIKATNE ROZMYCIE ZAMIAST RAMKI */
 
 .panel {
     padding: 35px;
-    background: rgba(25, 25, 25, 0.55);
-    border: 1px solid rgba(180, 180, 180, 0.25);
+    background: rgba(25, 20, 26, 0.28);
+    border: none;
     border-radius: 25px;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: none;
 }
 
 .panel-title {
@@ -362,6 +363,100 @@ body {
     cursor: pointer;
 }
 
+/* MENU PODSTRON */
+
+.site-nav {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 20;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.site-nav a {
+    display: inline-block;
+    padding: 10px 17px;
+    color: white;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid rgba(180, 180, 180, 0.35);
+    border-radius: 24px;
+    font-size: 14px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.site-nav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* TĘCZOWY PRZYCISK: HOMOFOBIA I AKCEPTACJA */
+
+.site-nav a[href="antyhomophobia.html"] {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+
+    background:
+        linear-gradient(
+            rgba(25, 15, 25, 0.75),
+            rgba(25, 15, 25, 0.75)
+        ) padding-box,
+        linear-gradient(
+            110deg,
+            #ff6b9d,
+            #ffb86c,
+            #fff176,
+            #8cffb0,
+            #78d8ff,
+            #c5a3ff,
+            #ff6bcb
+        ) border-box;
+
+    border: 1px solid transparent;
+    border-radius: 24px;
+
+    box-shadow: 0 0 14px rgba(210, 150, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+.site-nav a[href="antyhomophobia.html"]:hover {
+    background:
+        linear-gradient(
+            rgba(35, 20, 35, 0.78),
+            rgba(35, 20, 35, 0.78)
+        ) padding-box,
+        linear-gradient(
+            110deg,
+            #ff6b9d,
+            #ffb86c,
+            #fff176,
+            #8cffb0,
+            #78d8ff,
+            #c5a3ff,
+            #ff6bcb
+        ) border-box;
+
+    border-color: transparent;
+
+    box-shadow:
+        0 0 12px rgba(255, 105, 180, 0.35),
+        0 0 22px rgba(125, 170, 255, 0.3),
+        0 0 32px rgba(180, 130, 255, 0.2);
+
+    filter: brightness(1.15);
+    transform: translateY(-2px);
+}
+
 /* TELEFONY I MNIEJSZE EKRANY */
 
 @media (max-width: 900px) {
@@ -421,9 +516,20 @@ body {
     .crush-modal-content {
         padding: 40px 22px 25px;
     }
+
+    .site-nav {
+        top: 16px;
+        right: 12px;
+        gap: 6px;
+    }
+
+    .site-nav a {
+        padding: 8px 11px;
+        font-size: 12px;
+    }
 }
 
-/* OGRANICZENIE ANIMACJI */
+/* OGRANICZENIE ANIMACJI DLA OSÓB, KTÓRE ICH NIE PREFERUJĄ */
 
 @media (prefers-reduced-motion: reduce) {
     .subtitle {
@@ -437,52 +543,11 @@ body {
         animation: none;
         transition: none;
     }
-}
-
-/* MENU PODSTRON */
-.site-nav {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    z-index: 20;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.site-nav a {
-    display: inline-block;
-    padding: 10px 17px;
-    color: white;
-    text-decoration: none;
-    background: transparent;
-    border: 1px solid rgba(180, 180, 180, 0.35);
-    border-radius: 24px;
-    font-size: 14px;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
-}
-
-.site-nav a:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
-}
-
-
-@media (max-width: 700px) {
-    .site-nav {
-        top: 16px;
-        right: 12px;
-        gap: 6px;
-    }
 
     .site-nav a {
-        padding: 8px 11px;
-        font-size: 12px;
+        transition: none;
     }
 }
-
-
 </style>
 </head>
 
@@ -604,9 +669,6 @@ body {
         </section>
 
     </section>
-
-
-        
 
 </main>
 
@@ -820,7 +882,6 @@ document.querySelectorAll(".crush-question").forEach(button => {
         crushModal.setAttribute("aria-hidden", "false");
 
         modalClose.focus();
-
     });
 
 });
@@ -833,7 +894,6 @@ function closeCrushModal() {
     if (previousFocus) {
         previousFocus.focus();
     }
-
 }
 
 modalClose.addEventListener("click", closeCrushModal);
@@ -882,9 +942,19 @@ if (subtitle) {
             cursor.style.borderRight = "none";
         }
     }, 50);
-}  
+}
+
+/* CLOUDFLARE WEB ANALYTICS */
 
 </script>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'></script><!-- End Cloudflare Web Analytics -->
+
+<!-- Cloudflare Web Analytics -->
+<script
+    type="module"
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+
 </body>
 </html>
