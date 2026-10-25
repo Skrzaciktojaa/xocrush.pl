@@ -6,10 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>XO Crush</title>
-<link rel="icon" type="image/png" href="images/calus.png">
+<link rel="icon" type="image/png" href="images/rbwcalus.png">
 <meta name="description" content="XO Crush 💌 Pamiętaj! Twoje uczucia należą do CIEBIE. Nie pozwól nikomu manipulować ani nimi, ani Tobą 🖤">
 
 <style>
+@font-face {
+    font-family: "Nunito";
+    src: url("fonts/Nunito-Variable.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 200 1000;
+    font-display: swap;
+}
+
 @font-face {
     font-family: "Margarine";
     src: url("images/Margarine-Regular.ttf") format("truetype");
@@ -22,105 +30,178 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
+    color: #fff;
+    font-family: "Nunito", Arial, sans-serif;
     background: #171017 url("images/poprostu.png") center center / cover fixed no-repeat;
+    position: relative;
 }
 
-/* LOGO W LEWYM GÓRNYM ROGU */
-
-.logo {
-    position: absolute;
-    top: 18px;
-    left: 22px;
-    width: 135px;
-    height: auto;
-    z-index: 10;
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(12, 8, 14, 0.48);
 }
 
-/* GÓRA STRONY */
+/* GÓRNY PASEK */
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 10px clamp(16px, 3vw, 38px);
+    background: rgba(20, 15, 23, 0.62);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.brand img {
+    display: block;
+    width: 125px;
+    max-height: 52px;
+    object-fit: contain;
+}
+
+/* NAWIGACJA */
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.site-nav a {
+    display: inline-block;
+    padding: 9px 14px;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(220, 220, 220, 0.25);
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.site-nav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* TĘCZOWY PRZYCISK */
+
+.site-nav a[href="antyhomophobia.html"] {
+    background:
+        linear-gradient(
+            rgba(25, 15, 25, 0.78),
+            rgba(25, 15, 25, 0.78)
+        ) padding-box,
+        linear-gradient(
+            110deg,
+            #ff6b9d,
+            #ffb86c,
+            #fff176,
+            #8cffb0,
+            #78d8ff,
+            #c5a3ff,
+            #ff6bcb
+        ) border-box;
+    border: 1px solid transparent;
+    box-shadow: 0 0 14px rgba(210, 150, 255, 0.18);
+}
+
+.site-nav a[href="antyhomophobia.html"]:hover {
+    box-shadow:
+        0 0 12px rgba(255, 105, 180, 0.35),
+        0 0 22px rgba(125, 170, 255, 0.3);
+    filter: brightness(1.12);
+}
+
+/* GŁÓWNY NAGŁÓWEK */
 
 .hero {
-    min-height: 100vh;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     text-align: center;
-    padding: 70px 20px 30px;
+    padding: 62px 20px 42px;
 }
 
 .hero-logo {
-    width: 480px;
-    max-width: 90%;
+    width: 420px;
+    max-width: 82vw;
     height: auto;
     display: block;
     margin: 0 auto 20px;
 }
 
 .subtitle {
-    font-family: "Margarine", cursive;
-    font-size: 46px;
+    font-family: "Margarine", "Nunito", sans-serif;
+    font-size: clamp(25px, 3.5vw, 43px);
     font-weight: normal;
-    color: white;
+    color: #fff;
     text-shadow: 0 3px 12px #000, 0 0 20px #000;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.45;
     max-width: 950px;
 }
 
-@keyframes subtitleAppear {
-    from {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes subtitleFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
-/* DWA PANELE OBOK SIEBIE */
+/* SEKCJE BEZ DUŻYCH KART */
 
 .panels {
-    width: min(1250px, 94%);
-    margin: -100px auto 70px;
+    width: min(1180px, 90%);
+    margin: 0 auto 65px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(30px, 5vw, 70px);
+    align-items: start;
 }
 
-/* PANELE: DELIKATNE ROZMYCIE ZAMIAST RAMKI */
-
 .panel {
-    padding: 35px;
-    background: rgba(25, 20, 26, 0.28);
-    border: none;
-    border-radius: 25px;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    min-width: 0;
+    padding: 12px 0 28px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
     box-shadow: none;
+    backdrop-filter: none;
+}
+
+.quiz-panel {
+    padding-right: clamp(0px, 2vw, 26px);
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 .panel-title {
-    font-family: "Margarine", cursive;
+    font-family: "Margarine", "Nunito", sans-serif;
     font-weight: normal;
-    font-size: 34px;
+    font-size: clamp(27px, 2.7vw, 34px);
     text-align: center;
     margin: 0 0 12px;
     text-shadow: 0 2px 10px #000;
@@ -128,13 +209,13 @@ body {
 
 .panel-description {
     text-align: center;
-    color: #dddddd;
+    color: #e1dce3;
     font-size: 15px;
-    line-height: 1.6;
-    margin: 0 0 28px;
+    line-height: 1.7;
+    margin: 0 0 26px;
 }
 
-/* LEWY PANEL: QUIZ */
+/* POSTĘP QUIZU */
 
 .quiz-progress {
     display: flex;
@@ -148,27 +229,29 @@ body {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1px solid #777777;
+    border: 1px solid #999;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #cccccc;
+    color: #ddd;
     font-size: 13px;
 }
 
 .progress-number.active {
-    background: #111111;
-    border-color: #aaaaaa;
-    color: white;
+    background: rgba(255, 255, 255, 0.18);
+    border-color: #fff;
+    color: #fff;
 }
 
 .progress-number.done {
-    background: #444444;
-    color: white;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
 }
 
+/* PYTANIA QUIZU */
+
 .quiz-question {
-    font-family: "Margarine", cursive;
+    font-family: "Margarine", "Nunito", sans-serif;
     font-size: 24px;
     font-weight: normal;
     text-align: center;
@@ -179,31 +262,34 @@ body {
 .quiz-answers {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 11px;
 }
 
 .quiz-answer {
     width: 100%;
     padding: 14px 18px;
     text-align: left;
-    color: white;
-    background: #292929;
-    border: 1px solid #555555;
-    border-radius: 15px;
+    color: #fff;
+    background: rgba(20, 17, 23, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 13px;
     cursor: pointer;
+    font: inherit;
     font-size: 15px;
     transition: 0.2s;
 }
 
 .quiz-answer:hover {
-    background: #3b3b3b;
-    border-color: #888888;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.7);
 }
 
 .quiz-answer.selected {
-    background: #111111;
-    border-color: #aaaaaa;
+    background: rgba(255, 255, 255, 0.19);
+    border-color: #fff;
 }
+
+/* PRZYCISKI QUIZU */
 
 .quiz-controls {
     display: flex;
@@ -213,19 +299,21 @@ body {
 }
 
 .main-button {
-    padding: 12px 22px;
-    color: white;
-    background: #222222;
-    border: 1px solid #666666;
+    padding: 11px 21px;
+    color: #fff;
+    background: rgba(20, 17, 23, 0.68);
+    border: 1px solid rgba(255, 255, 255, 0.42);
     border-radius: 30px;
     cursor: pointer;
+    font: inherit;
     font-size: 15px;
+    font-weight: 700;
     transition: 0.2s;
 }
 
 .main-button:hover {
-    background: #444444;
-    border-color: #aaaaaa;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
 }
 
 .main-button:disabled {
@@ -236,57 +324,61 @@ body {
 .quiz-message {
     min-height: 24px;
     text-align: center;
-    color: #cccccc;
+    color: #e2dce5;
     font-size: 14px;
     margin-top: 15px;
     line-height: 1.5;
 }
 
-/* PRAWY PANEL: PYTANIA */
+/* PYTANIA O UCZUCIACH */
 
 .crush-questions {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 0;
 }
 
 .crush-question {
     display: flex;
     align-items: center;
     gap: 14px;
-    min-height: 78px;
+    min-height: 76px;
     width: 100%;
-    padding: 18px;
+    padding: 17px 8px;
     text-align: left;
-    color: white;
-    background: #292929;
-    border: 1px solid #555555;
-    border-radius: 16px;
+    color: #fff;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.23);
+    border-radius: 0;
     cursor: pointer;
-    font-family: Arial, sans-serif;
-    transition: background 0.25s, transform 0.25s;
+    font: inherit;
+    transition: background 0.2s, padding 0.2s;
+}
+
+.crush-question:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.23);
 }
 
 .crush-question:hover {
-    background: #3b3b3b;
-    border-color: #888888;
-    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.07);
+    padding-left: 14px;
 }
 
 .question-number {
-    color: #cccccc;
+    color: #d2cbd7;
     font-size: 13px;
 }
 
 .crush-question strong {
     font-size: 15px;
-    font-weight: normal;
+    font-weight: 700;
     flex: 1;
     line-height: 1.5;
 }
 
 .question-arrow {
-    color: #cccccc;
+    color: #ddd;
     font-size: 22px;
 }
 
@@ -313,10 +405,10 @@ body {
     max-width: 500px;
     padding: 40px 35px 35px;
     text-align: center;
-    color: white;
-    background: #222222;
-    border: 1px solid #666666;
-    border-radius: 25px;
+    color: #fff;
+    background: rgba(30, 24, 33, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 22px;
     box-shadow: 0 15px 60px #0008;
     animation: modalAppear 0.25s ease-out;
 }
@@ -336,11 +428,11 @@ body {
 .modal-heart {
     display: block;
     font-size: 42px;
-    color: #cccccc;
+    color: #eee;
 }
 
 .crush-modal-content h2 {
-    font-family: "Margarine", cursive;
+    font-family: "Margarine", "Nunito", sans-serif;
     font-weight: normal;
     font-size: 28px;
     margin: 15px 0;
@@ -349,7 +441,7 @@ body {
 .crush-modal-content p {
     font-size: 16px;
     line-height: 1.8;
-    color: #dddddd;
+    color: #e5e0e8;
 }
 
 .modal-close {
@@ -357,151 +449,104 @@ body {
     top: 10px;
     right: 16px;
     font-size: 32px;
-    color: white;
+    color: #fff;
     background: transparent;
-    border: none;
+    border: 0;
     cursor: pointer;
 }
 
-/* MENU PODSTRON */
+/* STOPKA */
 
-.site-nav {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    z-index: 20;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.site-nav a {
-    display: inline-block;
-    padding: 10px 17px;
-    color: white;
-    text-decoration: none;
-    background: transparent;
-    border: 1px solid rgba(180, 180, 180, 0.35);
-    border-radius: 24px;
+.site-footer {
+    text-align: center;
+    padding: 22px 16px 28px;
+    color: #f2edf4;
     font-size: 14px;
-    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(15, 10, 17, 0.28);
 }
 
-.site-nav a:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-2px);
+.site-footer span {
+    display: block;
+    margin-top: 5px;
+    color: #cfc6d2;
+    font-size: 12px;
 }
 
-/* TĘCZOWY PRZYCISK: HOMOFOBIA I AKCEPTACJA */
-
-.site-nav a[href="antyhomophobia.html"] {
-    position: relative;
-    isolation: isolate;
-    overflow: visible;
-
-    background:
-        linear-gradient(
-            rgba(25, 15, 25, 0.75),
-            rgba(25, 15, 25, 0.75)
-        ) padding-box,
-        linear-gradient(
-            110deg,
-            #ff6b9d,
-            #ffb86c,
-            #fff176,
-            #8cffb0,
-            #78d8ff,
-            #c5a3ff,
-            #ff6bcb
-        ) border-box;
-
-    border: 1px solid transparent;
-    border-radius: 24px;
-
-    box-shadow: 0 0 14px rgba(210, 150, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        filter 0.25s ease;
-}
-
-.site-nav a[href="antyhomophobia.html"]:hover {
-    background:
-        linear-gradient(
-            rgba(35, 20, 35, 0.78),
-            rgba(35, 20, 35, 0.78)
-        ) padding-box,
-        linear-gradient(
-            110deg,
-            #ff6b9d,
-            #ffb86c,
-            #fff176,
-            #8cffb0,
-            #78d8ff,
-            #c5a3ff,
-            #ff6bcb
-        ) border-box;
-
-    border-color: transparent;
-
-    box-shadow:
-        0 0 12px rgba(255, 105, 180, 0.35),
-        0 0 22px rgba(125, 170, 255, 0.3),
-        0 0 32px rgba(180, 130, 255, 0.2);
-
-    filter: brightness(1.15);
-    transform: translateY(-2px);
-}
-
-/* TELEFONY I MNIEJSZE EKRANY */
+/* TABLETY */
 
 @media (max-width: 900px) {
+    .topbar {
+        align-items: flex-start;
+    }
+
     .panels {
         grid-template-columns: 1fr;
-        width: min(650px, 94%);
-        margin: 20px auto 50px;
+        width: min(650px, 88%);
+        gap: 42px;
+    }
+
+    .quiz-panel {
+        padding-right: 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.23);
+        padding-bottom: 38px;
     }
 
     .hero {
-        min-height: auto;
-        padding-bottom: 35px;
-    }
-
-    .panel {
-        padding: 30px 22px;
+        padding-top: 45px;
     }
 }
 
+/* TELEFONY */
+
 @media (max-width: 700px) {
-    .logo {
-        width: 105px;
-        top: 12px;
-        left: 12px;
-    }
-
-    .hero {
-        padding-top: 100px;
-    }
-
-    .hero-logo {
-        width: 340px;
-        max-width: 95%;
-    }
-
-    .subtitle {
-        font-size: 32px;
-    }
-
     body {
         background-attachment: scroll;
     }
 
+    .topbar {
+        position: sticky;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px 13px;
+    }
+
+    .brand img {
+        width: 105px;
+        max-height: 42px;
+    }
+
+    .site-nav {
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .site-nav a {
+        padding: 7px 10px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding: 38px 18px 32px;
+    }
+
+    .hero-logo {
+        width: 320px;
+    }
+
+    .subtitle {
+        font-size: 27px;
+    }
+
+    .panels {
+        width: 88%;
+        margin-bottom: 42px;
+    }
+
     .panel-title {
-        font-size: 29px;
+        font-size: 28px;
     }
 
     .quiz-question {
@@ -509,43 +554,24 @@ body {
     }
 
     .crush-question {
-        min-height: 75px;
-        padding: 15px;
+        min-height: 70px;
+        padding: 14px 4px;
     }
 
     .crush-modal-content {
         padding: 40px 22px 25px;
     }
-
-    .site-nav {
-        top: 16px;
-        right: 12px;
-        gap: 6px;
-    }
-
-    .site-nav a {
-        padding: 8px 11px;
-        font-size: 12px;
-    }
 }
 
-/* OGRANICZENIE ANIMACJI DLA OSÓB, KTÓRE ICH NIE PREFERUJĄ */
+/* MNIEJ ANIMACJI, JEŚLI UŻYTKOWNIK TAK WYBRAŁ */
 
 @media (prefers-reduced-motion: reduce) {
-    .subtitle {
-        opacity: 1;
-        transform: none;
-        animation: none;
-    }
-
-    .crush-modal-content,
-    .crush-question {
-        animation: none;
-        transition: none;
-    }
-
-    .site-nav a {
-        transition: none;
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
     }
 }
 </style>
@@ -553,26 +579,24 @@ body {
 
 <body>
 
-<!-- MAŁE LOGO W ROGU -->
+<header class="topbar">
+    <a class="brand" href="index.html" aria-label="XO Crush — strona główna">
+        <img src="images/logorb.png" alt="XO Crush">
+    </a>
 
-<img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
-
-<nav class="site-nav" aria-label="Nawigacja strony">
-    <a href="aboutweb.html">O stronie</a>
-    <a href="aboutme.html">O mnie</a>
-    <a href="quiz.html">Quiz 💌</a>
-    <a href="antyhomophobia.html">🤍 Homofobia i akceptacja</a>
-</nav>
-
-<!-- GŁÓWNA CZĘŚĆ STRONY -->
+    <nav class="site-nav" aria-label="Nawigacja strony">
+        <a href="aboutweb.html">O stronie</a>
+        <a href="aboutme.html">O mnie</a>
+        <a href="quiz.html">Quiz 💌</a>
+        <a href="antyhomophobia.html">🤍 Homofobia i akceptacja</a>
+    </nav>
+</header>
 
 <main>
 
     <section class="hero">
 
-        <!-- DUŻE LOGO NA ŚRODKU -->
-
-        <img src="images/logoo.png"
+        <img src="images/logorb.png"
              alt="XO CRUSH.pl"
              class="hero-logo">
 
@@ -582,11 +606,9 @@ body {
 
     </section>
 
-    <!-- DWA PANELE -->
-
     <section class="panels">
 
-        <!-- LEWY PANEL: QUIZ -->
+        <!-- QUIZ -->
 
         <section class="panel quiz-panel">
 
@@ -616,7 +638,7 @@ body {
 
         </section>
 
-        <!-- PRAWY PANEL: PYTANIA I ODPOWIEDZI -->
+        <!-- PYTANIA O UCZUCIACH -->
 
         <section class="panel crush-panel">
 
@@ -671,6 +693,11 @@ body {
     </section>
 
 </main>
+
+<footer class="site-footer">
+    XOcrush.pl
+    <span>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</span>
+</footer>
 
 <!-- OKIENKO Z ODPOWIEDZIĄ -->
 
@@ -928,13 +955,16 @@ if (subtitle) {
     let index = 0;
 
     const cursor = document.createElement("span");
+    cursor.setAttribute("aria-hidden", "true");
+    cursor.style.display = "inline-block";
+    cursor.style.height = "1em";
     cursor.style.borderRight = "3px solid white";
-    cursor.style.paddingRight = "3px";
+    cursor.style.marginLeft = "3px";
 
     subtitle.appendChild(cursor);
 
     const typing = setInterval(() => {
-        cursor.textContent += text.charAt(index);
+        cursor.insertAdjacentText("beforebegin", text.charAt(index));
         index++;
 
         if (index >= text.length) {
@@ -943,8 +973,6 @@ if (subtitle) {
         }
     }, 50);
 }
-
-/* CLOUDFLARE WEB ANALYTICS */
 
 </script>
 
