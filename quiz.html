@@ -2,1135 +2,809 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#171017">
-
-<title>XO Crush</title>
-<link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="XO Crush 💌 Pamiętaj! Twoje uczucia należą do CIEBIE. Nie pozwól nikomu manipulować ani nimi, ani Tobą 🖤">
-
-<style>
-@font-face {
-    font-family: "Nunito";
-    src: url("fonts/Nunito-Variable.woff2") format("woff2");
-    font-weight: 200 1000;
-    font-style: normal;
-    font-display: swap;
-}
-
-:root {
-    --rainbow: linear-gradient(
-        115deg,
-        #ff5577 0%,
-        #ff984f 16%,
-        #ffe45e 32%,
-        #69df91 48%,
-        #54d8ed 64%,
-        #8b8bff 80%,
-        #e17be9 100%
-    );
-
-    --rainbow-border: linear-gradient(
-        120deg,
-        #ff5577,
-        #ff984f,
-        #ffe45e,
-        #69df91,
-        #54d8ed,
-        #8b8bff,
-        #e17be9
-    );
-
-    --text: #fffaff;
-    --muted: #e8deef;
-    --panel: rgba(23, 15, 34, 0.78);
-    --panel-light: rgba(255, 255, 255, 0.075);
-    --border: rgba(255, 255, 255, 0.2);
-    --shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
-* {
-    box-sizing: border-box;
-    font-family: "Nunito", sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    color: var(--text);
-    font-family: "Nunito", sans-serif;
-    line-height: 1.7;
-    background-color: #171017;
-    background-image:
-        linear-gradient(
-            rgba(18, 8, 22, 0.76),
-            rgba(18, 8, 22, 0.84)
-        ),
-        url("images/poprostu.png");
-    background-position: center;
-    background-size: cover;
-    background-attachment: fixed;
-}
-
-button,
-input,
-textarea,
-a {
-    font-family: "Nunito", sans-serif;
-    -webkit-tap-highlight-color: transparent;
-}
-
-button {
-    font-weight: 800;
-}
-
-a {
-    color: #d9c3ff;
-    transition: color 0.2s ease;
-}
-
-a:hover {
-    color: white;
-}
-
-/* TĘCZOWE LOGO W LEWYM GÓRNYM ROGU */
-
-.logo {
-    position: absolute;
-    top: 18px;
-    left: 22px;
-    width: 135px;
-    height: auto;
-    z-index: 10;
-    filter: drop-shadow(0 0 12px rgba(180, 130, 255, 0.25));
-}
-
-/* GŁÓWNA CZĘŚĆ STRONY */
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    padding: 70px 20px 30px;
-}
-
-.hero-logo {
-    width: 480px;
-    max-width: 90%;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px;
-    filter: drop-shadow(0 0 24px rgba(220, 140, 255, 0.22));
-    animation: logoAppear 0.8s ease-out both;
-}
-
-.subtitle {
-    font-family: "Nunito", sans-serif;
-    font-size: clamp(25px, 3.5vw, 42px);
-    font-weight: 900;
-    background: var(--rainbow);
-    background-size: 250% 250%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    text-shadow: none;
-    margin: 0;
-    line-height: 1.4;
-    max-width: 950px;
-    animation: subtitleAppear 0.8s ease-out both;
-}
-
-@keyframes logoAppear {
-    from {
-        opacity: 0;
-        transform: translateY(-15px) scale(0.97);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes subtitleAppear {
-    from {
-        opacity: 0;
-        transform: translateY(22px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* PANELE OBOK SIEBIE */
-
-.panels {
-    width: min(1250px, 94%);
-    margin: -100px auto 70px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    align-items: stretch;
-}
-
-/* TĘCZOWE RAMKI PANELI */
-
-.panel {
-    position: relative;
-    padding: 35px;
-    border: 1px solid transparent;
-    border-radius: 25px;
-    background:
-        linear-gradient(
-            rgba(23, 15, 34, 0.88),
-            rgba(23, 15, 34, 0.88)
-        ) padding-box,
-        var(--rainbow-border) border-box;
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-}
-
-.panel::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 12%;
-    right: 12%;
-    height: 2px;
-    background: var(--rainbow);
-    opacity: 0.85;
-    pointer-events: none;
-}
-
-.panel-title {
-    font-family: "Nunito", sans-serif;
-    font-weight: 1000;
-    font-size: 32px;
-    text-align: center;
-    margin: 0 0 12px;
-    background: var(--rainbow);
-    background-size: 250% 250%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.panel-description {
-    text-align: center;
-    color: var(--muted);
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 1.7;
-    margin: 0 0 28px;
-}
-
-/* LEWY PANEL: QUIZ */
-
-.quiz-progress {
-    display: flex;
-    justify-content: center;
-    gap: 9px;
-    flex-wrap: wrap;
-    margin: 25px 0;
-}
-
-.progress-number {
-    position: relative;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    background: rgba(255, 255, 255, 0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #eee4f5;
-    font-size: 13px;
-    font-weight: 800;
-    transition: 0.25s ease;
-}
-
-.progress-number.active {
-    color: #21142d;
-    border-color: transparent;
-    background: var(--rainbow);
-    box-shadow: 0 0 18px rgba(195, 130, 255, 0.35);
-    transform: scale(1.1);
-}
-
-.progress-number.done {
-    color: white;
-    border-color: transparent;
-    background: linear-gradient(
-        135deg,
-        #8b70ff,
-        #e17be9
-    );
-}
-
-.quiz-question {
-    font-family: "Nunito", sans-serif;
-    font-size: 24px;
-    font-weight: 1000;
-    text-align: center;
-    line-height: 1.5;
-    margin: 25px 0;
-    background: var(--rainbow);
-    background-size: 250% 250%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.quiz-answers {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.quiz-answer {
-    width: 100%;
-    padding: 14px 18px;
-    text-align: left;
-    color: white;
-    background: rgba(255, 255, 255, 0.065);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.quiz-answer:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #c8a4ff;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 18px rgba(140, 120, 255, 0.14);
-}
-
-.quiz-answer.selected {
-    color: #21142d;
-    background: var(--rainbow);
-    border-color: transparent;
-    box-shadow: 0 0 20px rgba(190, 130, 255, 0.25);
-}
-
-.quiz-controls {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.main-button {
-    position: relative;
-    padding: 12px 22px;
-    color: #21142d;
-    background: var(--rainbow);
-    background-size: 250% 250%;
-    border: 1px solid transparent;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 900;
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
-    box-shadow: 0 4px 14px rgba(170, 120, 255, 0.12);
-}
-
-.main-button:hover:not(:disabled) {
-    transform: translateY(-2px);
-    filter: brightness(1.08);
-    box-shadow: 0 7px 22px rgba(190, 130, 255, 0.28);
-}
-
-.main-button:active:not(:disabled) {
-    transform: translateY(0);
-}
-
-.main-button:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-
-.quiz-message {
-    min-height: 24px;
-    text-align: center;
-    color: #e8d6ff;
-    font-size: 14px;
-    font-weight: 700;
-    margin-top: 15px;
-    line-height: 1.5;
-}
-
-/* PRAWY PANEL: PYTANIA */
-
-.crush-questions {
-    display: flex;
-    flex-direction: column;
-    gap: 13px;
-}
-
-.crush-question {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    min-height: 78px;
-    width: 100%;
-    padding: 18px;
-    text-align: left;
-    color: white;
-    background:
-        linear-gradient(
-            rgba(255, 255, 255, 0.055),
-            rgba(255, 255, 255, 0.055)
-        ) padding-box,
-        linear-gradient(
-            120deg,
-            rgba(255, 85, 119, 0.35),
-            rgba(255, 228, 94, 0.3),
-            rgba(105, 223, 145, 0.3),
-            rgba(84, 216, 237, 0.3),
-            rgba(139, 139, 255, 0.35),
-            rgba(225, 123, 233, 0.35)
-        ) border-box;
-    border: 1px solid transparent;
-    border-radius: 16px;
-    cursor: pointer;
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        background-color 0.25s ease;
-}
-
-.crush-question:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 7px 24px rgba(180, 130, 255, 0.18);
-    background:
-        linear-gradient(
-            rgba(255, 255, 255, 0.12),
-            rgba(255, 255, 255, 0.12)
-        ) padding-box,
-        var(--rainbow-border) border-box;
-}
-
-.question-number {
-    font-size: 13px;
-    font-weight: 900;
-    background: var(--rainbow);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.crush-question strong {
-    font-size: 15px;
-    font-weight: 800;
-    flex: 1;
-    line-height: 1.5;
-}
-
-.question-arrow {
-    font-size: 22px;
-    font-weight: 800;
-    background: var(--rainbow);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-/* OKIENKO Z ODPOWIEDZIĄ */
-
-.crush-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(8, 4, 15, 0.82);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-.crush-modal.open {
-    display: flex;
-}
-
-.crush-modal-content {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    padding: 40px 35px 35px;
-    text-align: center;
-    color: white;
-    border: 1px solid transparent;
-    border-radius: 25px;
-    background:
-        linear-gradient(
-            rgba(28, 18, 40, 0.97),
-            rgba(28, 18, 40, 0.97)
-        ) padding-box,
-        var(--rainbow-border) border-box;
-    box-shadow: 0 15px 60px #0008;
-    animation: modalAppear 0.25s ease-out;
-}
-
-@keyframes modalAppear {
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.97);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modal-heart {
-    display: block;
-    font-size: 42px;
-    background: var(--rainbow);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.crush-modal-content h2 {
-    font-family: "Nunito", sans-serif;
-    font-weight: 1000;
-    font-size: 27px;
-    margin: 15px 0;
-    background: var(--rainbow);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.crush-modal-content p {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 1.8;
-    color: var(--muted);
-}
-
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 16px;
-    font-size: 32px;
-    font-weight: 800;
-    color: white;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.modal-close:hover {
-    color: #e6b5ff;
-    transform: rotate(90deg);
-}
-
-/* MENU PODSTRON */
-
-.site-nav {
-    position: absolute;
-    top: 22px;
-    right: 22px;
-    z-index: 20;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-.site-nav a {
-    display: inline-block;
-    padding: 10px 17px;
-    color: white;
-    text-decoration: none;
-    background: rgba(25, 15, 35, 0.65);
-    border: 1px solid transparent;
-    border-radius: 24px;
-    background:
-        linear-gradient(
-            rgba(25, 15, 35, 0.8),
-            rgba(25, 15, 35, 0.8)
-        ) padding-box,
-        linear-gradient(
-            120deg,
-            rgba(255, 85, 119, 0.65),
-            rgba(255, 228, 94, 0.55),
-            rgba(105, 223, 145, 0.55),
-            rgba(84, 216, 237, 0.55),
-            rgba(139, 139, 255, 0.65),
-            rgba(225, 123, 233, 0.65)
-        ) border-box;
-    font-size: 14px;
-    font-weight: 800;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-.site-nav a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 18px rgba(180, 130, 255, 0.25);
-    background:
-        linear-gradient(
-            rgba(45, 25, 55, 0.9),
-            rgba(45, 25, 55, 0.9)
-        ) padding-box,
-        var(--rainbow-border) border-box;
-}
-
-/* TELEFONY I MNIEJSZE EKRANY */
-
-@media (max-width: 900px) {
-    .panels {
-        grid-template-columns: 1fr;
-        width: min(650px, 94%);
-        margin: 20px auto 50px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17121d">
+  <title>Tajemnica 💌 | XO Crush</title>
+  <meta name="description" content="Dziewięć pytań. Jedna tajemnica. Czy uda Ci się ją odkryć?">
+
+  <link rel="icon" href="images/calus.png" type="image/png">
+
+  <style>
+    @font-face {
+      font-family: "Nunito";
+      src: url("fonts/Nunito-Variable.woff2") format("woff2");
+      font-weight: 100 1000;
+      font-display: swap;
     }
 
-    .hero {
-        min-height: auto;
-        padding-bottom: 35px;
+    @font-face {
+      font-family: "Margarine";
+      src: url("images/Margarine-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-display: swap;
     }
 
-    .panel {
-        padding: 30px 22px;
-    }
-}
-
-@media (max-width: 700px) {
-    .logo {
-        width: 90px;
-        top: 12px;
-        left: 12px;
+    :root {
+      --pink: #ff9bc9;
+      --pink-light: #ffd1e5;
+      --text: #fff7fc;
+      --muted: #c9b9cb;
+      --panel: rgba(24, 17, 31, 0.88);
+      --border: rgba(255, 190, 224, 0.24);
+      --shadow: 0 22px 70px rgba(0, 0, 0, 0.4);
     }
 
-    .hero {
-        padding-top: 115px;
-    }
+    * { box-sizing: border-box; }
 
-    .hero-logo {
-        width: 340px;
-        max-width: 95%;
-    }
-
-    .subtitle {
-        font-size: 28px;
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
-        background-attachment: scroll;
+      min-height: 100vh;
+      margin: 0;
+      padding: 28px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text);
+      font-family: "Nunito", sans-serif;
+      background:
+        radial-gradient(ellipse at 50% 15%, rgba(180, 87, 145, 0.16), transparent 48%),
+        linear-gradient(rgba(15, 10, 20, 0.68), rgba(15, 10, 20, 0.88)),
+        url("images/poprostu.png") center center / cover fixed;
     }
 
-    .panel-title {
-        font-size: 27px;
+    button, input { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+
+    .logo {
+      display: block;
+      width: min(285px, 76vw);
+      height: auto;
+      margin: 0 auto 10px;
+      object-fit: contain;
+      filter: drop-shadow(0 7px 25px rgba(255, 155, 201, 0.22));
+      animation: logoReveal 0.8s ease both;
     }
 
-    .quiz-question {
-        font-size: 21px;
+    .subtitle {
+      margin: 0 0 29px;
+      color: var(--pink-light);
+      text-align: center;
+      font-family: "Margarine", sans-serif;
+      font-size: clamp(17px, 4vw, 22px);
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 16px rgba(255, 155, 201, 0.2);
     }
 
-    .crush-question {
-        min-height: 75px;
-        padding: 15px;
+    .card {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      max-width: 510px;
+      padding: clamp(22px, 5vw, 35px);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 27px;
+      background: linear-gradient(145deg, rgba(36, 25, 43, 0.94), var(--panel));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+      animation: cardReveal 0.65s ease both;
     }
 
-    .crush-modal-content {
-        padding: 40px 22px 25px;
+    .card::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -100px;
+      right: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(255, 155, 201, 0.075);
+      filter: blur(35px);
+      pointer-events: none;
     }
 
-    .site-nav {
-        top: 12px;
-        right: 10px;
-        gap: 5px;
-        max-width: calc(100% - 115px);
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 13px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
     }
 
-    .site-nav a {
-        padding: 7px 9px;
-        font-size: 11px;
+    .step-counter {
+      padding: 6px 10px;
+      border: 1px solid rgba(255, 190, 224, 0.2);
+      border-radius: 999px;
+      color: var(--pink-light);
+      background: rgba(255, 155, 201, 0.07);
+      white-space: nowrap;
+      letter-spacing: 1px;
     }
 
-    .quiz-controls {
-        gap: 8px;
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.085);
     }
 
-    .main-button {
-        padding: 11px 15px;
-        font-size: 14px;
-    }
-}
-
-/* ANIMACJE TĘCZY */
-
-@media (prefers-reduced-motion: no-preference) {
-    .subtitle,
-    .panel-title,
-    .quiz-question,
-    .crush-modal-content h2 {
-        animation: rainbowFlow 9s ease infinite;
-        background-size: 250% 250%;
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #d878ad, #ff9bc9, #ffe0ef);
+      box-shadow: 0 0 15px rgba(255, 155, 201, 0.48);
+      transition: width 0.4s cubic-bezier(.2,.8,.2,1);
     }
 
-    @keyframes rainbowFlow {
-        0%, 100% {
-            background-position: 0% 50%;
-        }
-        50% {
-            background-position: 100% 50%;
-        }
+    .question {
+      margin: 0 0 11px;
+      font-family: "Margarine", "Nunito", sans-serif;
+      font-size: clamp(24px, 5.4vw, 32px);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: 0.1px;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
     }
-}
 
-/* DOSTĘPNOŚĆ */
+    .question-note {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
 
-:focus-visible {
-    outline: 3px solid #d8b4fe;
-    outline-offset: 4px;
-}
+    .answers {
+      display: grid;
+      gap: 11px;
+    }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    .answer {
+      position: relative;
+      width: 100%;
+      min-height: 51px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 15px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.045);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s;
+    }
+
+    .answer:hover {
+      border-color: rgba(255, 155, 201, 0.62);
+      background: rgba(255, 155, 201, 0.085);
+      transform: translateY(-2px);
+    }
+
+    .answer:focus-visible,
+    .primary-button:focus-visible,
+    .home-link:focus-visible,
+    .name-input:focus-visible {
+      outline: 2px solid var(--pink-light);
+      outline-offset: 3px;
+    }
+
+    .answer.selected {
+      border-color: var(--pink);
+      background: linear-gradient(100deg, rgba(255, 155, 201, 0.17), rgba(255, 155, 201, 0.07));
+      box-shadow: inset 0 0 0 1px rgba(255, 155, 201, 0.12), 0 5px 20px rgba(255, 155, 201, 0.07);
+    }
+
+    .answer-mark {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 21px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      color: #251525;
+      font-size: 12px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .answer.selected .answer-mark {
+      border-color: var(--pink);
+      background: var(--pink);
+    }
+
+    .name-input {
+      width: 100%;
+      min-height: 54px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      outline: none;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.055);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .name-input:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 4px rgba(255, 155, 201, 0.09);
+    }
+
+    .name-input::placeholder { color: #a999ac; }
+
+    .input-hint {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .error-message {
+      min-height: 20px;
+      margin: 10px 0 0;
+      color: #ffb4d4;
+      font-size: 13px;
+    }
+
+    .primary-button {
+      width: 100%;
+      min-height: 53px;
+      margin-top: 23px;
+      padding: 14px 18px;
+      border: 1px solid rgba(255, 230, 242, 0.55);
+      border-radius: 15px;
+      color: #291625;
+      background: linear-gradient(115deg, #ffe0ef, #ffadd2 55%, #ff91c4);
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      cursor: pointer;
+      box-shadow: 0 8px 27px rgba(255, 155, 201, 0.16);
+      transition: transform 0.22s, filter 0.22s, box-shadow 0.22s;
+    }
+
+    .primary-button:hover {
+      filter: brightness(1.06);
+      transform: translateY(-2px);
+      box-shadow: 0 11px 30px rgba(255, 155, 201, 0.23);
+    }
+
+    .primary-button:active { transform: translateY(0); }
+
+    .primary-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .result-icon {
+      margin: 3px 0 15px;
+      color: var(--pink-light);
+      text-align: center;
+      font-size: 48px;
+      text-shadow: 0 0 25px rgba(255, 155, 201, 0.28);
+    }
+
+    .result-title {
+      margin: 0 0 15px;
+      color: var(--pink-light);
+      font-family: "Margarine", sans-serif;
+      font-size: clamp(26px, 6vw, 35px);
+      font-weight: 400;
+      line-height: 1.3;
+      text-align: center;
+      text-wrap: balance;
+    }
+
+    .result-text {
+      margin: 0;
+      color: #e6d9e7;
+      font-size: 15px;
+      line-height: 1.9;
+      text-align: center;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .score {
+      margin: 24px 0 7px;
+      color: var(--pink-light);
+      font-size: 31px;
+      font-weight: 900;
+      text-align: center;
+      text-shadow: 0 0 20px rgba(255, 155, 201, 0.14);
+    }
+
+    .score-caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .bonus {
+      margin-top: 24px;
+      padding: 21px;
+      border: 1px solid rgba(255, 155, 201, 0.42);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 155, 201, 0.1), rgba(255, 255, 255, 0.025));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+      animation: reveal 0.8s ease both;
+    }
+
+    .bonus-title {
+      margin: 0 0 11px;
+      color: var(--pink-light);
+      font-family: "Margarine", sans-serif;
+      font-size: 21px;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    .bonus-text {
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 23px;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 190, 224, 0.18);
+      border-radius: 999px;
+      color: var(--pink-light);
+      background: rgba(20, 12, 24, 0.36);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+    }
+
+    .home-link:hover {
+      color: white;
+      border-color: rgba(255, 190, 224, 0.45);
+      background: rgba(255, 155, 201, 0.08);
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 27px;
+      color: rgba(255, 247, 252, 0.55);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .hidden { display: none !important; }
+
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes logoReveal {
+      from { opacity: 0; transform: translateY(-7px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 20px 13px 22px; background-attachment: scroll; }
+      .logo { width: min(245px, 72vw); }
+      .subtitle { margin-bottom: 23px; }
+      .card { border-radius: 22px; }
+      .question-note { font-size: 13px; }
+      .answer { padding: 12px 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
         scroll-behavior: auto !important;
         animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+      }
     }
-}
-</style>
+  </style>
 </head>
 
 <body>
+  <header>
+    <a href="index.html" aria-label="XO Crush — strona główna">
+      <img class="logo" src="images/logoo.png" alt="XO Crush">
+    </a>
+    <p class="subtitle">Tutaj poznasz mój sekret 💌</p>
+  </header>
 
-<!-- MAŁE LOGO W ROGU -->
+  <main class="card" id="quiz-card">
+    <div id="quiz-screen">
+      <div class="topline">
+        <span>Mała tajemnica</span>
+        <span class="step-counter" id="step-counter">01 / 09</span>
+      </div>
 
-<img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
+      <div
+        class="progress-track"
+        id="progress-track"
+        role="progressbar"
+        aria-label="Postęp quizu"
+        aria-valuemin="0"
+        aria-valuemax="9"
+        aria-valuenow="0"
+      >
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
 
-<nav class="site-nav" aria-label="Nawigacja strony">
-    <a href="aboutweb.html">O stronie</a>
-    <a href="aboutme.html">O mnie</a>
-    <a href="quiz.html">Quiz 💌</a>
-    <a href="antyhomophobia.html">🤍 Homofobia i akceptacja</a>
-</nav>
+      <h1 class="question" id="question-title">
+        Gotowy, żeby odkryć sekret?
+      </h1>
 
-<main>
+      <p class="question-note" id="question-note">
+        Dziewięć pytań. Każde przybliży Cię do rozwiązania.
+      </p>
 
-    <section class="hero">
+      <div class="answers" id="answers"></div>
+      <p class="error-message" id="error-message" aria-live="polite"></p>
 
-        <img src="images/logoo.png"
-             alt="XO CRUSH.pl"
-             class="hero-logo">
-
-        <p class="subtitle">
-            Czasem jedna osoba potrafi sprawić, że zwykły dzień staje się wyjątkowy. A jeden dzień bez niej może stać się ogromną katorgą... 🖤
-        </p>
-
-    </section>
-
-    <section class="panels">
-
-        <!-- LEWY PANEL: QUIZ -->
-
-        <section class="panel quiz-panel">
-
-            <h2 class="panel-title">Twój Crush Quiz 💌</h2>
-
-            <p class="panel-description">
-                Odpowiedz na pytania i odkryj coś o swoich uczuciach.
-            </p>
-
-            <div class="quiz-progress" id="quizProgress"></div>
-
-            <h3 class="quiz-question" id="quizQuestion"></h3>
-
-            <div class="quiz-answers" id="quizAnswers"></div>
-
-            <div class="quiz-controls">
-                <button class="main-button" id="previousQuestion">
-                    ← Wstecz
-                </button>
-
-                <button class="main-button" id="nextQuestion">
-                    Dalej →
-                </button>
-            </div>
-
-            <div class="quiz-message" id="quizMessage"></div>
-
-        </section>
-
-        <!-- PRAWY PANEL: PYTANIA I ODPOWIEDZI -->
-
-        <section class="panel crush-panel">
-
-            <h2 class="panel-title">O czym myślisz? 🖤</h2>
-
-            <p class="panel-description">
-                Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
-            </p>
-
-            <div class="crush-questions">
-
-                <button class="crush-question"
-                    data-title="Czemu o nim/niej tyle myślę?"
-                    data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
-
-                    <span class="question-number">01</span>
-                    <strong>Czemu o nim/niej tyle myślę?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-                <button class="crush-question"
-                    data-title="Czy to już zakochanie?"
-                    data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.">
-
-                    <span class="question-number">02</span>
-                    <strong>Czy to już zakochanie?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-                <button class="crush-question"
-                    data-title="Dlaczego się przy nim/niej stresuję?"
-                    data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.">
-
-                    <span class="question-number">03</span>
-                    <strong>Dlaczego się przy nim/niej stresuję?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-                <button class="crush-question"
-                    data-title="Czy on/ona też może coś czuć?"
-                    data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
-
-                    <span class="question-number">04</span>
-                    <strong>Czy on/ona też może coś czuć?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-            </div>
-
-        </section>
-
-    </section>
-
-</main>
-
-<!-- OKIENKO Z ODPOWIEDZIĄ -->
-
-<div class="crush-modal" id="crushModal" aria-hidden="true">
-
-    <div class="crush-modal-content"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="modalTitle">
-
-        <button class="modal-close"
-                id="modalClose"
-                aria-label="Zamknij okienko">×</button>
-
-        <span class="modal-heart" aria-hidden="true">♡</span>
-
-        <h2 id="modalTitle"></h2>
-
-        <p id="modalAnswer"></p>
-
-        <button class="main-button" id="modalOkay">
-            Rozumiem 🖤
-        </button>
-
+      <button class="primary-button" id="next-button" type="button">
+        Zaczynamy
+      </button>
     </div>
 
-</div>
+    <section id="result-screen" class="hidden" aria-live="polite">
+      <div class="result-icon" id="result-icon">✧</div>
+      <h1 class="result-title" id="result-title">Koniec tajemnicy?</h1>
+      <p class="result-text" id="result-text"></p>
 
-<script>
+      <div class="score" id="score"></div>
+      <p class="score-caption">poprawnych odpowiedzi na 9 pytań</p>
 
-/* QUIZ */
+      <div id="bonus" class="bonus hidden">
+        <h2 class="bonus-title">Odkryto ukryty sekret 🖤</h2>
+        <p class="bonus-text">
+          Gratulacje. Dotarłeś do samego końca.
+          Nie każdy odkrywa wszystkie sekrety.
+          Dziękuję, że poświęciłeś chwilę, żeby poznać mój.
+        </p>
+      </div>
 
-const questions = [
-    {
-        question: "Czy warto zrobić pierwszy krok?",
-        answers: ["Tak, odważnie!", "Może kiedyś...", "Wolę poczekać"]
-    },
-    {
-        question: "Czy wierzysz w miłość od pierwszego wejrzenia?",
-        answers: ["Tak!", "Nie wiem", "Raczej nie"]
-    },
-    {
-        question: "Co najbardziej cenisz w drugiej osobie?",
-        answers: ["Poczucie humoru", "Szczerość", "Czułość"]
-    },
-    {
-        question: "Jak reagujesz na komplement?",
-        answers: ["Uśmiecham się", "Rumienię się", "Nie wiem, co powiedzieć"]
-    },
-    {
-        question: "Czy zdarza Ci się myśleć o kimś przed snem?",
-        answers: ["Często!", "Czasami", "Rzadko"]
-    },
-    {
-        question: "Co jest ważniejsze?",
-        answers: ["Zaufanie", "Wspólne zainteresowania", "Dobra komunikacja"]
-    },
-    {
-        question: "Czy lubisz romantyczne niespodzianki?",
-        answers: ["Uwielbiam!", "Zależy jakie", "Wolę spokój"]
-    },
-    {
-        question: "Gotowy na odkrycie swojego wyniku?",
-        answers: ["Tak!", "Jeszcze chwilę", "Dawaj wynik!"]
+      <button class="primary-button" id="restart-button" type="button">
+        Rozwiąż ponownie
+      </button>
+    </section>
+  </main>
+
+  <a class="home-link" href="index.html">← Wróć na stronę główną</a>
+
+  <footer class="footer">
+    XOcrush.pl © 2026 · Stworzone z odrobiną tajemnicy 💌
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        question: "Do której klasy chodzi?",
+        note: "Zacznijmy od czegoś prostego...",
+        options: ["7a", "8a", "8b"],
+        correct: ["7a"]
+      },
+      {
+        question: "Jaki ma kolor włosów?",
+        note: "Pamiętasz ten szczegół?",
+        options: ["Brązowe", "Blond", "Czarne", "Inny kolor"],
+        correct: ["brązowe"]
+      },
+      {
+        question: "Jakiej jest płci?",
+        note: "Kolejna wskazówka.",
+        options: ["Mężczyzna", "Kobieta"],
+        correct: ["mężczyzna"]
+      },
+      {
+        question: "Jak ma na imię?",
+        note: "Tutaj musisz wpisać odpowiedź samodzielnie.",
+        type: "text",
+        placeholder: "Wpisz imię...",
+        correct: ["heniek", "henryk"]
+      },
+      {
+        question: "Czy chodzimy do tej samej klasy?",
+        note: "Przypomnij sobie wcześniejsze wskazówki.",
+        options: ["Tak", "Nie"],
+        correct: ["nie"]
+      },
+      {
+        question: "Co jako pierwsze przyciągnęło moją uwagę?",
+        note: "Czas na trochę bardziej osobiste pytanie.",
+        options: [
+          "Jego włosy",
+          "Jego twarz",
+          "Jego uśmiech",
+          "Trudno powiedzieć"
+        ],
+        correct: ["jego twarz"]
+      },
+      {
+        question: "Czy rozmawiamy ze sobą na co dzień?",
+        note: "Czasami odpowiedź mówi więcej, niż się wydaje.",
+        options: [
+          "Tak, często",
+          "Czasami",
+          "Raczej nie",
+          "Nie, choćbym chciał"
+        ],
+        correct: ["nie, choćbym chciał"]
+      },
+      {
+        question: "Od jak dawna mi się podoba?",
+        note: "Nie wszystko zaczęło się wczoraj.",
+        options: [
+          "Od kilku dni",
+          "Od kilku tygodni",
+          "Od dłuższego czasu",
+          "Od kilku lat"
+        ],
+        correct: ["od dłuższego czasu"]
+      },
+      {
+        question: "Czy on wie, że mi się podoba?",
+        note: "Ostatnie pytanie. Zastanów się dobrze...",
+        options: [
+          "Tak, wie na pewno",
+          "Podejrzewa",
+          "Nie mam pojęcia",
+          "Raczej nie"
+        ],
+        correct: ["raczej nie"]
+      }
+    ];
+
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+    const questionTitle = document.getElementById("question-title");
+    const questionNote = document.getElementById("question-note");
+    const answersContainer = document.getElementById("answers");
+    const nextButton = document.getElementById("next-button");
+    const stepCounter = document.getElementById("step-counter");
+    const progressFill = document.getElementById("progress-fill");
+    const progressTrack = document.getElementById("progress-track");
+    const errorMessage = document.getElementById("error-message");
+
+    let currentQuestion = -1;
+    let selectedAnswer = null;
+    let score = 0;
+    let results = [];
+
+    function normalize(value) {
+      return value
+        .trim()
+        .toLocaleLowerCase("pl-PL")
+        .replace(/\s+/g, " ");
     }
-];
 
-let currentQuestion = 0;
-let chosenAnswers = [];
-let quizFinished = false;
+    function renderQuestion() {
+      selectedAnswer = null;
+      errorMessage.textContent = "";
+      answersContainer.replaceChildren();
 
-const quizProgress = document.getElementById("quizProgress");
-const quizQuestion = document.getElementById("quizQuestion");
-const quizAnswers = document.getElementById("quizAnswers");
-const quizMessage = document.getElementById("quizMessage");
-const previousQuestion = document.getElementById("previousQuestion");
-const nextQuestion = document.getElementById("nextQuestion");
+      const question = questions[currentQuestion];
 
-function renderProgress() {
-    quizProgress.innerHTML = "";
+      questionTitle.textContent = question.question;
+      questionNote.textContent = question.note;
 
-    questions.forEach((question, index) => {
-        const number = document.createElement("div");
+      stepCounter.textContent =
+        String(currentQuestion + 1).padStart(2, "0") +
+        " / " + String(questions.length).padStart(2, "0");
 
-        number.className = "progress-number";
-        number.textContent = index + 1;
+      progressFill.style.width =
+        (currentQuestion / questions.length * 100) + "%";
 
-        if (index === currentQuestion) {
-            number.classList.add("active");
-        }
+      progressTrack.setAttribute("aria-valuenow", currentQuestion);
 
-        if (chosenAnswers[index] !== undefined) {
-            number.classList.add("done");
-        }
+      if (question.type === "text") {
+        const input = document.createElement("input");
+        input.className = "name-input";
+        input.type = "text";
+        input.id = "name-answer";
+        input.placeholder = question.placeholder;
+        input.autocomplete = "off";
+        input.maxLength = 80;
+        input.setAttribute("aria-label", "Wpisz imię");
 
-        quizProgress.appendChild(number);
-    });
-}
-
-function renderQuiz() {
-    const q = questions[currentQuestion];
-
-    quizFinished = false;
-    quizQuestion.textContent = q.question;
-    quizAnswers.innerHTML = "";
-    quizMessage.textContent = "";
-
-    q.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-
-        button.className = "quiz-answer";
-        button.textContent = answer;
-
-        if (chosenAnswers[currentQuestion] === index) {
-            button.classList.add("selected");
-            button.setAttribute("aria-pressed", "true");
-        } else {
-            button.setAttribute("aria-pressed", "false");
-        }
-
-        button.addEventListener("click", () => {
-            chosenAnswers[currentQuestion] = index;
-            renderQuiz();
+        input.addEventListener("keydown", event => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            submitAnswer();
+          }
         });
 
-        quizAnswers.appendChild(button);
-    });
+        answersContainer.appendChild(input);
 
-    previousQuestion.disabled = currentQuestion === 0;
+        const hint = document.createElement("p");
+        hint.className = "input-hint";
+        hint.textContent = "Wpisz imię i przejdź dalej.";
+        answersContainer.appendChild(hint);
 
-    nextQuestion.textContent =
+        input.focus();
+      } else {
+        question.options.forEach(option => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "answer";
+          button.setAttribute("aria-pressed", "false");
+
+          const mark = document.createElement("span");
+          mark.className = "answer-mark";
+          mark.setAttribute("aria-hidden", "true");
+
+          const label = document.createElement("span");
+          label.textContent = option;
+
+          button.append(mark, label);
+
+          button.addEventListener("click", () => {
+            selectedAnswer = option;
+
+            answersContainer.querySelectorAll(".answer").forEach(item => {
+              item.classList.remove("selected");
+              item.querySelector(".answer-mark").textContent = "";
+              item.setAttribute("aria-pressed", "false");
+            });
+
+            button.classList.add("selected");
+            mark.textContent = "✓";
+            button.setAttribute("aria-pressed", "true");
+            errorMessage.textContent = "";
+          });
+
+          answersContainer.appendChild(button);
+        });
+      }
+
+      nextButton.textContent =
         currentQuestion === questions.length - 1
-        ? "Zobacz wynik ♥"
-        : "Dalej →";
-
-    renderProgress();
-}
-
-previousQuestion.addEventListener("click", () => {
-    if (!quizFinished && currentQuestion > 0) {
-        currentQuestion--;
-        renderQuiz();
+          ? "Odkryj wynik ✧"
+          : "Dalej →";
     }
-});
 
-nextQuestion.addEventListener("click", () => {
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      results = [];
+      selectedAnswer = null;
 
-    if (quizFinished) {
-        currentQuestion = 0;
-        chosenAnswers = [];
-        renderQuiz();
+      quizScreen.classList.remove("hidden");
+      resultScreen.classList.add("hidden");
+
+      renderQuestion();
+    }
+
+    function submitAnswer() {
+      if (currentQuestion === -1) {
+        startQuiz();
         return;
-    }
+      }
 
-    if (chosenAnswers[currentQuestion] === undefined) {
-        quizMessage.textContent = "Najpierw wybierz odpowiedź 🖤";
-        return;
-    }
+      const question = questions[currentQuestion];
+      let answer = "";
 
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        renderQuiz();
-        return;
-    }
+      if (question.type === "text") {
+        const input = document.getElementById("name-answer");
+        answer = input.value;
 
-    showQuizResult();
-});
-
-function showQuizResult() {
-    quizFinished = true;
-
-    quizQuestion.textContent = "Twój wynik 🖤";
-    quizAnswers.innerHTML = "";
-    quizProgress.innerHTML = "";
-
-    const result = document.createElement("p");
-
-    result.style.textAlign = "center";
-    result.style.lineHeight = "1.8";
-    result.style.fontWeight = "700";
-    result.textContent =
-        "Jesteś osobą, która ma przed sobą wiele pięknych możliwości. " +
-        "Daj sobie czas i odkrywaj świat po swojemu.";
-
-    quizAnswers.appendChild(result);
-
-    previousQuestion.disabled = true;
-    nextQuestion.textContent = "Spróbuj ponownie ↻";
-    quizMessage.textContent = "";
-}
-
-/* OKIENKA PYTAŃ */
-
-const crushModal = document.getElementById("crushModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalAnswer = document.getElementById("modalAnswer");
-const modalClose = document.getElementById("modalClose");
-const modalOkay = document.getElementById("modalOkay");
-
-let previousFocus = null;
-
-document.querySelectorAll(".crush-question").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        previousFocus = button;
-
-        modalTitle.textContent = button.dataset.title;
-        modalAnswer.textContent = button.dataset.answer;
-
-        crushModal.classList.add("open");
-        crushModal.setAttribute("aria-hidden", "false");
-
-        modalClose.focus();
-    });
-
-});
-
-function closeCrushModal() {
-    crushModal.classList.remove("open");
-    crushModal.setAttribute("aria-hidden", "true");
-
-    if (previousFocus) {
-        previousFocus.focus();
-    }
-}
-
-modalClose.addEventListener("click", closeCrushModal);
-modalOkay.addEventListener("click", closeCrushModal);
-
-crushModal.addEventListener("click", event => {
-    if (event.target === crushModal) {
-        closeCrushModal();
-    }
-});
-
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && crushModal.classList.contains("open")) {
-        closeCrushModal();
-    }
-});
-
-renderQuiz();
-
-/* ANIMACJA PISANIA NAPISU */
-
-const subtitle = document.querySelector(".subtitle");
-
-if (
-    subtitle &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-) {
-    const text = subtitle.textContent.trim();
-    subtitle.textContent = "";
-
-    let index = 0;
-
-    const cursor = document.createElement("span");
-    cursor.setAttribute("aria-hidden", "true");
-    cursor.style.display = "inline-block";
-    cursor.style.height = "1em";
-    cursor.style.borderRight = "3px solid #d8b4fe";
-    cursor.style.marginLeft = "3px";
-
-    subtitle.appendChild(cursor);
-
-    const typing = setInterval(() => {
-        cursor.insertAdjacentText("beforebegin", text.charAt(index));
-        index++;
-
-        if (index >= text.length) {
-            clearInterval(typing);
-            cursor.style.borderRight = "none";
+        if (!answer.trim()) {
+          errorMessage.textContent =
+            "Wpisz odpowiedź, zanim przejdziesz dalej.";
+          input.focus();
+          return;
         }
-    }, 50);
-}
+      } else {
+        if (selectedAnswer === null) {
+          errorMessage.textContent = "Wybierz jedną odpowiedź.";
+          return;
+        }
 
-</script>
+        answer = selectedAnswer;
+      }
 
-<!-- CLOUDFLARE WEB ANALYTICS -->
+      const correct = question.correct.includes(normalize(answer));
 
-<script
+      results.push({
+        question: question.question,
+        answer: answer,
+        correct: correct
+      });
+
+      if (correct) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
+
+      progressFill.style.width = "100%";
+      progressTrack.setAttribute("aria-valuenow", questions.length);
+
+      document.getElementById("score").textContent =
+        score + " / " + questions.length;
+
+      const wrongQuestions = results
+        .map((result, index) => result.correct ? null : index + 1)
+        .filter(number => number !== null);
+
+      const bonus = document.getElementById("bonus");
+      bonus.classList.add("hidden");
+
+      if (score === questions.length) {
+        document.getElementById("result-icon").textContent = "♡";
+        document.getElementById("result-title").textContent =
+          "Odkryłeś tajemnicę";
+        document.getElementById("result-text").textContent =
+          "Wszystkie odpowiedzi są poprawne.\n" +
+          "Udało Ci się dotrzeć do samego końca.";
+
+        bonus.classList.remove("hidden");
+      } else {
+        document.getElementById("result-icon").textContent = "✧";
+        document.getElementById("result-title").textContent =
+          "Tajemnica nie została w pełni odkryta";
+        document.getElementById("result-text").textContent =
+          "Nie wszystkie odpowiedzi były poprawne.\n" +
+          "Spróbuj jeszcze raz, jeśli chcesz odkryć cały sekret.\n\n" +
+          "Do sprawdzenia: pytania " + wrongQuestions.join(", ") + ".";
+      }
+
+      document.getElementById("restart-button").focus();
+    }
+
+    nextButton.addEventListener("click", submitAnswer);
+
+    document.getElementById("restart-button")
+      .addEventListener("click", startQuiz);
+
+    questionTitle.textContent = "Gotowy, żeby odkryć sekret?";
+    questionNote.textContent =
+      "Dziewięć pytań. Każde przybliży Cię do rozwiązania.";
+
+    answersContainer.replaceChildren();
+    progressFill.style.width = "0%";
+    progressTrack.setAttribute("aria-valuenow", 0);
+    stepCounter.textContent = "01 / 09";
+    nextButton.textContent = "Zaczynamy";
+  </script>
+
+  <script
     defer
     src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'>
-</script>
-
+    data-cf-beacon='{"token":"ef70a6092c7d4d90acfa6f2d528404ff"}'>
+  </script>
 </body>
 </html>
