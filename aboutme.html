@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/calus.png">
-    <title>O mnie | XO Crush</title>
+    <meta name="theme-color" content="#21121f">
     <meta name="description" content="Poznaj twórcę XO Crush 🖤">
+    <title>O mnie | XO Crush</title>
 
     <style>
         @font-face {
@@ -21,108 +22,189 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
             font-family: "Nunito", Arial, sans-serif;
-            color: #222222;
-            background: #171017 url("images/poprostu.png") center center / cover fixed no-repeat;
+            color: #fff8fc;
+            line-height: 1.8;
+            background:
+                linear-gradient(
+                    rgba(18, 8, 17, 0.72),
+                    rgba(18, 8, 17, 0.86)
+                ),
+                url("images/poprostu.png") center / cover fixed no-repeat;
         }
 
-        /* LOGO W ROGU */
+        /* GÓRNY PASEK Z ROZMYCIEM */
 
-        .logo {
-            position: absolute;
-            top: 18px;
-            left: 22px;
-            width: 135px;
-            height: auto;
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 76px;
+            padding: 8px clamp(16px, 4vw, 42px);
+            background: rgba(22, 10, 21, 0.24);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .brand img {
+            display: block;
+            width: 145px;
+            height: 58px;
+            object-fit: contain;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 16px;
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.18);
+            transform: translateY(-2px);
         }
 
         /* GŁÓWNA ZAWARTOŚĆ */
 
         main {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 110px 20px 30px;
+            width: min(900px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 55px 0 0;
         }
 
         .about-container {
             width: 100%;
-            max-width: 750px;
-            padding: 45px;
+            padding: 35px 0 45px;
             text-align: center;
-            background: rgba(220, 220, 220, 0.95);
-            border: 1px solid #aaaaaa;
-            border-radius: 25px;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .about-logo {
+            display: block;
             width: 250px;
-            max-width: 80%;
+            max-width: 75%;
             height: auto;
-            margin-bottom: 20px;
+            margin: 0 auto 25px;
+        }
+
+        .eyebrow {
+            color: #ffffff;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
         }
 
         h1 {
             font-family: "Nunito", Arial, sans-serif;
             font-weight: 900;
-            font-size: 42px;
-            margin: 10px 0 25px;
-            color: #222222;
-            text-shadow: none;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            line-height: 1.2;
+            margin: 12px 0 20px;
+            color: #ffffff;
         }
 
+        .intro {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #e7d6e1;
+            font-size: 18px;
+        }
+
+        .divider {
+            width: min(280px, 65%);
+            height: 4px;
+            margin: 30px auto;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        /* TEKST BEZ OKIENKA */
+
         .about-text {
-            color: #333333;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: left;
+            color: #e7d6e1;
             font-size: 17px;
-            line-height: 1.9;
-            margin-bottom: 30px;
+            line-height: 1.95;
+        }
+
+        .about-text p {
+            margin: 0;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .about-text p:last-child {
+            border-bottom: none;
         }
 
         .about-text strong {
-            color: #111111;
+            color: #ffffff;
             font-weight: 900;
         }
 
-        /* PRZYCISK POWROTU */
-
-        .back-button {
-            display: inline-block;
-            padding: 13px 28px;
+        .closing {
+            margin-top: 28px;
             color: white;
-            background: #222222;
-            border: 1px solid #666666;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: "Nunito", Arial, sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            transition: 0.2s;
-        }
-
-        .back-button:hover {
-            background: #444444;
-            border-color: #aaaaaa;
-            transform: translateY(-2px);
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-align: center;
         }
 
         /* STOPKA */
 
         footer {
-            width: 100%;
-            padding: 22px 10px 5px;
+            margin-top: 30px;
+            padding: 26px 15px;
             text-align: center;
-            color: white;
-            font-family: "Nunito", Arial, sans-serif;
+            color: #e7d6e1;
             font-size: 14px;
-            font-weight: 700;
-            text-shadow: 0 1px 8px #000;
+            background: rgba(22, 10, 21, 0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        footer strong {
+            color: white;
+            font-size: 16px;
+        }
+
+        footer p {
+            margin: 5px 0;
         }
 
         /* TELEFONY */
@@ -132,30 +214,54 @@
                 background-attachment: scroll;
             }
 
-            .logo {
+            .topbar {
+                min-height: 62px;
+                padding: 8px 12px;
+            }
+
+            .brand img {
                 width: 105px;
-                top: 12px;
-                left: 12px;
+                height: 45px;
+            }
+
+            .back-button {
+                padding: 8px 12px;
+                font-size: 13px;
             }
 
             main {
-                padding: 100px 15px 25px;
+                width: calc(100% - 28px);
+                padding-top: 25px;
             }
 
             .about-container {
-                padding: 35px 22px;
+                padding-top: 25px;
             }
 
-            h1 {
-                font-size: 34px;
+            .about-logo {
+                width: 210px;
             }
 
             .about-text {
                 font-size: 15px;
             }
 
-            .about-logo {
-                width: 210px;
+            .about-text p {
+                padding: 18px 0;
+            }
+
+            .intro {
+                font-size: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -163,28 +269,42 @@
 
 <body>
 
-    <!-- LOGO W LEWYM GÓRNYM ROGU -->
+    <!-- GÓRNY PASEK -->
 
-    <a href="index.html" aria-label="Wróć na stronę główną">
-        <img src="images/logoo.png" alt="XO Crush" class="logo">
-    </a>
+    <header class="topbar">
+        <a href="index.html" class="brand" aria-label="XO Crush — strona główna">
+            <img src="images/logorb.png"
+                 alt="Logo XO Crush"
+                 onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logorb.png'; } else { this.style.display = 'none'; }">
+        </a>
+
+        <a href="index.html" class="back-button">
+            ← Wróć
+        </a>
+    </header>
 
     <!-- TREŚĆ PODSTRONY -->
 
     <main>
         <section class="about-container">
 
-            <img src="images/logoo.png"
+            <img src="images/logorb.png"
                  alt="XO Crush"
-                 class="about-logo">
+                 class="about-logo"
+                 onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logorb.png'; } else { this.style.display = 'none'; }">
+
+            <div class="eyebrow">Trochę o mnie</div>
 
             <h1>Poznaj mnie 🤍</h1>
 
-            <div class="about-text">
+            <p class="intro">
+                Hej! Miło, że tutaj jesteś! 🤍
+                Fajnie, że chcesz poznać historię stojącą za XO Crush.
+            </p>
 
-                <p>
-                    Hej! Miło, że tutaj jesteś! 🤍
-                </p>
+            <div class="divider"></div>
+
+            <div class="about-text">
 
                 <p>
                     Jestem autorem pomysłu <strong>XO Crush</strong> i twórcą tej strony
@@ -197,8 +317,8 @@
                     Sam też jestem w to zamieszany, bo mam taką osobę.
                     Dostawałem wiele pytań dotyczących mojej orientacji
                     i tego, kto jest moim <strong>crushem</strong>. Było mi trudno.
-                    Odczułem teraz pewną część siebie teraz. Nigdy jej nie mogłem pokazać i
-                    nadal w pełni nie mam na to warunków.
+                    Odkrywam teraz pewną część siebie, której wcześniej
+                    nie mogłem pokazać. Nadal nie w pełni mam na to warunki.
                 </p>
 
                 <p>
@@ -213,24 +333,25 @@
 
             </div>
 
-            <a href="index.html" class="back-button">
-                « <strong>Wróć</strong>
-            </a>
+            <p class="closing">
+                Pamiętaj, że Twoje uczucia są ważne. 🖤
+            </p>
 
         </section>
 
         <footer>
-            XOcrush.pl © 2026
+            <p><strong>XOcrush.pl</strong></p>
+            <p>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</p>
         </footer>
     </main>
 
     <!-- CLOUDFLARE WEB ANALYTICS -->
+
     <script
         type="module"
         src="https://static.cloudflareinsights.com/beacon.min.js"
         data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'>
     </script>
-    <!-- END CLOUDFLARE WEB ANALYTICS -->
 
 </body>
 </html>
