@@ -31,7 +31,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 30px;
 }
 
 body {
@@ -53,61 +53,15 @@ a:hover {
     color: #f4d5ff;
 }
 
-.topbar {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    min-height: 76px;
-    padding: 8px clamp(16px, 4vw, 42px);
-    background: rgba(22,10,21,.24);
-    border-bottom: 1px solid rgba(255,255,255,.12);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    flex-shrink: 0;
-}
-
-.brand img {
-    display: block;
-    width: 145px;
-    height: 58px;
-    object-fit: contain;
-}
-
-.back-link, .pill-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 9px 16px;
-    color: white;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,.4);
-    border-radius: 999px;
-    background: rgba(255,255,255,.08);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    transition: transform .2s ease, background .2s ease;
-}
-
-.back-link:hover, .pill-link:hover {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,.18);
-}
+/* GŁÓWNA TREŚĆ */
 
 .page {
     width: min(1060px, calc(100% - 30px));
     margin: 0 auto;
     padding: 38px 0 0;
 }
+
+/* NAGŁÓWEK */
 
 .hero {
     position: relative;
@@ -129,7 +83,19 @@ a:hover {
     pointer-events: none;
 }
 
+.hero-logo {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: min(340px, 80%);
+    max-height: 240px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 28px;
+}
+
 .eyebrow {
+    position: relative;
     color: white;
     text-transform: uppercase;
     letter-spacing: .16em;
@@ -149,6 +115,7 @@ h1 {
 }
 
 .hero p {
+    position: relative;
     max-width: 740px;
     margin: 0 auto 22px;
     color: var(--muted);
@@ -160,15 +127,47 @@ h1 {
     width: min(310px,80%);
     margin: 24px auto;
     border-radius: 999px;
-    background: linear-gradient(90deg,#fff,#ddd,#fff,#ccc,#fff);
+    background: linear-gradient(
+        90deg,
+        #ff6b9d,
+        #ffb86c,
+        #fff176,
+        #8cffb0,
+        #78d8ff,
+        #c5a3ff,
+        #ff6bcb
+    );
 }
 
 .hero-actions {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
 }
+
+.pill-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .2s ease, background .2s ease;
+}
+
+.pill-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.18);
+}
+
+/* SPIS TREŚCI */
 
 .toc {
     margin: 30px 0 42px;
@@ -193,11 +192,13 @@ h1 {
     text-underline-offset: 3px;
 }
 
+/* SEKCJE */
+
 .section {
     margin: 0;
     padding: 34px 0 38px;
     border-bottom: 1px solid var(--border);
-    scroll-margin-top: 90px;
+    scroll-margin-top: 25px;
 }
 
 .section h2 {
@@ -229,6 +230,8 @@ h1 {
     margin: 7px 0;
 }
 
+/* DWIE KOLUMNY INFORMACJI */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
@@ -248,6 +251,8 @@ h1 {
 .mini-card p {
     margin-bottom: 0;
 }
+
+/* WYRÓŻNIONE INFORMACJE */
 
 .callout {
     margin: 20px 0;
@@ -269,6 +274,8 @@ h1 {
 .quote span {
     color: #f1d8ff;
 }
+
+/* LISTA KROKÓW */
 
 .steps {
     counter-reset: step;
@@ -298,6 +305,8 @@ h1 {
     font-weight: 900;
 }
 
+/* FAQ */
+
 .faq details {
     padding: 14px 0;
     border-bottom: 1px solid rgba(255,255,255,.2);
@@ -321,6 +330,8 @@ h1 {
     overflow-wrap: anywhere;
 }
 
+/* STOPKA */
+
 .footer {
     display: block;
     margin-top: 40px;
@@ -343,6 +354,8 @@ h1 {
     margin: 6px 0;
 }
 
+/* PRZYCISK POWROTU NA GÓRĘ */
+
 .to-top {
     position: fixed;
     right: 18px;
@@ -360,24 +373,11 @@ h1 {
     font-size: 1.2rem;
 }
 
+/* TELEFONY */
+
 @media (max-width:700px) {
     body {
         background-attachment: scroll;
-    }
-
-    .topbar {
-        min-height: 62px;
-        padding: 8px 12px;
-    }
-
-    .brand img {
-        width: 105px;
-        height: 45px;
-    }
-
-    .back-link {
-        font-size: .86rem;
-        padding: 8px 12px;
     }
 
     .page {
@@ -385,8 +385,23 @@ h1 {
         padding-top: 18px;
     }
 
+    .hero {
+        padding: 30px 18px 35px;
+    }
+
+    .hero-logo {
+        width: min(280px, 82%);
+        max-height: 190px;
+        margin-bottom: 22px;
+    }
+
     .grid, .toc-list {
         grid-template-columns: 1fr;
+    }
+
+    .pill-link {
+        font-size: .9rem;
+        padding: 8px 13px;
     }
 }
 
@@ -404,29 +419,30 @@ h1 {
 
 <body>
 
-<header class="topbar">
-    <a class="brand" href="index.html" aria-label="XOcrush.pl — strona główna">
-        <img
-            src="/images/logorb.png"
-            alt="Logo XOcrush.pl"
-            onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logorb.png'; } else { this.style.display = 'none'; }"
-        >
-    </a>
-    <a class="back-link" href="index.html">← Wróć</a>
-</header>
-
 <main class="page">
 
 <section class="hero" aria-labelledby="main-title">
+
+    <img
+        src="images/logorb.png"
+        alt="Logo XOcrush.pl"
+        class="hero-logo"
+    >
+
     <div class="eyebrow">Wiedza • empatia • bezpieczeństwo</div>
+
     <h1 id="main-title">Homofobia. Zrozum, reaguj, wspieraj. 🏳️‍🌈</h1>
+
     <p>Każdy zasługuje na szacunek, bezpieczeństwo i możliwość bycia sobą. Ta strona wyjaśnia, czym jest homofobia, skąd może się brać, jak wpływa na ludzi i co możemy zrobić, by nie dokładać nikomu cierpienia.</p>
+
     <div class="rainbow-line" aria-hidden="true"></div>
+
     <div class="hero-actions">
         <a class="pill-link" href="#czym-jest">Poznaj temat ↓</a>
         <a class="pill-link" href="#jak-reagowac">Jak reagować?</a>
         <a class="pill-link" href="#pomoc">Gdzie szukać pomocy</a>
     </div>
+
 </section>
 
 <nav class="toc" aria-label="Spis treści">
