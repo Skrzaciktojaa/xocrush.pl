@@ -4,19 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/calus.png">
-
+    <link rel="icon" type="image/png" href="/images/calus.png">
     <title>O mnie | XO Crush</title>
-
-    <link rel="icon" type="image/png" href="images/calus.png">
-
     <meta name="description" content="Poznaj twórcę XO Crush 🖤">
 
     <style>
         @font-face {
-            font-family: "Margarine";
-            src: url("images/Margarine-Regular.ttf") format("truetype");
-            font-weight: normal;
+            font-family: "Nunito";
+            src: url("fonts/Nunito-Variable.woff2") format("woff2");
+            font-weight: 200 1000;
             font-style: normal;
             font-display: swap;
         }
@@ -28,7 +24,7 @@
         body {
             margin: 0;
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: "Nunito", Arial, sans-serif;
             color: #222222;
             background: #171017 url("images/poprostu.png") center center / cover fixed no-repeat;
         }
@@ -48,9 +44,10 @@
         main {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 110px 20px 50px;
+            padding: 110px 20px 30px;
         }
 
         .about-container {
@@ -62,6 +59,7 @@
             border: 1px solid #aaaaaa;
             border-radius: 25px;
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .about-logo {
@@ -72,8 +70,8 @@
         }
 
         h1 {
-            font-family: "Margarine", cursive;
-            font-weight: normal;
+            font-family: "Nunito", Arial, sans-serif;
+            font-weight: 900;
             font-size: 42px;
             margin: 10px 0 25px;
             color: #222222;
@@ -89,6 +87,7 @@
 
         .about-text strong {
             color: #111111;
+            font-weight: 900;
         }
 
         /* PRZYCISK POWROTU */
@@ -101,7 +100,9 @@
             border: 1px solid #666666;
             border-radius: 30px;
             text-decoration: none;
+            font-family: "Nunito", Arial, sans-serif;
             font-size: 15px;
+            font-weight: 700;
             transition: 0.2s;
         }
 
@@ -109,6 +110,19 @@
             background: #444444;
             border-color: #aaaaaa;
             transform: translateY(-2px);
+        }
+
+        /* STOPKA */
+
+        footer {
+            width: 100%;
+            padding: 22px 10px 5px;
+            text-align: center;
+            color: white;
+            font-family: "Nunito", Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            text-shadow: 0 1px 8px #000;
         }
 
         /* TELEFONY */
@@ -125,7 +139,7 @@
             }
 
             main {
-                padding: 100px 15px 35px;
+                padding: 100px 15px 25px;
             }
 
             .about-container {
@@ -139,22 +153,25 @@
             .about-text {
                 font-size: 15px;
             }
+
+            .about-logo {
+                width: 210px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- LOGO -->
+    <!-- LOGO W LEWYM GÓRNYM ROGU -->
 
-    <a href="index.html">
+    <a href="index.html" aria-label="Wróć na stronę główną">
         <img src="images/logoo.png" alt="XO Crush" class="logo">
     </a>
 
     <!-- TREŚĆ PODSTRONY -->
 
     <main>
-
         <section class="about-container">
 
             <img src="images/logoo.png"
@@ -163,38 +180,38 @@
 
             <h1>Poznaj mnie 🤍</h1>
 
-         <div class="about-text">
+            <div class="about-text">
 
-    <p>
-        Hej! Miło, że tutaj jesteś! 🤍
-    </p>
+                <p>
+                    Hej! Miło, że tutaj jesteś! 🤍
+                </p>
 
-    <p>
-        Jestem autorem pomysłu <strong>XO Crush</strong> i twórcą tej strony
-        poświęconej naszym crushom, uczuciom oraz wszystkim
-        myślom, które pojawiają się w naszej głowie,
-        gdy ktoś nam się podoba.
-    </p>
+                <p>
+                    Jestem autorem pomysłu <strong>XO Crush</strong> i twórcą tej strony
+                    poświęconej naszym crushom, uczuciom oraz wszystkim
+                    myślom, które pojawiają się w naszej głowie,
+                    gdy ktoś nam się podoba.
+                </p>
 
-    <p>
-        Sam też jestem w to zamieszany, bo mam taką osobę.
-        Dostawałem wiele pytań dotyczących mojej orientacji
-        i tego, kto jest moim <strong>crushem</strong>. Było mi trudno. 
-        Odczułem teraz pewną część siebie teraz. Nigdy jej nie mogłem pokazać i
-        nadal w pełni nie mam na to warunków.
-    </p>
+                <p>
+                    Sam też jestem w to zamieszany, bo mam taką osobę.
+                    Dostawałem wiele pytań dotyczących mojej orientacji
+                    i tego, kto jest moim <strong>crushem</strong>. Było mi trudno.
+                    Odczułem teraz pewną część siebie teraz. Nigdy jej nie mogłem pokazać i
+                    nadal w pełni nie mam na to warunków.
+                </p>
 
-    <p>
-        Stworzyłem XO Crush po to, aby inne osoby mogły
-        lepiej zrozumieć siebie i swoje uczucia, a także
-        po prostu poczuć się trochę mniej zagubione.
-    </p>
+                <p>
+                    Stworzyłem XO Crush po to, aby inne osoby mogły
+                    lepiej zrozumieć siebie i swoje uczucia, a także
+                    po prostu poczuć się trochę mniej zagubione.
+                </p>
 
-    <p>
-        Mam nadzieję, że znajdziesz tutaj coś dla siebie. 🤍
-    </p>
+                <p>
+                    Mam nadzieję, że znajdziesz tutaj coś dla siebie. 🤍
+                </p>
 
-</div>
+            </div>
 
             <a href="index.html" class="back-button">
                 « <strong>Wróć</strong>
@@ -203,10 +220,17 @@
         </section>
 
         <footer>
-            XO Crush © 2026
+            XOcrush.pl © 2026
         </footer>
-
     </main>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <!-- CLOUDFLARE WEB ANALYTICS -->
+    <script
+        type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'>
+    </script>
+    <!-- END CLOUDFLARE WEB ANALYTICS -->
+
 </body>
 </html>
