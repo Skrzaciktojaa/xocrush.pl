@@ -2,443 +2,436 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#21121f">
-  <link rel="icon" type="image/png" href="/images/rbwcalus.png?v=2">
-  <meta name="description" content="XO Crush: dowiedz się, czym jest homofobia, jakie może mieć skutki i jak budować bezpieczniejsze, bardziej akceptujące otoczenie.">
-  <title>Homofobia i akceptacja | XO Crush</title>
-  <style>
-    @font-face {
-      font-family: "Nunito";
-      src: url("fonts/Nunito-Variable.woff2") format("woff2");
-      font-weight: 200 1000;
-      font-style: normal;
-      font-display: swap;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#21121f">
+<link rel="icon" type="image/png" href="/images/rbwcalus.png">
+<meta name="description" content="XOcrush.pl — edukacja o homofobii, akceptacji i bezpieczeństwie.">
+<title>Homofobia i akceptacja | XOcrush.pl</title>
 
-    @font-face {
-      font-family: "Margarine";
-      src: url("images/Margarine-Regular.ttf") format("truetype");
-      font-display: swap;
-    }
+<style>
+@font-face {
+    font-family: "Nunito";
+    src: url("fonts/Nunito-Variable.woff2") format("woff2");
+    font-weight: 200 1000;
+    font-style: normal;
+    font-display: swap;
+}
 
-    :root {
-      --pink: #ffffff;
-      --pink-light: #ffffff;
-      --pink-strong: #ffffff;
-      --plum: #21121f;
-      --panel: rgba(27, 13, 25, 0.84);
-      --panel-light: rgba(255, 255, 255, 0.07);
-      --border: rgba(255, 255, 255, 0.42);
-      --text: #fff8fc;
-      --muted: #e7d6e1;
-      --shadow: 0 14px 42px rgba(0, 0, 0, 0.3);
-    }
+:root {
+    --text: #fff8fc;
+    --muted: #e7d6e1;
+    --accent: #ffffff;
+    --border: rgba(255,255,255,.28);
+}
 
-    * { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-    }
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
 
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Nunito", Arial, sans-serif;
+    line-height: 1.8;
+    background:
+        linear-gradient(rgba(18,8,17,.72), rgba(18,8,17,.86)),
+        url("images/poprostu.png") center / cover fixed no-repeat;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #f4d5ff;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 76px;
+    padding: 8px clamp(16px, 4vw, 42px);
+    background: rgba(22,10,21,.24);
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand img {
+    display: block;
+    width: 145px;
+    height: 58px;
+    object-fit: contain;
+}
+
+.back-link, .pill-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 16px;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .2s ease, background .2s ease;
+}
+
+.back-link:hover, .pill-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,.18);
+}
+
+.page {
+    width: min(1060px, calc(100% - 30px));
+    margin: 0 auto;
+    padding: 38px 0 0;
+}
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(28px,6vw,62px) clamp(18px,5vw,54px);
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(20,10,21,.25);
+}
+
+.hero::before {
+    content: "♡";
+    position: absolute;
+    right: 4%;
+    top: -55px;
+    font-size: clamp(130px,25vw,250px);
+    line-height: 1;
+    color: rgba(255,255,255,.07);
+    pointer-events: none;
+}
+
+.eyebrow {
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: .78rem;
+    font-weight: 900;
+}
+
+h1, h2, h3 {
+    font-weight: 850;
+    line-height: 1.25;
+}
+
+h1 {
+    position: relative;
+    margin: 14px 0;
+    font-size: clamp(2.1rem,6vw,4.2rem);
+}
+
+.hero p {
+    max-width: 740px;
+    margin: 0 auto 22px;
+    color: var(--muted);
+    font-size: clamp(1rem,2vw,1.16rem);
+}
+
+.rainbow-line {
+    height: 5px;
+    width: min(310px,80%);
+    margin: 24px auto;
+    border-radius: 999px;
+    background: linear-gradient(90deg,#fff,#ddd,#fff,#ccc,#fff);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.toc {
+    margin: 30px 0 42px;
+    padding: 0 0 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.toc h2 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+}
+
+.toc-list {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 8px 18px;
+    margin: 0;
+    padding-left: 22px;
+}
+
+.toc-list a {
+    text-underline-offset: 3px;
+}
+
+.section {
+    margin: 0;
+    padding: 34px 0 38px;
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 90px;
+}
+
+.section h2 {
+    margin: 0 0 16px;
+    font-size: clamp(1.55rem,3vw,2.15rem);
+    color: white;
+}
+
+.section h3 {
+    margin: 24px 0 8px;
+    font-size: 1.18rem;
+}
+
+.section p {
+    margin: 10px 0;
+    color: var(--muted);
+}
+
+.section strong {
+    color: white;
+}
+
+.section ul, .section ol {
+    color: var(--muted);
+    padding-left: 24px;
+}
+
+.section li {
+    margin: 7px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 20px;
+    margin-top: 18px;
+}
+
+.mini-card {
+    padding: 8px 0 12px 16px;
+    border-left: 2px solid rgba(255,255,255,.38);
+}
+
+.mini-card h3 {
+    margin-top: 0;
+}
+
+.mini-card p {
+    margin-bottom: 0;
+}
+
+.callout {
+    margin: 20px 0;
+    padding: 18px 20px;
+    border-left: 3px solid white;
+    background: rgba(255,255,255,.035);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.quote {
+    padding: 24px 10px;
+    text-align: center;
+    font-weight: 900;
+    font-size: clamp(1.2rem,3vw,1.8rem);
+    color: white;
+}
+
+.quote span {
+    color: #f1d8ff;
+}
+
+.steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0 !important;
+}
+
+.steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 0 0 4px 52px;
+    min-height: 40px;
+}
+
+.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    color: #261321;
+    background: white;
+    font-weight: 900;
+}
+
+.faq details {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+.faq details:last-child {
+    border-bottom: 0;
+}
+
+.faq summary {
+    cursor: pointer;
+    color: white;
+    font-weight: 800;
+}
+
+.faq details p {
+    padding-left: 2px;
+}
+
+.resource-list a {
+    overflow-wrap: anywhere;
+}
+
+.footer {
+    display: block;
+    margin-top: 40px;
+    padding: 28px 15px 24px;
+    text-align: center;
+    color: var(--muted);
+    background: rgba(22,10,21,.25);
+    border-top: 1px solid rgba(255,255,255,.15);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    font-size: .92rem;
+}
+
+.footer strong {
+    color: white;
+    font-size: 1.1rem;
+}
+
+.footer p {
+    margin: 6px 0;
+}
+
+.to-top {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 10;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    color: white;
+    background: rgba(33,18,31,.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+@media (max-width:700px) {
     body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: "Nunito", Arial, Helvetica, sans-serif;
-      line-height: 1.8;
-      background-color: var(--plum);
-      background-image: linear-gradient(
-        rgba(18, 8, 17, 0.72),
-        rgba(18, 8, 17, 0.86)
-      ), url("images/poprostu.png");
-      background-position: center;
-      background-size: cover;
-      background-attachment: fixed;
-    }
-
-    a { color: var(--pink-light); }
-    a:hover { color: white; }
-
-    button, a {
-      -webkit-tap-highlight-color: transparent;
+        background-attachment: scroll;
     }
 
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px clamp(16px, 4vw, 42px);
-      background: rgba(22, 10, 21, 0.24);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      font-family: "Nunito", Arial, sans-serif;
-      font-weight: 900;
-      font-size: 1.1rem;
+        min-height: 62px;
+        padding: 8px 12px;
     }
 
     .brand img {
-      width: 52px;
-      height: 42px;
-      object-fit: contain;
+        width: 105px;
+        height: 45px;
     }
 
-    .back-link, .pill-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 9px 15px;
-      color: white;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.09);
-      transition: transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-
-    .back-link:hover, .pill-link:hover {
-      transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.16);
-      border-color: var(--pink);
+    .back-link {
+        font-size: .86rem;
+        padding: 8px 12px;
     }
 
     .page {
-      width: min(1060px, calc(100% - 30px));
-      margin: 0 auto;
-      padding: 38px 0 70px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: clamp(28px, 6vw, 62px) clamp(18px, 5vw, 54px);
-      border: 0;
-      border-bottom: 1px solid var(--border);
-      border-radius: 0;
-      background: rgba(20, 10, 21, .34);
-      box-shadow: none;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .hero::before {
-      content: "♡";
-      position: absolute;
-      right: 4%;
-      top: -55px;
-      font-size: clamp(130px, 25vw, 250px);
-      line-height: 1;
-      color: rgba(255, 255, 255, .07);
-      pointer-events: none;
-    }
-
-    .eyebrow {
-      color: var(--pink);
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: .78rem;
-      font-weight: 800;
-    }
-
-    h1, h2, h3 {
-      font-family: "Nunito", Arial, sans-serif;
-      font-weight: 850;
-      line-height: 1.25;
-    }
-
-    h1 {
-      position: relative;
-      margin: 14px 0;
-      font-size: clamp(2.1rem, 6vw, 4.2rem);
-    }
-
-    .hero p {
-      max-width: 740px;
-      margin: 0 auto 22px;
-      color: var(--muted);
-      font-size: clamp(1rem, 2vw, 1.16rem);
-    }
-
-    .rainbow-line {
-      height: 5px;
-      width: min(310px, 80%);
-      margin: 24px auto;
-      border-radius: 999px;
-      background: linear-gradient(
-        90deg,
-        #ffffff,
-        #dedede,
-        #ffffff,
-        #cfcfcf,
-        #ffffff
-      );
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .toc {
-      margin: 30px 0 42px;
-      padding: 0 0 24px;
-      border-bottom: 1px solid var(--border);
-      background: transparent;
-    }
-
-    .toc h2 {
-      margin: 0 0 12px;
-      font-size: 1.3rem;
-    }
-
-    .toc-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px 18px;
-      margin: 0;
-      padding-left: 22px;
-    }
-
-    .toc-list a {
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
-    .section {
-      margin: 0;
-      padding: 34px 0 38px;
-      border: 0;
-      border-bottom: 1px solid var(--border);
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      scroll-margin-top: 90px;
-    }
-
-    .section h2 {
-      margin: 0 0 16px;
-      font-size: clamp(1.55rem, 3vw, 2.15rem);
-      color: var(--pink-light);
-    }
-
-    .section h3 {
-      margin: 24px 0 8px;
-      font-size: 1.18rem;
-      color: var(--pink);
-    }
-
-    .section p {
-      margin: 10px 0;
-      color: var(--muted);
-    }
-
-    .section strong { color: white; }
-
-    .section ul, .section ol {
-      color: var(--muted);
-      padding-left: 24px;
-    }
-
-    .section li { margin: 7px 0; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .mini-card {
-      padding: 8px 0 12px 16px;
-      border: 0;
-      border-left: 2px solid rgba(255, 255, 255, .38);
-      border-radius: 0;
-      background: transparent;
-    }
-
-    .mini-card h3 { margin-top: 0; }
-    .mini-card p { margin-bottom: 0; }
-
-    .callout {
-      margin: 20px 0;
-      padding: 18px 20px;
-      border-left: 3px solid var(--pink-strong);
-      border-radius: 0;
-      background: transparent;
-      color: var(--text);
-    }
-
-    .quote {
-      text-align: center;
-      font-family: "Nunito", Arial, sans-serif;
-      font-weight: 800;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      color: white;
-      padding: 24px 10px;
-    }
-
-    .quote span { color: var(--pink); }
-
-    .steps {
-      counter-reset: step;
-      list-style: none;
-      padding: 0 !important;
-    }
-
-    .steps li {
-      counter-increment: step;
-      position: relative;
-      padding: 0 0 4px 52px;
-      min-height: 40px;
-    }
-
-    .steps li::before {
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: #261321;
-      background: var(--pink);
-      font-weight: 800;
-    }
-
-    .faq details {
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, .2);
-    }
-
-    .faq details:last-child { border-bottom: 0; }
-
-    .faq summary {
-      cursor: pointer;
-      color: var(--pink-light);
-      font-weight: 700;
-    }
-
-    .faq details p { padding-left: 2px; }
-
-    .resource-list a { overflow-wrap: anywhere; }
-
-    .footer {
-      text-align: center;
-      color: #e7d6e1;
-      padding: 25px 10px 0;
-      font-size: .92rem;
-    }
-
-    .footer p { margin: 6px 0; }
-
-    .to-top {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 10;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      color: white;
-      background: rgba(33, 18, 31, .92);
-      cursor: pointer;
-      font-size: 1.2rem;
-      box-shadow: var(--shadow);
-    }
-
-    .to-top:hover {
-      background: rgba(255, 255, 255, .2);
-    }
-
-    @media (max-width: 700px) {
-      body { background-attachment: scroll; }
-
-      .topbar { padding: 10px 13px; }
-
-      .brand {
-        font-size: .96rem;
-        gap: 7px;
-      }
-
-      .brand img {
-        width: 40px;
-        height: 36px;
-      }
-
-      .back-link {
-        font-size: .86rem;
-        padding: 8px 11px;
-      }
-
-      .page {
-        width: min(100% - 20px, 1060px);
+        width: calc(100% - 22px);
         padding-top: 18px;
-      }
+    }
 
-      .hero { border-radius: 0; }
-      .section { border-radius: 0; }
-
-      .grid, .toc-list {
+    .grid, .toc-list {
         grid-template-columns: 1fr;
-      }
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-
-      *, *::before, *::after {
+    *, *::before, *::after {
         transition-duration: .01ms !important;
-      }
     }
-  </style>
+}
+</style>
 </head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="XO Crush, strona główna">
-      <img
-        src="images/logoo.png"
-        alt="Logo XO Crush"
-        onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logoo.png'; } else { this.style.display = 'none'; }"
-      >
-    </a>
-    <a class="back-link" href="index.html" aria-label="Wróć na stronę główną">← Wróć</a>
-  </header>
 
-  <main class="page">
-    <section class="hero" aria-labelledby="main-title">
-      <div class="eyebrow">Wiedza • empatia • bezpieczeństwo</div>
-      <h1 id="main-title">Homofobia. Zrozum, reaguj, wspieraj. 🏳️‍🌈</h1>
-      <p>Każdy zasługuje na szacunek, bezpieczeństwo i możliwość bycia sobą. Ta strona wyjaśnia, czym jest homofobia, skąd może się brać, jak wpływa na ludzi i co możemy zrobić, by nie dokładać nikomu cierpienia.</p>
-      <div class="rainbow-line" aria-hidden="true"></div>
-      <div class="hero-actions">
+<body>
+
+<header class="topbar">
+    <a class="brand" href="index.html" aria-label="XOcrush.pl — strona główna">
+        <img
+            src="/images/logorb.png"
+            alt="Logo XOcrush.pl"
+            onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logorb.png'; } else { this.style.display = 'none'; }"
+        >
+    </a>
+    <a class="back-link" href="index.html">← Wróć</a>
+</header>
+
+<main class="page">
+
+<section class="hero" aria-labelledby="main-title">
+    <div class="eyebrow">Wiedza • empatia • bezpieczeństwo</div>
+    <h1 id="main-title">Homofobia. Zrozum, reaguj, wspieraj. 🏳️‍🌈</h1>
+    <p>Każdy zasługuje na szacunek, bezpieczeństwo i możliwość bycia sobą. Ta strona wyjaśnia, czym jest homofobia, skąd może się brać, jak wpływa na ludzi i co możemy zrobić, by nie dokładać nikomu cierpienia.</p>
+    <div class="rainbow-line" aria-hidden="true"></div>
+    <div class="hero-actions">
         <a class="pill-link" href="#czym-jest">Poznaj temat ↓</a>
         <a class="pill-link" href="#jak-reagowac">Jak reagować?</a>
         <a class="pill-link" href="#pomoc">Gdzie szukać pomocy</a>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <nav class="toc" aria-label="Spis treści">
-      <h2>📚 Spis treści</h2>
-      <ol class="toc-list">
+<nav class="toc" aria-label="Spis treści">
+    <h2>📚 Spis treści</h2>
+    <ol class="toc-list">
         <li><a href="#czym-jest">Czym jest homofobia?</a></li>
         <li><a href="#formy">Jak może wyglądać?</a></li>
         <li><a href="#skad">Skąd się bierze?</a></li>
@@ -450,257 +443,182 @@
         <li><a href="#szkola">Homofobia w szkole i internecie</a></li>
         <li><a href="#pomoc">Pomoc i bezpieczeństwo</a></li>
         <li><a href="#faq">Częste pytania</a></li>
-      </ol>
-    </nav>
+    </ol>
+</nav>
 
-    <section class="section" id="czym-jest">
-      <h2>01. Czym właściwie jest homofobia?</h2>
-      <p><strong>Homofobia</strong> to uprzedzenia, niechęć, pogarda lub wrogość wobec osób homoseksualnych, czyli gejów i lesbijek, albo wobec ludzi postrzeganych jako homoseksualni. Może przejawiać się w przekonaniach, słowach, zachowaniu, a także w zasadach lub działaniach instytucji, które niesprawiedliwie traktują osoby ze względu na orientację.</p>
-      <p>Nie zawsze musi oznaczać otwartą nienawiść. Czasem przybiera postać „żartu”, wykluczania, uporczywego wypytywania o prywatne życie, sugerowania, że ktoś powinien się zmienić, albo traktowania związku dwóch chłopaków czy dwóch dziewczyn jako czegoś gorszego.</p>
-      <p>W szerszych rozmowach o dyskryminacji używa się też określeń takich jak <strong>uprzedzenia wobec osób LGBTQ+</strong>. Skrót LGBTQ+ obejmuje różne orientacje seksualne i tożsamości płciowe. Homofobia dotyczy przede wszystkim osób homoseksualnych, a podobne uprzedzenia wobec osób biseksualnych czy transpłciowych mają własne nazwy, między innymi bifobia i transfobia.</p>
-      <div class="callout"><strong>Najważniejsza zasada:</strong> orientacja danej osoby nie odbiera jej godności. Każdy ma prawo do bezpieczeństwa, szacunku i równego traktowania.</div>
-    </section>
+<section class="section" id="czym-jest">
+    <h2>01. Czym właściwie jest homofobia?</h2>
+    <p><strong>Homofobia</strong> to uprzedzenia, niechęć, pogarda lub wrogość wobec osób homoseksualnych, czyli gejów i lesbijek, albo wobec ludzi postrzeganych jako homoseksualni. Może przejawiać się w przekonaniach, słowach, zachowaniu, a także w zasadach lub działaniach instytucji, które niesprawiedliwie traktują osoby ze względu na orientację.</p>
+    <p>Nie zawsze musi oznaczać otwartą nienawiść. Czasem przybiera postać „żartu”, wykluczania, uporczywego wypytywania o prywatne życie, sugerowania, że ktoś powinien się zmienić, albo traktowania związku dwóch chłopaków czy dwóch dziewczyn jako czegoś gorszego.</p>
+    <p>W szerszych rozmowach o dyskryminacji używa się też określeń takich jak <strong>uprzedzenia wobec osób LGBTQ+</strong>. Skrót LGBTQ+ obejmuje różne orientacje seksualne i tożsamości płciowe. Homofobia dotyczy przede wszystkim osób homoseksualnych, a podobne uprzedzenia wobec osób biseksualnych czy transpłciowych mają własne nazwy, między innymi bifobia i transfobia.</p>
+    <div class="callout"><strong>Najważniejsza zasada:</strong> orientacja danej osoby nie odbiera jej godności. Każdy ma prawo do bezpieczeństwa, szacunku i równego traktowania.</div>
+</section>
 
-    <section class="section" id="formy">
-      <h2>02. Jak homofobia może wyglądać?</h2>
-      <p>Homofobia nie zawsze wygląda tak samo. Może być jawna i agresywna, ale może też być subtelna, powtarzalna i trudna do udowodnienia. Oto kilka przykładów:</p>
-      <div class="grid">
-        <article class="mini-card">
-          <h3>💬 Słowna</h3>
-          <p>Obelgi, wyzwiska, homofobiczne żarty, używanie słowa „gej” jako obelgi albo komentarze, że ktoś jest „nienormalny” z powodu orientacji.</p>
-        </article>
-        <article class="mini-card">
-          <h3>🚪 Społeczna</h3>
-          <p>Wykluczanie z grupy, plotki, odmawianie przyjaźni wyłącznie z powodu orientacji lub namawianie innych, by kogoś unikali.</p>
-        </article>
-        <article class="mini-card">
-          <h3>📱 Internetowa</h3>
-          <p>Hejt w komentarzach, nękanie w wiadomościach, publikowanie czyichś prywatnych informacji bez zgody lub organizowanie ataku na profil.</p>
-        </article>
-        <article class="mini-card">
-          <h3>⚠️ Fizyczna i grożąca</h3>
-          <p>Groźby, zastraszanie, niszczenie rzeczy lub przemoc motywowana uprzedzeniami. Takie sytuacje wymagają potraktowania sprawy poważnie.</p>
-        </article>
-        <article class="mini-card">
-          <h3>🏫 Instytucjonalna</h3>
-          <p>Niesprawiedliwe reguły lub praktyki, które utrudniają komuś dostęp do edukacji, usług czy bezpieczeństwa ze względu na orientację.</p>
-        </article>
-        <article class="mini-card">
-          <h3>🤐 „Dla twojego dobra”</h3>
-          <p>Naciskanie na ukrywanie orientacji, zawstydzanie, próby „naprawiania” kogoś lub mówienie, że powinien udawać kogoś innego.</p>
-        </article>
-      </div>
-      <p>Warto pamiętać, że nie każdy błąd oznacza automatycznie świadomą nienawiść. Ktoś może nie znać odpowiednich słów i po zwróceniu uwagi chcieć się poprawić. Znaczenie mają kontekst, powtarzalność, reakcja na prośbę o zaprzestanie i to, czy ktoś celowo rani albo poniża drugą osobę.</p>
-    </section>
+<section class="section" id="formy">
+    <h2>02. Jak homofobia może wyglądać?</h2>
+    <p>Homofobia nie zawsze wygląda tak samo. Może być jawna i agresywna, ale może też być subtelna, powtarzalna i trudna do udowodnienia. Oto kilka przykładów:</p>
+    <div class="grid">
+        <article class="mini-card"><h3>💬 Słowna</h3><p>Obelgi, wyzwiska, homofobiczne żarty, używanie słowa „gej” jako obelgi albo komentarze, że ktoś jest „nienormalny” z powodu orientacji.</p></article>
+        <article class="mini-card"><h3>🚪 Społeczna</h3><p>Wykluczanie z grupy, plotki, odmawianie przyjaźni wyłącznie z powodu orientacji lub namawianie innych, by kogoś unikali.</p></article>
+        <article class="mini-card"><h3>📱 Internetowa</h3><p>Hejt w komentarzach, nękanie w wiadomościach, publikowanie czyichś prywatnych informacji bez zgody lub organizowanie ataku na profil.</p></article>
+        <article class="mini-card"><h3>⚠️ Fizyczna i grożąca</h3><p>Groźby, zastraszanie, niszczenie rzeczy lub przemoc motywowana uprzedzeniami. Takie sytuacje wymagają potraktowania sprawy poważnie.</p></article>
+        <article class="mini-card"><h3>🏫 Instytucjonalna</h3><p>Niesprawiedliwe reguły lub praktyki, które utrudniają komuś dostęp do edukacji, usług czy bezpieczeństwa ze względu na orientację.</p></article>
+        <article class="mini-card"><h3>🤐 „Dla twojego dobra”</h3><p>Naciskanie na ukrywanie orientacji, zawstydzanie, próby „naprawiania” kogoś lub mówienie, że powinien udawać kogoś innego.</p></article>
+    </div>
+    <p>Warto pamiętać, że nie każdy błąd oznacza automatycznie świadomą nienawiść. Ktoś może nie znać odpowiednich słów i po zwróceniu uwagi chcieć się poprawić. Znaczenie mają kontekst, powtarzalność, reakcja na prośbę o zaprzestanie i to, czy ktoś celowo rani albo poniża drugą osobę.</p>
+</section>
 
-    <section class="section" id="skad">
-      <h2>03. Skąd może brać się homofobia?</h2>
-      <p>Uprzedzenia często uczymy się z otoczenia, a później możemy je podtrzymywać, jeśli nigdy ich nie zakwestionujemy. Nie ma jednego powodu, który wyjaśniałby zachowanie każdej osoby.</p>
-      <ul>
+<section class="section" id="skad">
+    <h2>03. Skąd może brać się homofobia?</h2>
+    <p>Uprzedzenia często uczymy się z otoczenia, a później możemy je podtrzymywać, jeśli nigdy ich nie zakwestionujemy. Nie ma jednego powodu, który wyjaśniałby zachowanie każdej osoby.</p>
+    <ul>
         <li><strong>Brak wiedzy:</strong> ktoś powtarza stereotypy, bo nigdy nie miał okazji poznać faktów.</li>
         <li><strong>Wychowanie i otoczenie:</strong> rodzina, grupa rówieśnicza lub społeczność mogą przekazywać negatywne przekonania.</li>
         <li><strong>Presja grupy:</strong> ktoś śmieje się z homofobicznego żartu, bo boi się, że inaczej sam stanie się celem.</li>
         <li><strong>Stereotypy dotyczące płci:</strong> przekonania, że chłopcy i dziewczyny muszą zachowywać się według sztywnych reguł.</li>
         <li><strong>Lęk przed tym, co nieznane:</strong> różnica może budzić niepewność, jeśli człowiek nie nauczył się rozmawiać o niej z szacunkiem.</li>
         <li><strong>Wykorzystywanie tematu do podziałów:</strong> czasem uprzedzenia są wzmacniane przez osoby, które chcą wzbudzać strach lub konflikt.</li>
-      </ul>
-      <p>Wyjaśnienie przyczyn nie oznacza usprawiedliwienia krzywdzącego zachowania. Każdy może pracować nad swoimi przekonaniami, uczyć się i brać odpowiedzialność za to, co mówi oraz robi.</p>
-      <div class="quote">Możemy nie wiedzieć wszystkiego. <span>Możemy jednak okazywać szacunek.</span></div>
-    </section>
+    </ul>
+    <p>Wyjaśnienie przyczyn nie oznacza usprawiedliwienia krzywdzącego zachowania. Każdy może pracować nad swoimi przekonaniami, uczyć się i brać odpowiedzialność za to, co mówi oraz robi.</p>
+    <div class="quote">Możemy nie wiedzieć wszystkiego. <span>Możemy jednak okazywać szacunek.</span></div>
+</section>
 
-    <section class="section" id="skutki">
-      <h2>04. Jakie skutki może mieć homofobia?</h2>
-      <p>Powtarzające się odrzucenie i poniżanie potrafi mocno obciążać człowieka. Reakcje są różne, a żadna osoba nie musi doświadczać wszystkich wymienionych skutków.</p>
-      <div class="grid">
-        <article class="mini-card">
-          <h3>🧠 Samopoczucie</h3>
-          <p>Stres, smutek, lęk, poczucie osamotnienia, spadek pewności siebie lub obawa przed kolejnym atakiem.</p>
-        </article>
-        <article class="mini-card">
-          <h3>🫂 Relacje</h3>
-          <p>Trudności z zaufaniem, ukrywanie ważnej części życia, wycofywanie się z kontaktów albo lęk przed odrzuceniem.</p>
-        </article>
-        <article class="mini-card">
-          <h3>📚 Nauka i praca</h3>
-          <p>Problemy ze skupieniem, unikanie szkoły lub określonych miejsc, gorsze poczucie bezpieczeństwa i trudności z uczestniczeniem w życiu grupy.</p>
-        </article>
-        <article class="mini-card">
-          <h3>🏠 Poczucie bezpieczeństwa</h3>
-          <p>Niepokój o reakcję bliskich, strach przed ujawnieniem prywatnych informacji lub obawa przed przemocą.</p>
-        </article>
-      </div>
-      <p>U części osób długotrwałe doświadczanie dyskryminacji może wiązać się z poważniejszym kryzysem psychicznym. To nie oznacza, że każda osoba LGBTQ+ będzie cierpieć. Wsparcie bliskich, bezpieczne otoczenie i dostęp do pomocy mogą mieć ogromne znaczenie.</p>
-      <div class="callout"><strong>Ważne:</strong> odpowiedzialność za homofobię spoczywa na osobie, która krzywdzi, a nie na osobie, która jest jej celem. Nikt nie musi „zasłużyć” na podstawowy szacunek.</div>
-    </section>
+<section class="section" id="skutki">
+    <h2>04. Jakie skutki może mieć homofobia?</h2>
+    <p>Powtarzające się odrzucenie i poniżanie potrafi mocno obciążać człowieka. Reakcje są różne, a żadna osoba nie musi doświadczać wszystkich wymienionych skutków.</p>
+    <div class="grid">
+        <article class="mini-card"><h3>🧠 Samopoczucie</h3><p>Stres, smutek, lęk, poczucie osamotnienia, spadek pewności siebie lub obawa przed kolejnym atakiem.</p></article>
+        <article class="mini-card"><h3>🫂 Relacje</h3><p>Trudności z zaufaniem, ukrywanie ważnej części życia, wycofywanie się z kontaktów albo lęk przed odrzuceniem.</p></article>
+        <article class="mini-card"><h3>📚 Nauka i praca</h3><p>Problemy ze skupieniem, unikanie szkoły lub określonych miejsc, gorsze poczucie bezpieczeństwa i trudności z uczestniczeniem w życiu grupy.</p></article>
+        <article class="mini-card"><h3>🏠 Poczucie bezpieczeństwa</h3><p>Niepokój o reakcję bliskich, strach przed ujawnieniem prywatnych informacji lub obawa przed przemocą.</p></article>
+    </div>
+    <p>U części osób długotrwałe doświadczanie dyskryminacji może wiązać się z poważniejszym kryzysem psychicznym. To nie oznacza, że każda osoba LGBTQ+ będzie cierpieć. Wsparcie bliskich, bezpieczne otoczenie i dostęp do pomocy mogą mieć ogromne znaczenie.</p>
+    <div class="callout"><strong>Ważne:</strong> odpowiedzialność za homofobię spoczywa na osobie, która krzywdzi, a nie na osobie, która jest jej celem. Nikt nie musi „zasłużyć” na podstawowy szacunek.</div>
+</section>
 
-    <section class="section" id="mity">
-      <h2>05. Mity i fakty</h2>
-      <div class="faq">
-        <details open>
-          <summary>Mit: „Orientację można zmienić na życzenie”.</summary>
-          <p>Fakt: orientacja seksualna nie jest prostą decyzją ani czymś, co człowiek wybiera każdego ranka. Próby wywierania presji, zawstydzania lub „naprawiania” kogoś mogą wyrządzać krzywdę.</p>
-        </details>
-        <details>
-          <summary>Mit: „Bycie gejem albo lesbijką to choroba”.</summary>
-          <p>Fakt: homoseksualność nie jest chorobą psychiczną. Sama orientacja nie wymaga leczenia.</p>
-        </details>
-        <details>
-          <summary>Mit: „Jeśli ktoś jest homoseksualny, wszyscy muszą o tym wiedzieć”.</summary>
-          <p>Fakt: informacja o orientacji należy do prywatnego życia. Nikt nie ma prawa ujawniać jej za kogoś bez zgody, poza wyjątkowymi sytuacjami wynikającymi z realnego zagrożenia bezpieczeństwa.</p>
-        </details>
-        <details>
-          <summary>Mit: „Żart to zawsze tylko żart”.</summary>
-          <p>Fakt: intencja ma znaczenie, ale liczy się też wpływ. Jeśli żart regularnie poniża konkretną grupę albo kogoś rani, warto przestać i poszukać innego sposobu na rozśmieszanie ludzi.</p>
-        </details>
-        <details>
-          <summary>Mit: „Trzeba rozumieć wszystko, żeby szanować innych”.</summary>
-          <p>Fakt: nie musisz znać wszystkich terminów ani mieć identycznych doświadczeń. Możesz słuchać, nie wyśmiewać, nie naruszać cudzych granic i traktować ludzi uczciwie.</p>
-        </details>
-        <details>
-          <summary>Mit: „Osoba LGBTQ+ musi ujawnić swoją orientację, żeby być autentyczna”.</summary>
-          <p>Fakt: coming out, czyli powiedzenie innym o swojej orientacji lub tożsamości, jest osobistą decyzją. Każdy ma prawo sam wybrać czas, miejsce i osoby, którym ufa. Bezpieczeństwo jest ważniejsze niż presja otoczenia.</p>
-        </details>
-      </div>
-    </section>
+<section class="section" id="mity">
+    <h2>05. Mity i fakty</h2>
+    <div class="faq">
+        <details open><summary>Mit: „Orientację można zmienić na życzenie”.</summary><p>Fakt: orientacja seksualna nie jest prostą decyzją ani czymś, co człowiek wybiera każdego ranka. Próby wywierania presji, zawstydzania lub „naprawiania” kogoś mogą wyrządzać krzywdę.</p></details>
+        <details><summary>Mit: „Bycie gejem albo lesbijką to choroba”.</summary><p>Fakt: homoseksualność nie jest chorobą psychiczną. Sama orientacja nie wymaga leczenia.</p></details>
+        <details><summary>Mit: „Jeśli ktoś jest homoseksualny, wszyscy muszą o tym wiedzieć”.</summary><p>Fakt: informacja o orientacji należy do prywatnego życia. Nikt nie ma prawa ujawniać jej za kogoś bez zgody.</p></details>
+        <details><summary>Mit: „Żart to zawsze tylko żart”.</summary><p>Fakt: intencja ma znaczenie, ale liczy się też wpływ. Jeśli żart regularnie poniża konkretną grupę albo kogoś rani, warto przestać.</p></details>
+        <details><summary>Mit: „Trzeba rozumieć wszystko, żeby szanować innych”.</summary><p>Fakt: nie musisz znać wszystkich terminów ani mieć identycznych doświadczeń. Możesz słuchać, nie wyśmiewać i respektować cudze granice.</p></details>
+        <details><summary>Mit: „Osoba LGBTQ+ musi ujawnić swoją orientację”.</summary><p>Fakt: coming out jest osobistą decyzją. Każdy ma prawo sam wybrać czas, miejsce i osoby, którym ufa. Bezpieczeństwo jest ważniejsze niż presja otoczenia.</p></details>
+    </div>
+</section>
 
-    <section class="section" id="jezyk">
-      <h2>06. Słowa mają znaczenie</h2>
-      <p>Język może pomagać ludziom poczuć się bezpiecznie, ale może też upokarzać. Nie trzeba mówić idealnie od pierwszej sekundy. Warto jednak słuchać, gdy ktoś mówi, że dane słowo jest dla niego przykre.</p>
-      <div class="grid">
-        <article class="mini-card">
-          <h3>❌ Zamiast obelgi</h3>
-          <p>Nie używaj słowa „gej” jako synonimu czegoś żałosnego, słabego lub głupiego. Orientacja nie jest wyzwiskiem.</p>
-        </article>
-        <article class="mini-card">
-          <h3>✅ Mów konkretnie</h3>
-          <p>Jeśli krytykujesz zachowanie, nazwij zachowanie. Nie obrażaj czyjejś orientacji, wyglądu ani sposobu wyrażania siebie.</p>
-        </article>
-        <article class="mini-card">
-          <h3>👂 Przyjmuj poprawki</h3>
-          <p>Jeśli ktoś zwróci ci uwagę, możesz odpowiedzieć: „Dzięki, nie chciałem tego tak powiedzieć. Postaram się pamiętać”.</p>
-        </article>
-        <article class="mini-card">
-          <h3>🔒 Szanuj prywatność</h3>
-          <p>Nie wypytuj o szczegóły związków ani życia intymnego tylko dlatego, że ktoś jest LGBTQ+. Takie same zasady prywatności dotyczą wszystkich.</p>
-        </article>
-      </div>
-      <p>Nie zakładaj orientacji na podstawie głosu, ubioru, zainteresowań czy gestów. Nie da się wiarygodnie rozpoznać orientacji człowieka po samym wyglądzie. Jeśli ktoś chce o sobie opowiedzieć, pozwól mu zrobić to na własnych warunkach.</p>
-    </section>
+<section class="section" id="jezyk">
+    <h2>06. Słowa mają znaczenie</h2>
+    <p>Język może pomagać ludziom poczuć się bezpiecznie, ale może też upokarzać. Nie trzeba mówić idealnie od pierwszej sekundy. Warto jednak słuchać, gdy ktoś mówi, że dane słowo jest dla niego przykre.</p>
+    <div class="grid">
+        <article class="mini-card"><h3>❌ Zamiast obelgi</h3><p>Nie używaj słowa „gej” jako synonimu czegoś żałosnego, słabego lub głupiego. Orientacja nie jest wyzwiskiem.</p></article>
+        <article class="mini-card"><h3>✅ Mów konkretnie</h3><p>Jeśli krytykujesz zachowanie, nazwij zachowanie. Nie obrażaj czyjejś orientacji ani sposobu wyrażania siebie.</p></article>
+        <article class="mini-card"><h3>👂 Przyjmuj poprawki</h3><p>Jeśli ktoś zwróci ci uwagę, możesz odpowiedzieć: „Dzięki, nie chciałem tego tak powiedzieć. Postaram się pamiętać”.</p></article>
+        <article class="mini-card"><h3>🔒 Szanuj prywatność</h3><p>Nie wypytuj o szczegóły związków ani życia intymnego tylko dlatego, że ktoś jest LGBTQ+.</p></article>
+    </div>
+    <p>Nie zakładaj orientacji na podstawie głosu, ubioru, zainteresowań czy gestów. Nie da się wiarygodnie rozpoznać orientacji człowieka po samym wyglądzie.</p>
+</section>
 
-    <section class="section" id="jak-reagowac">
-      <h2>07. Jak reagować na homofobię?</h2>
-      <p>Nie ma jednej idealnej reakcji. Najlepszy sposób zależy od sytuacji, twojego bezpieczeństwa i tego, czy możesz liczyć na wsparcie innych. Nie musisz narażać się na niebezpieczeństwo, żeby udowodnić, że jesteś po właściwej stronie.</p>
-      <ol class="steps">
-        <li><strong>Oceń bezpieczeństwo.</strong> Jeśli sytuacja może przerodzić się w przemoc, nie wdawaj się w niebezpieczną konfrontację. Odejdź w bezpieczne miejsce i poproś o pomoc.</li>
-        <li><strong>Powiedz krótko, co jest nie tak.</strong> Możesz powiedzieć: „To jest krzywdzące”, „Nie używaj orientacji jako obelgi” albo „Nie zgadzam się na takie traktowanie”.</li>
-        <li><strong>Nie musisz prowadzić debaty.</strong> Jeśli ktoś celowo prowokuje, możesz zakończyć rozmowę. Nie masz obowiązku przekonywać każdego człowieka.</li>
-        <li><strong>Wesprzyj osobę, której to dotyczy.</strong> Zapytaj spokojnie, czy wszystko w porządku i czego potrzebuje. Nie rób z niej centrum uwagi bez jej zgody.</li>
-        <li><strong>Poszukaj pomocy.</strong> W szkole może to być zaufany nauczyciel, pedagog, psycholog lub dyrekcja. W poważnej sytuacji poproś dorosłego, któremu ufasz.</li>
-        <li><strong>Zapisz, co się wydarzyło, jeśli to bezpieczne.</strong> W przypadku powtarzającego się nękania zanotuj datę, miejsce, świadków i zachowaj wiadomości. Nie publikuj ich samodzielnie w sieci.</li>
-      </ol>
-      <h3>Gotowe odpowiedzi, które możesz wykorzystać</h3>
-      <ul>
+<section class="section" id="jak-reagowac">
+    <h2>07. Jak reagować na homofobię?</h2>
+    <p>Nie ma jednej idealnej reakcji. Najlepszy sposób zależy od sytuacji, twojego bezpieczeństwa i tego, czy możesz liczyć na wsparcie innych. Nie musisz narażać się na niebezpieczeństwo, żeby udowodnić, że jesteś po właściwej stronie.</p>
+    <ol class="steps">
+        <li><strong>Oceń bezpieczeństwo.</strong> Jeśli sytuacja może przerodzić się w przemoc, odejdź w bezpieczne miejsce i poproś o pomoc.</li>
+        <li><strong>Powiedz krótko, co jest nie tak.</strong> Możesz powiedzieć: „To jest krzywdzące” albo „Nie używaj orientacji jako obelgi”.</li>
+        <li><strong>Nie musisz prowadzić debaty.</strong> Jeśli ktoś celowo prowokuje, możesz zakończyć rozmowę.</li>
+        <li><strong>Wesprzyj osobę, której to dotyczy.</strong> Zapytaj spokojnie, czy wszystko w porządku i czego potrzebuje.</li>
+        <li><strong>Poszukaj pomocy.</strong> W szkole może to być zaufany nauczyciel, pedagog, psycholog lub dyrekcja.</li>
+        <li><strong>Zapisz, co się wydarzyło, jeśli to bezpieczne.</strong> Przy powtarzającym się nękaniu zanotuj datę, miejsce i zachowaj wiadomości.</li>
+    </ol>
+    <h3>Gotowe odpowiedzi, które możesz wykorzystać</h3>
+    <ul>
         <li>„Możesz mieć swoje zdanie, ale nie musisz nikogo poniżać”.</li>
         <li>„To, że ktoś jest gejem, nie jest powodem do śmiechu”.</li>
         <li>„Nie chcę brać udziału w takich żartach”.</li>
         <li>„Nie mów za tę osobę. Jeśli będzie chciała, sama o sobie opowie”.</li>
         <li>„Kończę tę rozmowę, jeśli dalej będziesz mnie obrażać”.</li>
-      </ul>
-    </section>
+    </ul>
+</section>
 
-    <section class="section" id="wsparcie">
-      <h2>08. Jak wspierać osobę LGBTQ+?</h2>
-      <p>Wsparcie nie wymaga wielkich przemówień. Czasem najwięcej daje zwykłe, spokojne pokazanie, że ktoś nie musi udawać przed tobą kogoś innego.</p>
-      <ul>
-        <li><strong>Słuchaj bez oceniania.</strong> Nie przerywaj i nie zamieniaj czyjejś historii w dyskusję o tym, czy ta osoba „ma rację” w kwestii własnego życia.</li>
-        <li><strong>Nie ujawniaj jej orientacji.</strong> Nie przekazuj informacji znajomym, rodzinie, klasie ani w internecie bez zgody tej osoby.</li>
-        <li><strong>Nie naciskaj na coming out.</strong> Nie wiesz, jak zareagują bliscy lub otoczenie. Osoba sama powinna zdecydować, czy i kiedy komuś powiedzieć.</li>
-        <li><strong>Zapytaj, czego potrzebuje.</strong> Możesz powiedzieć: „Chcesz, żebym posłuchał, pomógł coś wymyślić czy po prostu posiedział z tobą?”.</li>
-        <li><strong>Traktuj jej zauroczenia normalnie.</strong> Nie rób sensacji z tego, że ktoś podoba się osobie tej samej płci.</li>
-        <li><strong>Reaguj także wtedy, gdy tej osoby nie ma obok.</strong> Warto nie podtrzymywać plotek i nie śmiać się z homofobicznych komentarzy za czyimiś plecami.</li>
-        <li><strong>Przyznaj się do błędu.</strong> Jeśli coś powiedziałeś nie tak, przeproś, popraw zachowanie i nie wymagaj, by druga osoba od razu cię pocieszała.</li>
-      </ul>
-      <div class="callout">Możesz powiedzieć po prostu: <strong>„Dzięki, że mi zaufałeś. Nie musisz mi niczego udowadniać. Jestem po twojej stronie i uszanuję twoją prywatność”.</strong></div>
-    </section>
+<section class="section" id="wsparcie">
+    <h2>08. Jak wspierać osobę LGBTQ+?</h2>
+    <p>Wsparcie nie wymaga wielkich przemówień. Czasem najwięcej daje zwykłe, spokojne pokazanie, że ktoś nie musi udawać przed tobą kogoś innego.</p>
+    <ul>
+        <li><strong>Słuchaj bez oceniania.</strong> Nie przerywaj i nie zamieniaj czyjejś historii w debatę.</li>
+        <li><strong>Nie ujawniaj jej orientacji.</strong> Nie przekazuj informacji innym bez zgody tej osoby.</li>
+        <li><strong>Nie naciskaj na coming out.</strong> Osoba sama powinna zdecydować, czy i kiedy komuś powiedzieć.</li>
+        <li><strong>Zapytaj, czego potrzebuje.</strong> Możesz powiedzieć: „Chcesz, żebym posłuchał czy pomógł coś wymyślić?”.</li>
+        <li><strong>Traktuj jej zauroczenia normalnie.</strong> Nie rób sensacji z tego, że komuś podoba się osoba tej samej płci.</li>
+        <li><strong>Reaguj także wtedy, gdy tej osoby nie ma obok.</strong> Nie podtrzymuj plotek ani homofobicznych komentarzy.</li>
+        <li><strong>Przyznaj się do błędu.</strong> Przeproś i postaraj się nie powtarzać krzywdzącego zachowania.</li>
+    </ul>
+    <div class="callout">Możesz powiedzieć po prostu: <strong>„Dzięki, że mi zaufałeś. Nie musisz mi niczego udowadniać. Uszanuję twoją prywatność”.</strong></div>
+</section>
 
-    <section class="section" id="szkola">
-      <h2>09. Homofobia w szkole i internecie</h2>
-      <h3>W szkole</h3>
-      <p>Szkoła powinna być miejscem, w którym można się uczyć bez strachu przed wyśmianiem lub nękaniem. Jeśli ktoś jest obrażany, prześladowany albo celowo wykluczany, warto zgłosić sytuację dorosłemu, który może zareagować. Dobrze jest opisać konkretne zdarzenia zamiast ograniczać się do ogólnego stwierdzenia, że ktoś „jest niemiły”.</p>
-      <p>Jeśli pierwsza osoba dorosła zbagatelizuje problem, możesz zwrócić się do innej zaufanej osoby, pedagoga, psychologa szkolnego lub dyrekcji. Proszenie o pomoc nie jest donoszeniem, kiedy chodzi o bezpieczeństwo i zatrzymanie krzywdzenia.</p>
-      <h3>W internecie</h3>
-      <p>Nie odpowiadaj na każdą zaczepkę. Możesz zablokować konto, zgłosić treść administratorom platformy i zachować dowody nękania, jeśli jest to bezpieczne. Nie udostępniaj prywatnych danych, adresu, szkoły ani danych osoby, która jest atakowana. Nie organizuj odwetu i nie publikuj czyichś danych w odpowiedzi na hejt.</p>
-      <h3>Jeśli jesteś świadkiem</h3>
-      <p>Możesz wesprzeć osobę prywatną wiadomością, zgłosić treść, poprosić moderatora o interwencję albo spokojnie zaznaczyć, że takie zachowanie jest nie w porządku. Nie musisz robić tego publicznie, jeśli mogłoby to narazić ciebie lub tę osobę na większe niebezpieczeństwo.</p>
-    </section>
+<section class="section" id="szkola">
+    <h2>09. Homofobia w szkole i internecie</h2>
+    <h3>W szkole</h3>
+    <p>Szkoła powinna być miejscem, w którym można się uczyć bez strachu przed wyśmianiem lub nękaniem. Jeśli ktoś jest obrażany, prześladowany albo celowo wykluczany, warto zgłosić sytuację dorosłemu, który może zareagować.</p>
+    <p>Jeśli pierwsza osoba dorosła zbagatelizuje problem, możesz zwrócić się do innej zaufanej osoby, pedagoga, psychologa szkolnego lub dyrekcji. Proszenie o pomoc nie jest donoszeniem, kiedy chodzi o bezpieczeństwo.</p>
+    <h3>W internecie</h3>
+    <p>Nie odpowiadaj na każdą zaczepkę. Możesz zablokować konto, zgłosić treść administratorom platformy i zachować dowody nękania, jeśli to bezpieczne. Nie udostępniaj prywatnych danych ani nie organizuj odwetu.</p>
+    <h3>Jeśli jesteś świadkiem</h3>
+    <p>Możesz wesprzeć osobę prywatną wiadomością, zgłosić treść albo spokojnie zaznaczyć, że takie zachowanie jest nie w porządku. Nie musisz robić tego publicznie, jeśli mogłoby to narazić kogoś na niebezpieczeństwo.</p>
+</section>
 
-    <section class="section" id="pomoc">
-      <h2>10. Gdzie szukać pomocy?</h2>
-      <p>Jeśli homofobia dotyka ciebie albo kogoś, na kim ci zależy, nie musisz radzić sobie z tym samodzielnie. Poszukaj bezpiecznej osoby dorosłej, która potraktuje sprawę poważnie: zaufanego nauczyciela, pedagoga lub psychologa szkolnego, członka rodziny albo innej osoby, której ufasz.</p>
-      <div class="grid">
+<section class="section" id="pomoc">
+    <h2>10. Gdzie szukać pomocy?</h2>
+    <p>Jeśli homofobia dotyka ciebie albo kogoś, na kim ci zależy, nie musisz radzić sobie z tym samodzielnie. Poszukaj bezpiecznej osoby dorosłej, która potraktuje sprawę poważnie.</p>
+    <div class="grid">
         <article class="mini-card">
-          <h3>📞 Telefon Zaufania dla Dzieci i Młodzieży</h3>
-          <p><strong>116 111</strong></p>
-          <p>Bezpłatna pomoc dla dzieci i młodzieży w Polsce. Aktualne informacje o godzinach i sposobach kontaktu znajdziesz na stronie telefonu.</p>
-          <p><a href="https://116111.pl/" target="_blank" rel="noopener noreferrer">Odwiedź 116111.pl ↗</a></p>
+            <h3>📞 Telefon Zaufania dla Dzieci i Młodzieży</h3>
+            <p><strong>116 111</strong></p>
+            <p>Bezpłatna pomoc dla dzieci i młodzieży w Polsce. Aktualne informacje znajdziesz na stronie telefonu.</p>
+            <p><a href="https://116111.pl/" target="_blank" rel="noopener noreferrer">Odwiedź 116111.pl ↗</a></p>
         </article>
         <article class="mini-card">
-          <h3>🆘 Bezpośrednie zagrożenie</h3>
-          <p>Jeśli ktoś jest w bezpośrednim niebezpieczeństwie, potrzebuje pilnej pomocy medycznej lub grozi mu przemoc, zadzwoń pod numer <strong>112</strong> albo poproś zaufanego dorosłego o natychmiastową pomoc.</p>
+            <h3>🆘 Bezpośrednie zagrożenie</h3>
+            <p>Jeśli ktoś jest w bezpośrednim niebezpieczeństwie, potrzebuje pilnej pomocy medycznej lub grozi mu przemoc, zadzwoń pod numer <strong>112</strong> albo poproś zaufanego dorosłego o natychmiastową pomoc.</p>
         </article>
-      </div>
-      <p>Możesz też sprawdzić aktualne informacje i wsparcie w organizacjach zajmujących się prawami człowieka oraz osobami LGBTQ+. Przed skorzystaniem z dowolnej usługi zapoznaj się z jej aktualnymi zasadami kontaktu i prywatności.</p>
-      <div class="callout"><strong>Jeśli nie czujesz się bezpiecznie, nie musisz ujawniać swojej orientacji.</strong> Twoje bezpieczeństwo i prywatność są ważne. Możesz szukać wsparcia bez opowiadania wszystkim o sobie.</div>
-    </section>
+    </div>
+    <p>Możesz też sprawdzić aktualne informacje i wsparcie w organizacjach zajmujących się prawami człowieka oraz osobami LGBTQ+.</p>
+    <div class="callout"><strong>Jeśli nie czujesz się bezpiecznie, nie musisz ujawniać swojej orientacji.</strong> Twoje bezpieczeństwo i prywatność są ważne.</div>
+</section>
 
-    <section class="section" id="faq">
-      <h2>11. Częste pytania</h2>
-      <div class="faq">
-        <details>
-          <summary>Czy mogę kogoś szanować, nawet jeśli nie rozumiem jego orientacji?</summary>
-          <p>Tak. Szacunek oznacza między innymi nieponiżanie, respektowanie granic i uczciwe traktowanie. Nie musisz mieć identycznych doświadczeń, by zachowywać się życzliwie.</p>
-        </details>
-        <details>
-          <summary>Czy samo zadanie pytania jest homofobiczne?</summary>
-          <p>Nie musi być. Pytanie zadane z ciekawości może być w porządku, jeśli jest taktownie sformułowane i druga osoba ma prawo nie odpowiadać. Natarczywe wypytywanie o prywatne sprawy może jednak przekraczać granice.</p>
-        </details>
-        <details>
-          <summary>Co zrobić, jeśli przypadkiem powiedziałem coś krzywdzącego?</summary>
-          <p>Wysłuchaj, co było nie tak, przeproś bez wymówek i postaraj się nie powtarzać tego zachowania. Błąd może stać się okazją do nauki, jeśli bierzesz za niego odpowiedzialność.</p>
-        </details>
-        <details>
-          <summary>Czy muszę poprawiać każdą homofobiczną wypowiedź?</summary>
-          <p>Nie musisz podejmować każdej konfrontacji. Zadbaj o swoje bezpieczeństwo. Możesz wesprzeć osobę po fakcie, zgłosić nękanie lub porozmawiać z kimś zaufanym.</p>
-        </details>
-        <details>
-          <summary>Co jeśli moja rodzina ma homofobiczne poglądy?</summary>
-          <p>To może być trudne, zwłaszcza jeśli jesteś od niej zależny. Nie musisz rozpoczynać konfrontacji ani ujawniać swojej orientacji, jeśli obawiasz się o bezpieczeństwo. Poszukaj wsparcia u zaufanej osoby dorosłej lub w bezpiecznej organizacji.</p>
-        </details>
-        <details>
-          <summary>Czy osoba LGBTQ+ zawsze chce rozmawiać o swojej orientacji?</summary>
-          <p>Nie. Tak jak każdy człowiek, może chcieć opowiadać o swoich uczuciach, ale może też woleć porozmawiać o czymś zupełnie innym. Orientacja nie musi być głównym tematem jej życia.</p>
-        </details>
-      </div>
-    </section>
+<section class="section" id="faq">
+    <h2>11. Częste pytania</h2>
+    <div class="faq">
+        <details><summary>Czy mogę kogoś szanować, nawet jeśli nie rozumiem jego orientacji?</summary><p>Tak. Szacunek oznacza między innymi nieponiżanie, respektowanie granic i uczciwe traktowanie.</p></details>
+        <details><summary>Czy samo zadanie pytania jest homofobiczne?</summary><p>Nie musi być. Pytanie zadane z ciekawości może być w porządku, jeśli jest taktownie sformułowane i druga osoba ma prawo nie odpowiadać.</p></details>
+        <details><summary>Co zrobić, jeśli przypadkiem powiedziałem coś krzywdzącego?</summary><p>Wysłuchaj, co było nie tak, przeproś bez wymówek i postaraj się nie powtarzać tego zachowania.</p></details>
+        <details><summary>Czy muszę poprawiać każdą homofobiczną wypowiedź?</summary><p>Nie musisz podejmować każdej konfrontacji. Zadbaj o swoje bezpieczeństwo. Możesz wesprzeć osobę po fakcie lub zgłosić nękanie.</p></details>
+        <details><summary>Co jeśli moja rodzina ma homofobiczne poglądy?</summary><p>Nie musisz rozpoczynać konfrontacji ani ujawniać swojej orientacji, jeśli obawiasz się o bezpieczeństwo. Poszukaj wsparcia u zaufanej osoby dorosłej.</p></details>
+        <details><summary>Czy osoba LGBTQ+ zawsze chce rozmawiać o swojej orientacji?</summary><p>Nie. Tak jak każdy człowiek, może chcieć o tym opowiadać, ale może też woleć porozmawiać o czymś innym.</p></details>
+    </div>
+</section>
 
-    <section class="section">
-      <h2>Na koniec: małe rzeczy naprawdę mają znaczenie 💗</h2>
-      <p>Nie mamy wpływu na wszystkie przekonania i zachowania innych ludzi, ale mamy wpływ na to, jak sami traktujemy ludzi. Możemy nie powtarzać krzywdzących żartów, nie rozpuszczać plotek, szanować prywatność, wspierać osoby doświadczające nękania i reagować wtedy, gdy jest to bezpieczne.</p>
-      <p>Akceptacja nie oznacza, że musimy być ze wszystkimi blisko albo zgadzać się w każdej sprawie. Oznacza, że nie odbieramy nikomu godności i prawa do bezpieczeństwa tylko dlatego, że kocha inaczej, niż się spodziewaliśmy.</p>
-      <div class="quote">Każdy zasługuje na to, by być traktowanym <span>z szacunkiem.</span></div>
-      <div class="hero-actions">
+<section class="section">
+    <h2>Na koniec: małe rzeczy naprawdę mają znaczenie 💗</h2>
+    <p>Nie mamy wpływu na wszystkie przekonania i zachowania innych ludzi, ale mamy wpływ na to, jak sami traktujemy ludzi. Możemy nie powtarzać krzywdzących żartów, nie rozpuszczać plotek, szanować prywatność, wspierać osoby doświadczające nękania i reagować wtedy, gdy jest to bezpieczne.</p>
+    <p>Akceptacja nie oznacza, że musimy być ze wszystkimi blisko albo zgadzać się w każdej sprawie. Oznacza, że nie odbieramy nikomu godności i prawa do bezpieczeństwa tylko dlatego, że kocha inaczej, niż się spodziewaliśmy.</p>
+    <div class="quote">Każdy zasługuje na to, by być traktowanym <span>z szacunkiem.</span></div>
+    <div class="hero-actions">
         <a class="pill-link" href="index.html">← Wróć do XO Crush</a>
         <a class="pill-link" href="#main-title">Wróć na górę ↑</a>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="footer">
-      <p><strong>XOcrush.pl</strong> · Strona edukacyjna o homofobii i akceptacji</p>
-      <p>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</p>
-      <p>Treść ma charakter informacyjny i nie zastępuje profesjonalnej pomocy w sytuacji zagrożenia.</p>
-    </footer>
-  </main>
+<footer class="footer">
+    <p><strong>XOcrush.pl</strong></p>
+    <p>Strona edukacyjna o homofobii i akceptacji.</p>
+    <p>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</p>
+    <p>Treść ma charakter informacyjny i nie zastępuje profesjonalnej pomocy w sytuacji zagrożenia.</p>
+</footer>
 
-  <button class="to-top" type="button" aria-label="Wróć na górę" title="Wróć na górę" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+</main>
+
+<button class="to-top" type="button" aria-label="Wróć na górę" title="Wróć na górę" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 </body>
 </html>
