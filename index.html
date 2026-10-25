@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>XO Crush</title>
-<link rel="icon" type="image/png" href="images/rbwcalus.png">
+<link rel="icon" type="image/png" href="images/calus.png">
 <meta name="description" content="XO Crush 💌 Pamiętaj! Twoje uczucia należą do CIEBIE. Nie pozwól nikomu manipulować ani nimi, ani Tobą 🖤">
 
 <style>
@@ -37,8 +37,8 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    color: #fff;
     font-family: "Nunito", Arial, sans-serif;
+    color: white;
     background: #171017 url("images/poprostu.png") center center / cover fixed no-repeat;
     position: relative;
 }
@@ -52,67 +52,53 @@ body::before {
     background: rgba(12, 8, 14, 0.48);
 }
 
-/* GÓRNY PASEK */
+/* MAŁE LOGO W LEWYM GÓRNYM ROGU */
 
-.topbar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    min-height: 76px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    padding: 10px clamp(16px, 3vw, 38px);
-    background: rgba(20, 15, 23, 0.62);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
-
-.brand {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.brand img {
-    display: block;
+.logo {
+    position: absolute;
+    top: 18px;
+    left: 22px;
     width: 125px;
-    max-height: 52px;
-    object-fit: contain;
+    height: auto;
+    z-index: 20;
 }
 
-/* NAWIGACJA */
+/* NAWIGACJA W PRAWYM GÓRNYM ROGU */
 
 .site-nav {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    z-index: 20;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 10px;
+    align-items: center;
 }
 
 .site-nav a {
     display: inline-block;
-    padding: 9px 14px;
-    color: #fff;
+    padding: 10px 15px;
+    color: white;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(220, 220, 220, 0.25);
+    background: rgba(25, 20, 28, 0.38);
+    border: 1px solid rgba(220, 220, 220, 0.35);
     border-radius: 24px;
     font-size: 14px;
     font-weight: 700;
     transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .site-nav a:hover {
     background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 0.7);
     transform: translateY(-2px);
 }
 
-/* TĘCZOWY PRZYCISK */
+/* TĘCZOWY PRZYCISK HOMOFOBII */
 
 .site-nav a[href="antyhomophobia.html"] {
     background:
@@ -148,14 +134,14 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
-    padding: 62px 20px 42px;
+    padding: 80px 20px 45px;
 }
 
 .hero-logo {
     width: 420px;
-    max-width: 82vw;
+    max-width: 85%;
     height: auto;
     display: block;
     margin: 0 auto 20px;
@@ -165,7 +151,7 @@ body::before {
     font-family: "Margarine", "Nunito", sans-serif;
     font-size: clamp(25px, 3.5vw, 43px);
     font-weight: normal;
-    color: #fff;
+    color: white;
     text-shadow: 0 3px 12px #000, 0 0 20px #000;
     margin: 0;
     line-height: 1.45;
@@ -190,7 +176,6 @@ body::before {
     border: 0;
     border-radius: 0;
     box-shadow: none;
-    backdrop-filter: none;
 }
 
 .quiz-panel {
@@ -240,12 +225,12 @@ body::before {
 .progress-number.active {
     background: rgba(255, 255, 255, 0.18);
     border-color: #fff;
-    color: #fff;
+    color: white;
 }
 
 .progress-number.done {
     background: rgba(255, 255, 255, 0.3);
-    color: #fff;
+    color: white;
 }
 
 /* PYTANIA QUIZU */
@@ -269,7 +254,7 @@ body::before {
     width: 100%;
     padding: 14px 18px;
     text-align: left;
-    color: #fff;
+    color: white;
     background: rgba(20, 17, 23, 0.58);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 13px;
@@ -286,7 +271,7 @@ body::before {
 
 .quiz-answer.selected {
     background: rgba(255, 255, 255, 0.19);
-    border-color: #fff;
+    border-color: white;
 }
 
 /* PRZYCISKI QUIZU */
@@ -300,7 +285,7 @@ body::before {
 
 .main-button {
     padding: 11px 21px;
-    color: #fff;
+    color: white;
     background: rgba(20, 17, 23, 0.68);
     border: 1px solid rgba(255, 255, 255, 0.42);
     border-radius: 30px;
@@ -313,7 +298,7 @@ body::before {
 
 .main-button:hover {
     background: rgba(255, 255, 255, 0.15);
-    border-color: #fff;
+    border-color: white;
 }
 
 .main-button:disabled {
@@ -346,7 +331,7 @@ body::before {
     width: 100%;
     padding: 17px 8px;
     text-align: left;
-    color: #fff;
+    color: white;
     background: transparent;
     border: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.23);
@@ -405,7 +390,7 @@ body::before {
     max-width: 500px;
     padding: 40px 35px 35px;
     text-align: center;
-    color: #fff;
+    color: white;
     background: rgba(30, 24, 33, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 22px;
@@ -449,7 +434,7 @@ body::before {
     top: 10px;
     right: 16px;
     font-size: 32px;
-    color: #fff;
+    color: white;
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -475,15 +460,34 @@ body::before {
 
 /* TABLETY */
 
-@media (max-width: 900px) {
-    .topbar {
-        align-items: flex-start;
+@media (max-width: 1000px) {
+    .logo {
+        width: 100px;
+        top: 14px;
+        left: 15px;
     }
 
+    .site-nav {
+        top: 15px;
+        right: 15px;
+        gap: 6px;
+    }
+
+    .site-nav a {
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 900px) {
     .panels {
         grid-template-columns: 1fr;
         width: min(650px, 88%);
-        gap: 42px;
+        gap: 38px;
     }
 
     .quiz-panel {
@@ -494,7 +498,7 @@ body::before {
     }
 
     .hero {
-        padding-top: 45px;
+        padding-top: 65px;
     }
 }
 
@@ -505,20 +509,17 @@ body::before {
         background-attachment: scroll;
     }
 
-    .topbar {
-        position: sticky;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 12px 13px;
-    }
-
-    .brand img {
-        width: 105px;
-        max-height: 42px;
+    .logo {
+        width: 85px;
+        top: 12px;
+        left: 12px;
     }
 
     .site-nav {
+        position: relative;
+        top: auto;
+        right: auto;
+        padding: 14px 10px 0;
         justify-content: center;
         gap: 6px;
     }
@@ -529,11 +530,13 @@ body::before {
     }
 
     .hero {
-        padding: 38px 18px 32px;
+        padding: 30px 18px 32px;
     }
 
     .hero-logo {
         width: 320px;
+        max-width: 90%;
+        margin-top: 45px;
     }
 
     .subtitle {
@@ -563,7 +566,7 @@ body::before {
     }
 }
 
-/* MNIEJ ANIMACJI, JEŚLI UŻYTKOWNIK TAK WYBRAŁ */
+/* MNIEJ ANIMACJI */
 
 @media (prefers-reduced-motion: reduce) {
     *,
@@ -579,24 +582,20 @@ body::before {
 
 <body>
 
-<header class="topbar">
-    <a class="brand" href="index.html" aria-label="XO Crush — strona główna">
-        <img src="images/logorb.png" alt="XO Crush">
-    </a>
+<img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
 
-    <nav class="site-nav" aria-label="Nawigacja strony">
-        <a href="aboutweb.html">O stronie</a>
-        <a href="aboutme.html">O mnie</a>
-        <a href="quiz.html">Quiz 💌</a>
-        <a href="antyhomophobia.html">🤍 Homofobia i akceptacja</a>
-    </nav>
-</header>
+<nav class="site-nav" aria-label="Nawigacja strony">
+    <a href="aboutweb.html">O stronie</a>
+    <a href="aboutme.html">O mnie</a>
+    <a href="quiz.html">Quiz 💌</a>
+    <a href="antyhomophobia.html">🤍 Homofobia i akceptacja</a>
+</nav>
 
 <main>
 
     <section class="hero">
 
-        <img src="images/logorb.png"
+        <img src="images/logoo.png"
              alt="XO CRUSH.pl"
              class="hero-logo">
 
@@ -607,8 +606,6 @@ body::before {
     </section>
 
     <section class="panels">
-
-        <!-- QUIZ -->
 
         <section class="panel quiz-panel">
 
@@ -638,8 +635,6 @@ body::before {
 
         </section>
 
-        <!-- PYTANIA O UCZUCIACH -->
-
         <section class="panel crush-panel">
 
             <h2 class="panel-title">O czym myślisz? 🖤</h2>
@@ -653,7 +648,6 @@ body::before {
                 <button class="crush-question"
                     data-title="Czemu o nim/niej tyle myślę?"
                     data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
-
                     <span class="question-number">01</span>
                     <strong>Czemu o nim/niej tyle myślę?</strong>
                     <span class="question-arrow">↗</span>
@@ -662,7 +656,6 @@ body::before {
                 <button class="crush-question"
                     data-title="Czy to już zakochanie?"
                     data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.">
-
                     <span class="question-number">02</span>
                     <strong>Czy to już zakochanie?</strong>
                     <span class="question-arrow">↗</span>
@@ -671,7 +664,6 @@ body::before {
                 <button class="crush-question"
                     data-title="Dlaczego się przy nim/niej stresuję?"
                     data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.">
-
                     <span class="question-number">03</span>
                     <strong>Dlaczego się przy nim/niej stresuję?</strong>
                     <span class="question-arrow">↗</span>
@@ -680,7 +672,6 @@ body::before {
                 <button class="crush-question"
                     data-title="Czy on/ona też może coś czuć?"
                     data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
-
                     <span class="question-number">04</span>
                     <strong>Czy on/ona też może coś czuć?</strong>
                     <span class="question-arrow">↗</span>
@@ -948,7 +939,7 @@ renderQuiz();
 
 const subtitle = document.querySelector(".subtitle");
 
-if (subtitle) {
+if (subtitle && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const text = subtitle.textContent.trim();
     subtitle.textContent = "";
 
