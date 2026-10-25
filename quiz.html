@@ -4,10 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#17121d">
+  <meta name="theme-color" content="#101014">
   <title>Tajemnica 💌 | XO Crush</title>
   <meta name="description" content="Dziewięć pytań. Jedna tajemnica. Czy uda Ci się ją odkryć?">
-
   <link rel="icon" href="images/calus.png" type="image/png">
 
   <style>
@@ -26,13 +25,14 @@
     }
 
     :root {
-      --pink: #ff9bc9;
-      --pink-light: #ffd1e5;
-      --text: #fff7fc;
-      --muted: #c9b9cb;
-      --panel: rgba(24, 17, 31, 0.88);
-      --border: rgba(255, 190, 224, 0.24);
-      --shadow: 0 22px 70px rgba(0, 0, 0, 0.4);
+      --pink: #ffffff;
+      --pink-light: #ffffff;
+      --text: #ffffff;
+      --muted: #c9c9d2;
+      --panel: rgba(17, 17, 23, 0.92);
+      --border: rgba(255, 255, 255, 0.3);
+      --shadow: 0 0 30px rgba(255,255,255,0.1),
+                0 22px 70px rgba(0,0,0,0.45);
     }
 
     * { box-sizing: border-box; }
@@ -52,8 +52,8 @@
       color: var(--text);
       font-family: "Nunito", sans-serif;
       background:
-        radial-gradient(ellipse at 50% 15%, rgba(180, 87, 145, 0.16), transparent 48%),
-        linear-gradient(rgba(15, 10, 20, 0.68), rgba(15, 10, 20, 0.88)),
+        radial-gradient(ellipse at 50% 15%, rgba(255,255,255,0.09), transparent 48%),
+        linear-gradient(rgba(8,8,12,0.72), rgba(8,8,12,0.9)),
         url("images/poprostu.png") center center / cover fixed;
     }
 
@@ -66,18 +66,20 @@
       height: auto;
       margin: 0 auto 10px;
       object-fit: contain;
-      filter: drop-shadow(0 7px 25px rgba(255, 155, 201, 0.22));
+      filter: drop-shadow(0 0 12px rgba(255,255,255,0.6));
       animation: logoReveal 0.8s ease both;
     }
 
     .subtitle {
       margin: 0 0 29px;
-      color: var(--pink-light);
+      color: #fff;
       text-align: center;
-      font-family: "Margarine", sans-serif;
+      font-family: "Nunito", sans-serif;
       font-size: clamp(17px, 4vw, 22px);
+      font-weight: 800;
       letter-spacing: 0.2px;
-      text-shadow: 0 2px 16px rgba(255, 155, 201, 0.2);
+      text-shadow: 0 0 8px rgba(255,255,255,0.55),
+                   0 0 20px rgba(255,255,255,0.22);
     }
 
     .card {
@@ -87,12 +89,12 @@
       max-width: 510px;
       padding: clamp(22px, 5vw, 35px);
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.38);
       border-radius: 27px;
-      background: linear-gradient(145deg, rgba(36, 25, 43, 0.94), var(--panel));
+      background: linear-gradient(145deg, rgba(32,32,40,0.95), var(--panel));
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+      box-shadow: var(--shadow), inset 0 1px 0 rgba(255,255,255,0.07);
       animation: cardReveal 0.65s ease both;
     }
 
@@ -105,7 +107,7 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: rgba(255, 155, 201, 0.075);
+      background: rgba(255,255,255,0.07);
       filter: blur(35px);
       pointer-events: none;
     }
@@ -125,12 +127,13 @@
 
     .step-counter {
       padding: 6px 10px;
-      border: 1px solid rgba(255, 190, 224, 0.2);
+      border: 1px solid rgba(255,255,255,0.28);
       border-radius: 999px;
-      color: var(--pink-light);
-      background: rgba(255, 155, 201, 0.07);
+      color: #fff;
+      background: rgba(255,255,255,0.07);
       white-space: nowrap;
       letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(255,255,255,0.5);
     }
 
     .progress-track {
@@ -139,27 +142,29 @@
       overflow: hidden;
       margin-bottom: 30px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.085);
+      background: rgba(255,255,255,0.09);
     }
 
     .progress-fill {
       width: 0%;
       height: 100%;
       border-radius: inherit;
-      background: linear-gradient(90deg, #d878ad, #ff9bc9, #ffe0ef);
-      box-shadow: 0 0 15px rgba(255, 155, 201, 0.48);
+      background: linear-gradient(90deg, #bdbdc6, #fff, #e7e7ed);
+      box-shadow: 0 0 12px rgba(255,255,255,0.75);
       transition: width 0.4s cubic-bezier(.2,.8,.2,1);
     }
 
     .question {
       margin: 0 0 11px;
-      font-family: "Margarine", "Nunito", sans-serif;
+      color: #fff;
+      font-family: "Nunito", sans-serif;
       font-size: clamp(24px, 5.4vw, 32px);
-      font-weight: 400;
+      font-weight: 900;
       line-height: 1.3;
       letter-spacing: 0.1px;
       overflow-wrap: anywhere;
       text-wrap: balance;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
     .question-note {
@@ -182,18 +187,19 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 15px;
       color: var(--text);
-      background: rgba(255, 255, 255, 0.045);
+      background: rgba(255,255,255,0.045);
       text-align: left;
       cursor: pointer;
       transition: background 0.22s, border-color 0.22s, transform 0.22s, box-shadow 0.22s;
     }
 
     .answer:hover {
-      border-color: rgba(255, 155, 201, 0.62);
-      background: rgba(255, 155, 201, 0.085);
+      border-color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 0 13px rgba(255,255,255,0.12);
       transform: translateY(-2px);
     }
 
@@ -201,14 +207,15 @@
     .primary-button:focus-visible,
     .home-link:focus-visible,
     .name-input:focus-visible {
-      outline: 2px solid var(--pink-light);
+      outline: 2px solid #fff;
       outline-offset: 3px;
     }
 
     .answer.selected {
-      border-color: var(--pink);
-      background: linear-gradient(100deg, rgba(255, 155, 201, 0.17), rgba(255, 155, 201, 0.07));
-      box-shadow: inset 0 0 0 1px rgba(255, 155, 201, 0.12), 0 5px 20px rgba(255, 155, 201, 0.07);
+      border-color: #fff;
+      background: rgba(255,255,255,0.12);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12),
+                  0 0 15px rgba(255,255,255,0.14);
     }
 
     .answer-mark {
@@ -217,16 +224,16 @@
       flex: 0 0 21px;
       display: grid;
       place-items: center;
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      border: 1px solid rgba(255,255,255,0.35);
       border-radius: 50%;
-      color: #251525;
+      color: #111;
       font-size: 12px;
       transition: background 0.2s, border-color 0.2s;
     }
 
     .answer.selected .answer-mark {
-      border-color: var(--pink);
-      background: var(--pink);
+      border-color: #fff;
+      background: #fff;
     }
 
     .name-input {
@@ -236,17 +243,18 @@
       border: 1px solid var(--border);
       border-radius: 15px;
       outline: none;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.055);
+      color: #fff;
+      background: rgba(255,255,255,0.055);
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
     .name-input:focus {
-      border-color: var(--pink);
-      box-shadow: 0 0 0 4px rgba(255, 155, 201, 0.09);
+      border-color: #fff;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.14),
+                  0 0 12px rgba(255,255,255,0.12);
     }
 
-    .name-input::placeholder { color: #a999ac; }
+    .name-input::placeholder { color: #aaaab5; }
 
     .input-hint {
       margin: 9px 0 0;
@@ -257,7 +265,7 @@
     .error-message {
       min-height: 20px;
       margin: 10px 0 0;
-      color: #ffb4d4;
+      color: #fff;
       font-size: 13px;
     }
 
@@ -266,21 +274,21 @@
       min-height: 53px;
       margin-top: 23px;
       padding: 14px 18px;
-      border: 1px solid rgba(255, 230, 242, 0.55);
+      border: 1px solid #fff;
       border-radius: 15px;
-      color: #291625;
-      background: linear-gradient(115deg, #ffe0ef, #ffadd2 55%, #ff91c4);
+      color: #111116;
+      background: linear-gradient(135deg, #fff, #dedee5);
       font-weight: 900;
       letter-spacing: 0.2px;
       cursor: pointer;
-      box-shadow: 0 8px 27px rgba(255, 155, 201, 0.16);
+      box-shadow: 0 0 18px rgba(255,255,255,0.2);
       transition: transform 0.22s, filter 0.22s, box-shadow 0.22s;
     }
 
     .primary-button:hover {
       filter: brightness(1.06);
       transform: translateY(-2px);
-      box-shadow: 0 11px 30px rgba(255, 155, 201, 0.23);
+      box-shadow: 0 0 27px rgba(255,255,255,0.38);
     }
 
     .primary-button:active { transform: translateY(0); }
@@ -292,26 +300,28 @@
 
     .result-icon {
       margin: 3px 0 15px;
-      color: var(--pink-light);
+      color: #fff;
       text-align: center;
       font-size: 48px;
-      text-shadow: 0 0 25px rgba(255, 155, 201, 0.28);
+      text-shadow: 0 0 10px rgba(255,255,255,0.75),
+                   0 0 24px rgba(255,255,255,0.3);
     }
 
     .result-title {
       margin: 0 0 15px;
-      color: var(--pink-light);
-      font-family: "Margarine", sans-serif;
+      color: #fff;
+      font-family: "Nunito", sans-serif;
       font-size: clamp(26px, 6vw, 35px);
-      font-weight: 400;
+      font-weight: 900;
       line-height: 1.3;
       text-align: center;
       text-wrap: balance;
+      text-shadow: 0 0 10px rgba(255,255,255,0.3);
     }
 
     .result-text {
       margin: 0;
-      color: #e6d9e7;
+      color: #e6e6ec;
       font-size: 15px;
       line-height: 1.9;
       text-align: center;
@@ -321,11 +331,11 @@
 
     .score {
       margin: 24px 0 7px;
-      color: var(--pink-light);
+      color: #fff;
       font-size: 31px;
       font-weight: 900;
       text-align: center;
-      text-shadow: 0 0 20px rgba(255, 155, 201, 0.14);
+      text-shadow: 0 0 12px rgba(255,255,255,0.4);
     }
 
     .score-caption {
@@ -338,20 +348,21 @@
     .bonus {
       margin-top: 24px;
       padding: 21px;
-      border: 1px solid rgba(255, 155, 201, 0.42);
+      border: 1px solid rgba(255,255,255,0.35);
       border-radius: 18px;
-      background: linear-gradient(135deg, rgba(255, 155, 201, 0.1), rgba(255, 255, 255, 0.025));
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.025));
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
       animation: reveal 0.8s ease both;
     }
 
     .bonus-title {
       margin: 0 0 11px;
-      color: var(--pink-light);
-      font-family: "Margarine", sans-serif;
+      color: #fff;
+      font-family: "Nunito", sans-serif;
       font-size: 21px;
-      font-weight: 400;
+      font-weight: 900;
       text-align: center;
+      text-shadow: 0 0 9px rgba(255,255,255,0.35);
     }
 
     .bonus-text {
@@ -366,26 +377,28 @@
       display: inline-block;
       margin-top: 23px;
       padding: 9px 14px;
-      border: 1px solid rgba(255, 190, 224, 0.18);
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 999px;
-      color: var(--pink-light);
-      background: rgba(20, 12, 24, 0.36);
+      color: #fff;
+      background: rgba(20,20,25,0.45);
       font-size: 13px;
       font-weight: 800;
       text-decoration: none;
-      transition: color 0.2s, background 0.2s, border-color 0.2s;
+      text-shadow: 0 0 7px rgba(255,255,255,0.3);
+      transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
     }
 
     .home-link:hover {
-      color: white;
-      border-color: rgba(255, 190, 224, 0.45);
-      background: rgba(255, 155, 201, 0.08);
+      color: #fff;
+      border-color: #fff;
+      background: rgba(255,255,255,0.08);
+      box-shadow: 0 0 12px rgba(255,255,255,0.15);
     }
 
     .footer {
       margin-top: auto;
       padding-top: 27px;
-      color: rgba(255, 247, 252, 0.55);
+      color: rgba(255,255,255,0.55);
       font-size: 11px;
       text-align: center;
     }
