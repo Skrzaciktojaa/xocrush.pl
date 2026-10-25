@@ -4,144 +4,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="images/calus.png">
-
-    <title>O stronie - XO Crush</title>
-
-    <meta name="description" content="Dowiedz się więcej o XO Crush – stronie poświęconej crushom, uczuciom i emocjom.">
-
-    <link rel="icon" href="images/calus.png">
+    <link rel="icon" type="image/png" href="/images/calus.png">
+    <meta name="theme-color" content="#21121f">
+    <meta name="description" content="Dowiedz się więcej o XO Crush, stronie poświęconej crushom, uczuciom i emocjom.">
+    <title>O stronie | XO Crush</title>
 
     <style>
         @font-face {
-            font-family: Margarine;
-            src: url("images/Margarine-Regular.ttf");
+            font-family: "Nunito";
+            src: url("fonts/Nunito-Variable.woff2") format("woff2");
+            font-weight: 200 1000;
+            font-style: normal;
+            font-display: swap;
         }
 
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             min-height: 100vh;
-
-            background: #171017 url("images/poprostu.png")
-                center center / cover fixed no-repeat;
-
-            font-family: Margarine, sans-serif;
-            color: #222;
-        }
-
-        .container {
-            width: 100%;
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            padding: 35px 20px 45px;
-        }
-
-        .logo {
-            width: 220px;
-            max-width: 80%;
-            height: auto;
-
-            margin-bottom: 25px;
-        }
-
-        .panel {
-            width: 100%;
-            max-width: 700px;
-
-            background: rgba(220, 220, 220, 0.95);
-
-            padding: 35px;
-            border-radius: 20px;
-
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-        }
-
-        h1 {
-            margin: 0 0 25px;
-
-            text-align: center;
-            font-size: 32px;
-            font-weight: normal;
-
-            color: #241522;
-        }
-
-        .about-text {
-            font-size: 17px;
+            font-family: "Nunito", Arial, sans-serif;
+            color: #fff8fc;
             line-height: 1.8;
+            background:
+                linear-gradient(
+                    rgba(18, 8, 17, 0.72),
+                    rgba(18, 8, 17, 0.86)
+                ),
+                url("images/poprostu.png") center / cover fixed no-repeat;
         }
 
-        .about-text p {
-            margin: 0 0 20px;
+        a {
+            color: white;
         }
 
-        .about-text p:last-child {
-            margin-bottom: 0;
+        /* GÓRNY PASEK Z EFEKTEM BLUR */
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 76px;
+            padding: 8px clamp(16px, 4vw, 42px);
+            background: rgba(22, 10, 21, 0.24);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .brand img {
+            display: block;
+            width: 145px;
+            height: 58px;
+            object-fit: contain;
         }
 
         .back-button {
-            display: block;
-            width: fit-content;
-
-            margin: 30px auto 0;
-            padding: 12px 28px;
-
-            background: #241522;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 16px;
             color: white;
-
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 999px;
             text-decoration: none;
-            text-align: center;
-
-            border-radius: 12px;
-            font-size: 16px;
-
-            transition: background 0.2s, transform 0.2s;
+            font-size: 15px;
+            font-weight: 700;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
 
         .back-button:hover {
-            background: #493047;
+            background: rgba(255, 255, 255, 0.18);
             transform: translateY(-2px);
         }
 
-        footer {
-            margin-top: 25px;
+        /* GŁÓWNA TREŚĆ */
 
-            color: white;
-            text-align: center;
-            font-size: 13px;
-
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+        main {
+            width: min(900px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 45px 0 0;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 25px 15px 35px;
+        .page-header {
+            padding: 30px 0 35px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .logo {
+            display: block;
+            width: 250px;
+            max-width: 75%;
+            height: auto;
+            margin: 0 auto 24px;
+        }
+
+        .eyebrow {
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 12px 0 16px;
+            color: white;
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .intro {
+            max-width: 680px;
+            margin: 0 auto;
+            color: #e7d6e1;
+            font-size: 18px;
+        }
+
+        .divider {
+            width: min(280px, 65%);
+            height: 4px;
+            margin: 25px auto 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        /* OPIS BEZ SZAREGO OKIENKA */
+
+        .about-text {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 18px 0 35px;
+            color: #e7d6e1;
+            font-size: 17px;
+            line-height: 1.95;
+        }
+
+        .about-text p {
+            margin: 0;
+            padding: 22px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .about-text p:last-child {
+            border-bottom: none;
+        }
+
+        .about-text strong {
+            color: white;
+            font-weight: 900;
+        }
+
+        .closing {
+            padding: 22px 0;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .bottom-link {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0 45px;
+        }
+
+        /* STOPKA */
+
+        footer {
+            margin-top: 15px;
+            padding: 26px 15px;
+            text-align: center;
+            color: #e7d6e1;
+            font-size: 14px;
+            background: rgba(22, 10, 21, 0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        footer strong {
+            color: white;
+            font-size: 16px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* TELEFONY */
+
+        @media (max-width: 700px) {
+            body {
+                background-attachment: scroll;
+            }
+
+            .topbar {
+                min-height: 62px;
+                padding: 8px 12px;
+            }
+
+            .brand img {
+                width: 105px;
+                height: 45px;
+            }
+
+            .back-button {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            main {
+                width: calc(100% - 28px);
+                padding-top: 20px;
+            }
+
+            .page-header {
+                padding-top: 25px;
             }
 
             .logo {
-                width: 180px;
+                width: 210px;
             }
 
-            .panel {
-                padding: 25px 20px;
-                border-radius: 16px;
-            }
-
-            h1 {
-                font-size: 27px;
+            .intro {
+                font-size: 16px;
             }
 
             .about-text {
                 font-size: 15px;
-                line-height: 1.7;
+            }
+
+            .about-text p {
+                padding: 18px 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -149,61 +275,98 @@
 
 <body>
 
-    <main class="container">
+    <header class="topbar">
+        <a href="index.html" class="brand" aria-label="XO Crush — strona główna">
+            <img
+                src="images/logorb.png"
+                alt="Logo XO Crush"
+                onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logorb.png'; } else { this.style.display = 'none'; }"
+            >
+        </a>
 
-        <img
-            src="images/logoo.png"
-            alt="XO Crush"
-            class="logo"
-        >
+        <a href="index.html" class="back-button">← Wróć</a>
+    </header>
 
-        <section class="panel">
+    <main>
 
-            <h1><strong>O stronie 🤍</strong></h1>
+        <header class="page-header">
+            <img
+                src="images/logorb.png"
+                alt="XO Crush"
+                class="logo"
+                onerror="if (!this.dataset.fallback) { this.dataset.fallback = '1'; this.src = 'logorb.png'; } else { this.style.display = 'none'; }"
+            >
 
-            <div class="about-text">
+            <div class="eyebrow">Poznaj nasz projekt</div>
 
-                <p>
-                    <strong>XO Crush</strong> to strona stworzona z myślą o osobach,
-                    które mają swojego crusha, przeżywają różne emocje
-                    i czasem nie wiedzą, co zrobić ze swoimi uczuciami.
-                </p>
+            <h1>O stronie 🤍</h1>
 
-                <p>
-                    Znajdziesz tutaj miejsce, w którym możesz pomyśleć
-                    o swoich uczuciach, odpowiedzieć na kilka pytań
-                    i po prostu pobawić się tematem crushów.
-                </p>
+            <p class="intro">
+                Miejsce poświęcone crushom, uczuciom i emocjom.
+                Dowiedz się, skąd wziął się pomysł na XO Crush.
+            </p>
 
-                <p>
-                    Strona powstała z pasji do tworzenia stron
-                    internetowych oraz z pomysłu, aby stworzyć coś,
-                    co będzie jednocześnie ciekawe, przyjemne
-                    i trochę pomocne.
-                </p>
+            <div class="divider"></div>
+        </header>
 
-                <p>
-                    <strong>XO Crush jest projektem niezależnym i nie jest
-                    powiązany z żadną oficjalną organizacją.</strong>
-                </p>
+        <section class="about-text">
 
-                <p>
-                    Miło, że tu jesteś! 💗
-                </p>
+            <p>
+                <strong>XO Crush</strong> to strona stworzona z myślą o osobach,
+                które mają swojego crusha, przeżywają różne emocje
+                i czasem nie wiedzą, co zrobić ze swoimi uczuciami.
+            </p>
 
-            </div>
+            <p>
+                Znajdziesz tutaj miejsce, w którym możesz pomyśleć
+                o swoich uczuciach, odpowiedzieć na kilka pytań
+                i po prostu pobawić się tematem crushów.
+            </p>
 
-            <a href="index.html" class="back-button">
-                « Wróć na stronę główną
-            </a>
+            <p>
+                Strona powstała z pasji do tworzenia stron
+                internetowych oraz z pomysłu, aby stworzyć coś,
+                co będzie jednocześnie ciekawe, przyjemne
+                i trochę pomocne.
+            </p>
+
+            <p>
+                <strong>
+                    XO Crush jest projektem niezależnym i nie jest
+                    powiązany z żadną oficjalną organizacją.
+                </strong>
+            </p>
+
+            <p>
+                Miło, że tu jesteś! 💗
+            </p>
 
         </section>
 
-        <footer>
-            XO Crush © 2026
-        </footer>
+        <div class="closing">
+            Każde uczucie ma swoją historię. 🖤
+        </div>
+
+        <div class="bottom-link">
+            <a href="index.html" class="back-button">
+                ← Wróć na stronę główną
+            </a>
+        </div>
 
     </main>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'></script><!-- End Cloudflare Web Analytics -->
+
+    <footer>
+        <p><strong>XOcrush.pl</strong></p>
+        <p>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+    <!-- CLOUDFLARE WEB ANALYTICS -->
+    <script
+        type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'>
+    </script>
+    <!-- END CLOUDFLARE WEB ANALYTICS -->
+
 </body>
 </html>
