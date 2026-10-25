@@ -1,458 +1,759 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="images/calus.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17121d">
+  <title>Tajemnica 💌 | XO Crush</title>
+  <meta name="description" content="Dziewięć pytań. Jedna tajemnica. Czy uda Ci się ją odkryć?">
 
-<title>Quiz 💌 | XO Crush</title>
+  <link rel="icon" href="images/calus.png" type="image/png">
 
-<link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="Rozwiąż quiz XO Crush i sprawdź, czy znasz mój sekret!">
-
-<style>
-@font-face {
-    font-family: "Margarine";
-    src: url("images/Margarine-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: white;
-    background: #171017 url("images/poprostu.png") center center / cover fixed no-repeat;
-}
-
-.logo {
-    position: absolute;
-    top: 18px;
-    left: 22px;
-    width: 135px;
-    height: auto;
-    z-index: 10;
-}
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 70px 20px 50px;
-}
-
-.hero-logo {
-    width: 480px;
-    max-width: 90%;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px;
-}
-
-.subtitle {
-    font-family: "Margarine", cursive;
-    font-size: 46px;
-    font-weight: normal;
-    color: white;
-    text-shadow: 0 3px 12px #000, 0 0 20px #000;
-    margin: 0;
-    line-height: 1.4;
-    max-width: 950px;
-    min-height: 1.4em;
-}
-
-/* Migający kursor podczas pisania */
-.subtitle.typing::after {
-    content: "|";
-    display: inline-block;
-    margin-left: 3px;
-    animation: cursorBlink 0.7s infinite;
-}
-
-@keyframes cursorBlink {
-    0%, 50% {
-        opacity: 1;
-    }
-    51%, 100% {
-        opacity: 0;
-    }
-}
-
-.quiz {
-    width: min(400px, 92%);
-    margin-top: 40px;
-    padding: 25px;
-    background: rgba(25, 12, 25, 0.92);
-    border: 1px solid rgba(255, 180, 210, 0.65);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 80, 150, 0.25);
-}
-
-.quiz h2 {
-    margin: 0 0 20px;
-    color: #ffb5d2;
-    font-size: 25px;
-}
-
-.hint {
-    font-size: 14px;
-    color: #ffc2dc;
-    margin-bottom: 22px;
-    line-height: 1.5;
-}
-
-.question {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 20px 0;
-}
-
-input {
-    width: 100%;
-    padding: 13px;
-    border-radius: 10px;
-    border: 1px solid #ff9dc5;
-    background: white;
-    color: #222;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-button {
-    border: none;
-    border-radius: 10px;
-    padding: 13px 20px;
-    background: #ff8fbd;
-    color: #3b1025;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-button:hover {
-    background: #ffc1da;
-}
-
-.gender-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.gender-button {
-    font-size: 35px;
-    width: 100px;
-    height: 75px;
-}
-
-#feedback {
-    margin-top: 15px;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.score {
-    font-size: 34px;
-    color: #ffb5d2;
-    margin: 20px 0;
-}
-
-.back-button {
-    display: inline-block;
-    margin-top: 25px;
-    color: #ffc1da;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.back-button:hover {
-    color: white;
-}
-
-@media (max-width: 700px) {
-    .logo {
-        width: 105px;
-        top: 12px;
-        left: 12px;
+  <style>
+    @font-face {
+      font-family: "Nunito";
+      src: url("fonts/Nunito-Variable.woff2") format("woff2");
+      font-weight: 100 1000;
+      font-display: swap;
     }
 
-    .hero {
-        padding-top: 100px;
+    @font-face {
+      font-family: "Margarine";
+      src: url("images/Margarine-Regular.ttf") format("truetype");
+      font-display: swap;
     }
 
-    .hero-logo {
-        width: 340px;
-        max-width: 95%;
+    :root {
+      --pink: #ff9bc9;
+      --pink-light: #ffd1e5;
+      --text: #fff7fc;
+      --muted: #c9b9cb;
+      --panel: rgba(28, 20, 34, 0.88);
+      --border: rgba(255, 190, 224, 0.2);
     }
 
-    .subtitle {
-        font-size: 32px;
+    * {
+      box-sizing: border-box;
     }
 
-    .quiz {
-        margin-top: 30px;
-        padding: 20px;
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
     }
-}
 
-/* Jeśli ktoś ogranicza animacje w systemie */
-@media (prefers-reduced-motion: reduce) {
-    .subtitle.typing::after {
-        animation: none;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 25px 16px 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text);
+      font-family: "Nunito", sans-serif;
+      background:
+        linear-gradient(rgba(15, 10, 20, 0.68), rgba(15, 10, 20, 0.88)),
+        url("images/poprostu.png") center center / cover fixed;
+    }
+
+    button, input {
+      font: inherit;
     }
 
     button {
-        transition: none;
+      -webkit-tap-highlight-color: transparent;
     }
-}
-</style>
+
+    .logo {
+      display: block;
+      width: min(270px, 75vw);
+      height: auto;
+      margin: 0 auto 8px;
+      object-fit: contain;
+      filter: drop-shadow(0 5px 22px rgba(255, 155, 201, 0.13));
+    }
+
+    .subtitle {
+      margin: 0 0 25px;
+      color: var(--pink-light);
+      text-align: center;
+      font-family: "Margarine", sans-serif;
+      font-size: clamp(17px, 4vw, 21px);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 490px;
+      padding: clamp(21px, 5vw, 32px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--panel);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      box-shadow: 0 18px 65px rgba(0, 0, 0, 0.32);
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 13px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .step-counter {
+      color: var(--pink-light);
+      white-space: nowrap;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 5px;
+      overflow: hidden;
+      margin-bottom: 29px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #e987bd, #ffd0e7);
+      box-shadow: 0 0 12px rgba(255, 155, 201, 0.4);
+      transition: width 0.35s ease;
+    }
+
+    .question {
+      margin: 0 0 10px;
+      font-size: clamp(22px, 5vw, 29px);
+      font-weight: 900;
+      line-height: 1.3;
+      overflow-wrap: anywhere;
+    }
+
+    .question-note {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .answers {
+      display: grid;
+      gap: 10px;
+    }
+
+    .answer {
+      width: 100%;
+      min-height: 49px;
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.105);
+      border-radius: 13px;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.045);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .answer:hover {
+      border-color: rgba(255, 155, 201, 0.65);
+      background: rgba(255, 155, 201, 0.09);
+      transform: translateY(-1px);
+    }
+
+    .answer:focus-visible,
+    .primary-button:focus-visible,
+    .home-link:focus-visible,
+    .name-input:focus-visible {
+      outline: 2px solid var(--pink-light);
+      outline-offset: 3px;
+    }
+
+    .answer.selected {
+      border-color: var(--pink);
+      background: rgba(255, 155, 201, 0.15);
+    }
+
+    .answer-mark {
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 50%;
+      color: #251525;
+      font-size: 12px;
+    }
+
+    .answer.selected .answer-mark {
+      border-color: var(--pink);
+      background: var(--pink);
+    }
+
+    .name-input {
+      width: 100%;
+      min-height: 53px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      outline: none;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.055);
+      transition: border-color 0.2s;
+    }
+
+    .name-input:focus {
+      border-color: var(--pink);
+    }
+
+    .name-input::placeholder {
+      color: #a999ac;
+    }
+
+    .input-hint {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .error-message {
+      min-height: 20px;
+      margin: 10px 0 0;
+      color: #ffb4d4;
+      font-size: 13px;
+    }
+
+    .primary-button {
+      width: 100%;
+      min-height: 51px;
+      margin-top: 23px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 13px;
+      color: #291625;
+      background: linear-gradient(135deg, #ffd0e7, #ff9bc9);
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 7px 24px rgba(255, 155, 201, 0.12);
+      transition: transform 0.2s, filter 0.2s;
+    }
+
+    .primary-button:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+
+    .primary-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .result-icon {
+      margin: 3px 0 15px;
+      color: var(--pink-light);
+      text-align: center;
+      font-size: 43px;
+    }
+
+    .result-title {
+      margin: 0 0 13px;
+      font-family: "Margarine", sans-serif;
+      font-size: clamp(25px, 6vw, 34px);
+      font-weight: 400;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .result-text {
+      margin: 0;
+      color: #e6d9e7;
+      font-size: 15px;
+      line-height: 1.8;
+      text-align: center;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .score {
+      margin: 23px 0 7px;
+      color: var(--pink-light);
+      font-size: 28px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .score-caption {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .bonus {
+      margin-top: 23px;
+      padding: 19px;
+      border: 1px solid rgba(255, 155, 201, 0.45);
+      border-radius: 15px;
+      background: rgba(255, 155, 201, 0.075);
+      animation: reveal 0.8s ease both;
+    }
+
+    .bonus-title {
+      margin: 0 0 10px;
+      color: var(--pink-light);
+      font-family: "Margarine", sans-serif;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .bonus-text {
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .home-link {
+      display: inline-block;
+      margin-top: 23px;
+      color: var(--pink-light);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .home-link:hover {
+      color: white;
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 27px;
+      color: rgba(255, 247, 252, 0.55);
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(9px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-<img src="images/logoo.png" alt="XO CRUSH.pl" class="logo">
-
-<main class="hero">
-
-    <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
-
-    <p class="subtitle" id="subtitle">Tutaj poznasz mój sekret 💌</p>
-
-    <section class="quiz">
-
-        <h2>💌 Mały quiz</h2>
-
-        <p class="hint">
-            JAK SIĘ DOWIESZ, TO NIKOMU NIE MÓW 🤫
-        </p>
-
-        <div id="quizContent"></div>
-        <p id="feedback" aria-live="polite"></p>
-
-    </section>
-
-    <a href="index.html" class="back-button">
-        ← Wróć na stronę główną
+  <header>
+    <a href="index.html" aria-label="XO Crush — strona główna">
+      <img class="logo" src="images/logoo.png" alt="XO Crush">
     </a>
+    <p class="subtitle">Tutaj poznasz mój sekret 💌</p>
+  </header>
 
-</main>
+  <main class="card" id="quiz-card">
+    <div id="quiz-screen">
+      <div class="topline">
+        <span>Mała tajemnica</span>
+        <span class="step-counter" id="step-counter">01 / 09</span>
+      </div>
 
-<script>
-/* ANIMACJA PISANIA NAPISU */
-const subtitle = document.getElementById("subtitle");
+      <div
+        class="progress-track"
+        id="progress-track"
+        role="progressbar"
+        aria-label="Postęp quizu"
+        aria-valuemin="0"
+        aria-valuemax="9"
+        aria-valuenow="0"
+      >
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
 
-if (subtitle) {
-    const text = subtitle.textContent;
-    const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+      <h1 class="question" id="question-title">
+        Gotowy, żeby odkryć sekret?
+      </h1>
 
-    if (!prefersReducedMotion) {
-        subtitle.textContent = "";
-        subtitle.classList.add("typing");
+      <p class="question-note" id="question-note">
+        Dziewięć pytań. Każde przybliży Cię do rozwiązania.
+      </p>
 
-        let index = 0;
+      <div class="answers" id="answers"></div>
+      <p class="error-message" id="error-message" aria-live="polite"></p>
 
-        const typing = setInterval(function() {
-            subtitle.textContent += text.charAt(index);
-            index++;
+      <button class="primary-button" id="next-button" type="button">
+        Zaczynamy
+      </button>
+    </div>
 
-            if (index >= text.length) {
-                clearInterval(typing);
-                subtitle.classList.remove("typing");
-            }
-        }, 65);
-    }
-}
+    <section id="result-screen" class="hidden" aria-live="polite">
+      <div class="result-icon" id="result-icon">✧</div>
+      <h1 class="result-title" id="result-title">Koniec tajemnicy?</h1>
+      <p class="result-text" id="result-text"></p>
 
-const questions = [
-    {
-        question: "Z której jest klasy?",
-        type: "text",
-        answers: ["7a", "8b"]
-    },
-    {
+      <div class="score" id="score"></div>
+      <p class="score-caption">poprawnych odpowiedzi na 9 pytań</p>
+
+      <div id="bonus" class="bonus hidden">
+        <h2 class="bonus-title">Odkryto ukryty sekret 🖤</h2>
+        <p class="bonus-text">
+          Gratulacje. Dotarłeś do samego końca.
+          Nie każdy odkrywa wszystkie sekrety.
+          Dziękuję, że poświęciłeś chwilę, żeby poznać mój.
+        </p>
+      </div>
+
+      <button class="primary-button" id="restart-button" type="button">
+        Rozwiąż ponownie
+      </button>
+    </section>
+  </main>
+
+  <a class="home-link" href="index.html">← Wróć na stronę główną</a>
+
+  <footer class="footer">
+    XOcrush.pl © 2026 · Stworzone z odrobiną tajemnicy 💌
+  </footer>
+
+  <script>
+    const questions = [
+      {
+        question: "Do której klasy chodzi?",
+        note: "Zacznijmy od czegoś prostego...",
+        options: ["7a", "8a", "8b"],
+        correct: ["7a"]
+      },
+      {
         question: "Jaki ma kolor włosów?",
-        type: "text",
-        answers: ["brązowy", "brąz", "brązowe"]
-    },
-    {
+        note: "Pamiętasz ten szczegół?",
+        options: ["Brązowe", "Blond", "Czarne", "Inny kolor"],
+        correct: ["brązowe"]
+      },
+      {
         question: "Jakiej jest płci?",
-        type: "gender",
-        answer: "♂️"
-    },
-    {
+        note: "Kolejna wskazówka.",
+        options: ["Mężczyzna", "Kobieta"],
+        correct: ["mężczyzna"]
+      },
+      {
         question: "Jak ma na imię?",
+        note: "Tutaj musisz wpisać odpowiedź samodzielnie.",
         type: "text",
-        answers: ["heniek", "henryk"]
+        placeholder: "Wpisz imię...",
+        correct: ["heniek", "henryk"]
+      },
+      {
+        question: "Czy chodzimy do tej samej klasy?",
+        note: "Przypomnij sobie wcześniejsze wskazówki.",
+        options: ["Tak", "Nie"],
+        correct: ["nie"]
+      },
+      {
+        question: "Co jako pierwsze przyciągnęło moją uwagę?",
+        note: "Czas na trochę bardziej osobiste pytanie.",
+        options: [
+          "Jego włosy",
+          "Jego twarz",
+          "Jego uśmiech",
+          "Trudno powiedzieć"
+        ],
+        correct: ["jego twarz"]
+      },
+      {
+        question: "Czy rozmawiamy ze sobą na co dzień?",
+        note: "Czasami odpowiedź mówi więcej, niż się wydaje.",
+        options: [
+          "Tak, często",
+          "Czasami",
+          "Raczej nie",
+          "Nie, choćbym chciał"
+        ],
+        correct: ["nie, choćbym chciał"]
+      },
+      {
+        question: "Od jak dawna mi się podoba?",
+        note: "Nie wszystko zaczęło się wczoraj.",
+        options: [
+          "Od kilku dni",
+          "Od kilku tygodni",
+          "Od dłuższego czasu",
+          "Od kilku lat"
+        ],
+        correct: ["od dłuższego czasu"]
+      },
+      {
+        question: "Czy on wie, że mi się podoba?",
+        note: "Ostatnie pytanie. Zastanów się dobrze...",
+        options: [
+          "Tak, wie na pewno",
+          "Podejrzewa",
+          "Nie mam pojęcia",
+          "Raczej nie"
+        ],
+        correct: ["raczej nie"]
+      }
+    ];
+
+    const quizScreen = document.getElementById("quiz-screen");
+    const resultScreen = document.getElementById("result-screen");
+    const questionTitle = document.getElementById("question-title");
+    const questionNote = document.getElementById("question-note");
+    const answersContainer = document.getElementById("answers");
+    const nextButton = document.getElementById("next-button");
+    const stepCounter = document.getElementById("step-counter");
+    const progressFill = document.getElementById("progress-fill");
+    const progressTrack = document.getElementById("progress-track");
+    const errorMessage = document.getElementById("error-message");
+
+    let currentQuestion = -1;
+    let selectedAnswer = null;
+    let score = 0;
+    let results = [];
+
+    function normalize(value) {
+      return value
+        .trim()
+        .toLocaleLowerCase("pl-PL")
+        .replace(/\s+/g, " ");
     }
-];
 
-let currentQuestion = 0;
-let score = 0;
-let locked = false;
+    function renderQuestion() {
+      selectedAnswer = null;
+      errorMessage.textContent = "";
+      answersContainer.replaceChildren();
 
-const quizContent = document.getElementById("quizContent");
-const feedback = document.getElementById("feedback");
+      const question = questions[currentQuestion];
 
-function showQuestion() {
-    locked = false;
-    feedback.textContent = "";
+      questionTitle.textContent = question.question;
+      questionNote.textContent = question.note;
 
-    if (currentQuestion >= questions.length) {
-        showResult();
-        return;
-    }
+      stepCounter.textContent =
+        String(currentQuestion + 1).padStart(2, "0") +
+        " / " + String(questions.length).padStart(2, "0");
 
-    const q = questions[currentQuestion];
+      progressFill.style.width =
+        (currentQuestion / questions.length * 100) + "%";
 
-    quizContent.innerHTML = "";
+      progressTrack.setAttribute("aria-valuenow", currentQuestion);
 
-    const questionText = document.createElement("p");
-    questionText.className = "question";
-    questionText.textContent = q.question;
-    quizContent.appendChild(questionText);
-
-    if (q.type === "text") {
+      if (question.type === "text") {
         const input = document.createElement("input");
+        input.className = "name-input";
         input.type = "text";
-        input.id = "answerInput";
-        input.placeholder = "Wpisz odpowiedź...";
+        input.id = "name-answer";
+        input.placeholder = question.placeholder;
         input.autocomplete = "off";
+        input.maxLength = 80;
+        input.setAttribute("aria-label", "Wpisz imię");
 
-        const button = document.createElement("button");
-        button.type = "button";
-        button.textContent = "Sprawdź 💗";
-        button.addEventListener("click", checkAnswer);
-
-        input.addEventListener("keydown", function(event) {
-            if (event.key === "Enter") {
-                checkAnswer();
-            }
+        input.addEventListener("keydown", event => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            submitAnswer();
+          }
         });
 
-        quizContent.appendChild(input);
-        quizContent.appendChild(button);
+        answersContainer.appendChild(input);
+
+        const hint = document.createElement("p");
+        hint.className = "input-hint";
+        hint.textContent = "Wpisz imię i przejdź dalej.";
+        answersContainer.appendChild(hint);
+
         input.focus();
-    }
+      } else {
+        question.options.forEach(option => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "answer";
+          button.setAttribute("aria-pressed", "false");
 
-    if (q.type === "gender") {
-        const buttons = document.createElement("div");
-        buttons.className = "gender-buttons";
+          const mark = document.createElement("span");
+          mark.className = "answer-mark";
+          mark.setAttribute("aria-hidden", "true");
 
-        ["♂️", "♀️"].forEach(function(symbol) {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "gender-button";
-            button.textContent = symbol;
+          const label = document.createElement("span");
+          label.textContent = option;
 
-            button.addEventListener("click", function() {
-                checkGender(symbol);
+          button.append(mark, label);
+
+          button.addEventListener("click", () => {
+            selectedAnswer = option;
+
+            answersContainer.querySelectorAll(".answer").forEach(item => {
+              item.classList.remove("selected");
+              item.querySelector(".answer-mark").textContent = "";
+              item.setAttribute("aria-pressed", "false");
             });
 
-            buttons.appendChild(button);
+            button.classList.add("selected");
+            mark.textContent = "✓";
+            button.setAttribute("aria-pressed", "true");
+            errorMessage.textContent = "";
+          });
+
+          answersContainer.appendChild(button);
         });
+      }
 
-        quizContent.appendChild(buttons);
+      nextButton.textContent =
+        currentQuestion === questions.length - 1
+          ? "Odkryj wynik ✧"
+          : "Dalej →";
     }
-}
 
-function checkAnswer() {
-    if (locked) return;
+    function startQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      results = [];
+      selectedAnswer = null;
 
-    const input = document.getElementById("answerInput");
-    if (!input) return;
+      quizScreen.classList.remove("hidden");
+      resultScreen.classList.add("hidden");
 
-    const answer = input.value
-        .trim()
-        .toLowerCase()
-        .replace(/\s+/g, " ");
+      renderQuestion();
+    }
 
-    if (answer === "") {
-        feedback.textContent = "Wpisz odpowiedź najpierw 🥺";
+    function submitAnswer() {
+      if (currentQuestion === -1) {
+        startQuiz();
         return;
+      }
+
+      const question = questions[currentQuestion];
+      let answer = "";
+
+      if (question.type === "text") {
+        const input = document.getElementById("name-answer");
+        answer = input.value;
+
+        if (!answer.trim()) {
+          errorMessage.textContent =
+            "Wpisz odpowiedź, zanim przejdziesz dalej.";
+          input.focus();
+          return;
+        }
+      } else {
+        if (selectedAnswer === null) {
+          errorMessage.textContent = "Wybierz jedną odpowiedź.";
+          return;
+        }
+
+        answer = selectedAnswer;
+      }
+
+      // Imię zapisujemy i sprawdzamy dopiero w ramach wyniku końcowego.
+      // Dowolny wpis pozwala przejść dalej, ale tylko Heniek/Henryk daje punkt.
+      const correct = question.correct.includes(normalize(answer));
+
+      results.push({
+        question: question.question,
+        answer: answer,
+        correct: correct
+      });
+
+      if (correct) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
     }
 
-    const correctAnswers = questions[currentQuestion].answers;
+    function showResult() {
+      quizScreen.classList.add("hidden");
+      resultScreen.classList.remove("hidden");
 
-    if (correctAnswers.includes(answer)) {
-        nextQuestion();
-    } else {
-        feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
-    }
-}
+      progressFill.style.width = "100%";
+      progressTrack.setAttribute("aria-valuenow", questions.length);
 
-function checkGender(answer) {
-    if (locked) return;
+      document.getElementById("score").textContent =
+        score + " / " + questions.length;
 
-    if (answer === questions[currentQuestion].answer) {
-        nextQuestion();
-    } else {
-        feedback.textContent = "Hmm, spróbuj jeszcze raz 👀";
-    }
-}
+      const wrongQuestions = results
+        .map((result, index) => result.correct ? null : index + 1)
+        .filter(number => number !== null);
 
-function nextQuestion() {
-    locked = true;
-    score++;
-    feedback.textContent = "Dobrze! 💗";
+      const bonus = document.getElementById("bonus");
+      bonus.classList.add("hidden");
 
-    setTimeout(function() {
-        currentQuestion++;
-        showQuestion();
-    }, 700);
-}
+      if (score === questions.length) {
+        document.getElementById("result-icon").textContent = "♡";
+        document.getElementById("result-title").textContent =
+          "Odkryłeś tajemnicę";
+        document.getElementById("result-text").textContent =
+          "Wszystkie odpowiedzi są poprawne.\n" +
+          "Udało Ci się dotrzeć do samego końca.";
 
-function showResult() {
-    feedback.textContent = "";
-    quizContent.innerHTML = "";
+        bonus.classList.remove("hidden");
+      } else {
+        document.getElementById("result-icon").textContent = "✧";
+        document.getElementById("result-title").textContent =
+          "Tajemnica nie została w pełni odkryta";
+        document.getElementById("result-text").textContent =
+          "Nie wszystkie odpowiedzi były poprawne.\n" +
+          "Spróbuj jeszcze raz, jeśli chcesz odkryć cały sekret.\n\n" +
+          "Do sprawdzenia: pytania " + wrongQuestions.join(", ") + ".";
+      }
 
-    const heading = document.createElement("h2");
-    heading.textContent = "Quiz ukończony! 💌";
-
-    const result = document.createElement("p");
-    result.className = "score";
-    result.textContent = score + " / " + questions.length;
-
-    const message = document.createElement("p");
-
-    if (score === 4) {
-        message.textContent = "OHOHO, poznałeś/aś mój sekret... 😭🖤";
-    } else if (score >= 2) {
-        message.textContent = "Całkiem nieźle! Ale jeszcze trochę tajemnic zostało...";
-    } else {
-        message.textContent = "Nooo, chyba trzeba jeszcze trochę się dowiedzieć 👀";
+      document.getElementById("restart-button").focus();
     }
 
-    const restart = document.createElement("button");
-    restart.type = "button";
-    restart.textContent = "Spróbuj jeszcze raz 💕";
-    restart.addEventListener("click", restartQuiz);
+    nextButton.addEventListener("click", submitAnswer);
 
-    quizContent.appendChild(heading);
-    quizContent.appendChild(result);
-    quizContent.appendChild(message);
-    quizContent.appendChild(restart);
-}
+    document.getElementById("restart-button")
+      .addEventListener("click", startQuiz);
 
-function restartQuiz() {
-    currentQuestion = 0;
-    score = 0;
-    locked = false;
-    showQuestion();
-}
+    // Ekran powitalny
+    questionTitle.textContent = "Gotowy, żeby odkryć sekret?";
+    questionNote.textContent =
+      "Dziewięć pytań. Każde przybliży Cię do rozwiązania.";
 
-showQuestion();
-</script>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'></script><!-- End Cloudflare Web Analytics -->
+    answersContainer.replaceChildren();
+    progressFill.style.width = "0%";
+    progressTrack.setAttribute("aria-valuenow", 0);
+    stepCounter.textContent = "01 / 09";
+    nextButton.textContent = "Zaczynamy";
+  </script>
+
+  <script
+    defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"ef70a6092c7d4d90acfa6f2d528404ff"}'>
+  </script>
 </body>
 </html>
