@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -12,7 +11,7 @@
 <style>
 @font-face {
     font-family: "Nunito";
-    src: url("fonts/Nunito-Variable.woff2") format("woff2");
+    src: url("/fonts/Nunito-Variable.woff2") format("woff2");
     font-weight: 200 1000;
     font-style: normal;
     font-display: swap;
@@ -42,7 +41,7 @@ body {
     line-height: 1.8;
     background:
         linear-gradient(rgba(18,8,17,.72), rgba(18,8,17,.86)),
-        url("images/poprostu.png") center / cover fixed no-repeat;
+        url("/images/poprostu.png") center / cover fixed no-repeat;
 }
 
 a {
@@ -424,7 +423,7 @@ h1 {
 <section class="hero" aria-labelledby="main-title">
 
     <img
-        src="images/logorb.png"
+        src="/images/logorb.png"
         alt="Logo XOcrush.pl"
         class="hero-logo"
     >
@@ -533,7 +532,7 @@ h1 {
         <article class="mini-card"><h3>👂 Przyjmuj poprawki</h3><p>Jeśli ktoś zwróci ci uwagę, możesz odpowiedzieć: „Dzięki, nie chciałem tego tak powiedzieć. Postaram się pamiętać”.</p></article>
         <article class="mini-card"><h3>🔒 Szanuj prywatność</h3><p>Nie wypytuj o szczegóły związków ani życia intymnego tylko dlatego, że ktoś jest LGBTQ+.</p></article>
     </div>
-    <p>Nie zakładaj orientacji na podstawie głosu, ubioru, zainteresowań czy gestów. Nie da się wiarygodnie rozpoznać orientacji człowieka po samym wyglądzie.</p>
+    <p>Nie zakładaj orientacji na podstawie głosu, ubioru, zainteresowań czy gestów. Не da się wiarygodnie rozpoznać orientacji człowieka po samym wyglądzie.</p>
 </section>
 
 <section class="section" id="jak-reagowac">
@@ -564,7 +563,7 @@ h1 {
         <li><strong>Słuchaj bez oceniania.</strong> Nie przerywaj i nie zamieniaj czyjejś historii w debatę.</li>
         <li><strong>Nie ujawniaj jej orientacji.</strong> Nie przekazuj informacji innym bez zgody tej osoby.</li>
         <li><strong>Nie naciskaj na coming out.</strong> Osoba sama powinna zdecydować, czy i kiedy komuś powiedzieć.</li>
-        <li><strong>Zapytaj, czego potrzebuje.</strong> Możesz powiedzieć: „Chcesz, żebym posłuchał czy pomógł coś wymyślić?”.</li>
+        <li><strong>Zapytaj, czego potrzebujesz.</strong> Możesz powiedzieć: „Chcesz, żebym posłuchał czy pomógł coś wymyślić?”.</li>
         <li><strong>Traktuj jej zauroczenia normalnie.</strong> Nie rób sensacji z tego, że komuś podoba się osoba tej samej płci.</li>
         <li><strong>Reaguj także wtedy, gdy tej osoby nie ma obok.</strong> Nie podtrzymuj plotek ani homofobicznych komentarzy.</li>
         <li><strong>Przyznaj się do błędu.</strong> Przeproś i postaraj się nie powtarzać krzywdzącego zachowania.</li>
@@ -590,10 +589,15 @@ h1 {
         <article class="mini-card">
             <h3>📞 Telefon Zaufania dla Dzieci i Młodzieży</h3>
             <p><strong>116 111</strong></p>
-            <p>Bezpłatna pomoc dla dzieci i młodzieży w Polsce. Aktualne informacje znajdziesz na stronie telefonu.</p>
+            <p>Bezpłatna pomoc dla dzieci i młodzieży w Polsce. Dostępny całą dobę.</p>
             <p><a href="https://116111.pl/" target="_blank" rel="noopener noreferrer">Odwiedź 116111.pl ↗</a></p>
         </article>
         <article class="mini-card">
+            <h3>🧠 Kryzysowy Telefon Zaufania</h3>
+            <p><strong>116 123</strong></p>
+            <p>Bezpłatny kryzysowy telefon zaufania dla dorosłych i młodzieży w trudnych momentach emocjonalnych.</p>
+        </article>
+        <article class="mini-card" style="grid-column: 1 / -1;">
             <h3>🆘 Bezpośrednie zagrożenie</h3>
             <p>Jeśli ktoś jest w bezpośrednim niebezpieczeństwie, potrzebuje pilnej pomocy medycznej lub grozi mu przemoc, zadzwoń pod numer <strong>112</strong> albo poproś zaufanego dorosłego o natychmiastową pomoc.</p>
         </article>
@@ -635,8 +639,6 @@ h1 {
 </main>
 
 <button class="to-top" type="button" aria-label="Wróć na górę" title="Wróć na górę" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-
-</script>
 
 <!-- Cloudflare Web Analytics -->
 <script
