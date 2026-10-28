@@ -329,129 +329,35 @@ body::before {
     line-height: 1.5;
 }
 
-/* PYTANIA O UCZUCIACH */
+/* ROZWIJANE PYTANIA O UCZUCIACH (WZÓR Z MITÓW) */
 
-.crush-questions {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+.crush-faq details {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.crush-question {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    min-height: 76px;
-    width: 100%;
-    padding: 17px 8px;
-    text-align: left;
-    color: white;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.23);
-    border-radius: 0;
+.crush-faq details:first-of-type {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.crush-faq details:last-child {
+    border-bottom: 0;
+}
+
+.crush-faq summary {
     cursor: pointer;
-    font: inherit;
-    transition: background 0.2s, padding 0.2s;
-}
-
-.crush-question:first-child {
-    border-top: 1px solid rgba(255, 255, 255, 0.23);
-}
-
-.crush-question:hover {
-    background: rgba(255, 255, 255, 0.07);
-    padding-left: 14px;
-}
-
-.question-number {
-    color: #d2cbd7;
-    font-size: 13px;
-}
-
-.crush-question strong {
-    font-size: 15px;
+    color: white;
     font-weight: 700;
-    flex: 1;
+    font-size: 15px;
     line-height: 1.5;
 }
 
-.question-arrow {
-    color: #ddd;
-    font-size: 22px;
-}
-
-/* OKIENKO Z ODPOWIEDZIĄ */
-
-.crush-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba(8, 4, 9, 0.78);
-}
-
-.crush-modal.open {
-    display: flex;
-}
-
-.crush-modal-content {
-    position: relative;
-    width: 100%;
-    max-width: 500px;
-    padding: 40px 35px 35px;
-    text-align: center;
-    color: white;
-    background: rgba(30, 24, 33, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 22px;
-    box-shadow: 0 15px 60px #0008;
-    animation: modalAppear 0.25s ease-out;
-}
-
-@keyframes modalAppear {
-    from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-.modal-heart {
-    display: block;
-    font-size: 42px;
-    color: #eee;
-}
-
-.crush-modal-content h2 {
-    font-family: "Nunito", Arial, sans-serif;
-    font-weight: normal;
-    font-size: 28px;
-    margin: 15px 0;
-}
-
-.crush-modal-content p {
-    font-size: 16px;
-    line-height: 1.8;
+.crush-faq details p {
+    margin: 10px 0 0 0;
+    padding-left: 2px;
     color: #e5e0e8;
-}
-
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 16px;
-    font-size: 32px;
-    color: white;
-    background: transparent;
-    border: 0;
-    cursor: pointer;
+    font-size: 15px;
+    line-height: 1.7;
 }
 
 /* STOPKA */
@@ -553,15 +459,6 @@ body::before {
     .quiz-question {
         font-size: 21px;
     }
-
-    .crush-question {
-        min-height: 70px;
-        padding: 14px 4px;
-    }
-
-    .crush-modal-content {
-        padding: 40px 22px 25px;
-    }
 }
 
 /* MNIEJ ANIMACJI */
@@ -640,40 +537,23 @@ body::before {
                 Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
             </p>
 
-            <div class="crush-questions">
-
-                <button class="crush-question"
-                    data-title="Czemu o nim/niej tyle myślę?"
-                    data-answer="Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤">
-                    <span class="question-number">01</span>
-                    <strong>Czemu o nim/niej tyle myślę?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-                <button class="crush-question"
-                    data-title="Czy to już zakochanie?"
-                    data-answer="Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.">
-                    <span class="question-number">02</span>
-                    <strong>Czy to już zakochanie?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-                <button class="crush-question"
-                    data-title="Dlaczego się przy nim/niej stresuję?"
-                    data-answer="Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.">
-                    <span class="question-number">03</span>
-                    <strong>Dlaczego się przy nim/niej stresuję?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
-                <button class="crush-question"
-                    data-title="Czy on/ona też może coś czuć?"
-                    data-answer="To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.">
-                    <span class="question-number">04</span>
-                    <strong>Czy on/ona też może coś czuć?</strong>
-                    <span class="question-arrow">↗</span>
-                </button>
-
+            <div class="crush-faq">
+                <details>
+                    <summary>Czemu o nim/niej tyle myślę?</summary>
+                    <p>Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤</p>
+                </details>
+                <details>
+                    <summary>Czy to już zakochanie?</summary>
+                    <p>Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.</p>
+                </details>
+                <details>
+                    <summary>Dlaczego się przy nim/niej stresuję?</summary>
+                    <p>Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.</p>
+                </details>
+                <details>
+                    <summary>Czy on/ona też może coś czuć?</summary>
+                    <p>To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.</p>
+                </details>
             </div>
 
         </section>
@@ -686,33 +566,6 @@ body::before {
     XOcrush.pl
     <span>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</span>
 </footer>
-
-<!-- OKIENKO Z ODPOWIEDZIĄ -->
-
-<div class="crush-modal" id="crushModal" aria-hidden="true">
-
-    <div class="crush-modal-content"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="modalTitle">
-
-        <button class="modal-close"
-                id="modalClose"
-                aria-label="Zamknij okienko">×</button>
-
-        <span class="modal-heart">♡</span>
-
-        <h2 id="modalTitle"></h2>
-
-        <p id="modalAnswer"></p>
-
-        <button class="main-button" id="modalOkay">
-            Rozumiem 🖤
-        </button>
-
-    </div>
-
-</div>
 
 <script>
 
@@ -915,63 +768,6 @@ function showQuizResult() {
     nextQuestion.textContent = "Spróbuj ponownie ↻";
     quizMessage.textContent = "Twój wynik to jedna z wielu odsłon Twojego podejścia do uczuć 🖤";
 }
-
-
-/* OKIENKA PYTAŃ */
-
-const crushModal = document.getElementById("crushModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalAnswer = document.getElementById("modalAnswer");
-const modalClose = document.getElementById("modalClose");
-const modalOkay = document.getElementById("modalOkay");
-
-let previousFocus = null;
-
-document.querySelectorAll(".crush-question").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        previousFocus = button;
-
-        modalTitle.textContent = button.dataset.title;
-        modalAnswer.textContent = button.dataset.answer;
-
-        crushModal.classList.add("open");
-        crushModal.setAttribute("aria-hidden", "false");
-
-        modalClose.focus();
-    });
-
-});
-
-function closeCrushModal() {
-
-    crushModal.classList.remove("open");
-    crushModal.setAttribute("aria-hidden", "true");
-
-    if (previousFocus) {
-        previousFocus.focus();
-    }
-}
-
-modalClose.addEventListener("click", closeCrushModal);
-modalOkay.addEventListener("click", closeCrushModal);
-
-crushModal.addEventListener("click", event => {
-
-    if (event.target === crushModal) {
-        closeCrushModal();
-    }
-
-});
-
-document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape" && crushModal.classList.contains("open")) {
-        closeCrushModal();
-    }
-
-});
 
 renderQuiz();
 
