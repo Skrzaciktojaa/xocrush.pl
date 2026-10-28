@@ -329,7 +329,7 @@ body::before {
     line-height: 1.5;
 }
 
-/* ROZWIJANE PYTANIA O UCZUCIACH (WZÓR Z MITÓW) */
+/* ROZWIJANE PYTANIA O UCZUCIACH */
 
 .crush-faq details {
     padding: 14px 0;
@@ -712,12 +712,12 @@ function showQuizResult() {
     quizAnswers.innerHTML = "";
     quizProgress.innerHTML = "";
 
-    const points = [0, 0, 0];
+    const points = [0, 0, 0, 0, 0, 0];
 
     chosenAnswers.forEach((answer, index) => {
         if (answer === undefined) return;
 
-        const profile = (answer + index) % 3;
+        const profile = (answer * 2 + index) % 6;
         points[profile]++;
     });
 
@@ -727,9 +727,9 @@ function showQuizResult() {
         .filter(index => index !== -1);
 
     const winner = winners.includes(
-        (chosenAnswers[chosenAnswers.length - 1] + 7) % 3
+        (chosenAnswers[chosenAnswers.length - 1] + 3) % 6
     )
-        ? (chosenAnswers[chosenAnswers.length - 1] + 7) % 3
+        ? (chosenAnswers[chosenAnswers.length - 1] + 3) % 6
         : winners[0];
 
     const results = [
@@ -744,6 +744,18 @@ function showQuizResult() {
         {
             title: "Serce na dłoni 💌",
             text: "Bliskość, szczerość i dobre relacje mają dla Ciebie znaczenie. Chcesz, żeby uczucia były czymś prawdziwym, a nie tylko domysłami. Pamiętaj, że nie musisz mieć wszystkich odpowiedzi od razu, a Twoje tempo jest w porządku."
+        },
+        {
+            title: "Poszukiwacz przygód ⚡",
+            text: "Lubisz dreszczyk emocji i nie bojesz się wyzwań. Kiedy ktoś Ci się podoba, najchętniej od razu przeszedłeśby do działania. Masz w sobie mnóstwo energii i sprawiasz, że wokół Ciebie nigdy nie jest nudno!"
+        },
+        {
+            title: "Pragmatyczny realista 🧭",
+            text: "Podchodzisz do spraw sercowych z chłodną głową i rozsądkiem. Zanim zaangażujesz się na sto procent, wolisz dobrze poznać drugą osobę i upewnić się, że to ma sens. Twoje podejście chroni Cię przed zranieniem."
+        },
+        {
+            title: "Tajemniczy obserwator 🗝️",
+            text: "Twoje myśli i emocje to pilnie strzeżona tajemnica. Nie lubisz odsłaniać kart zbyt szybko i wolisz dyskretnie obserwować otoczenie. Ci, którzy zdołają Cię lepiej poznać, odkrywają jednak niezwykle lojalną i wrażliwą duszę."
         }
     ];
 
