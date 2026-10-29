@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fanfiki & Stories</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="calus.png">
+    <!-- Favicon w folderze images -->
+    <link rel="icon" type="image/png" href="images/calus.png">
     <style>
         * {
             box-sizing: border-box;
@@ -16,8 +16,8 @@
 
         body {
             background-color: #080808;
-            /* Tło z Twoim plikiem poprostu.png */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('poprostu.png');
+            /* Tło z plikiem poprostu.png z folderu images */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/poprostu.png');
             background-repeat: repeat;
             background-size: cover;
             background-attachment: fixed;
@@ -60,7 +60,7 @@
             align-items: center;
         }
 
-        /* Logo logoo.png */
+        /* Logo logoo.png z folderu images */
         .logo-img {
             max-height: 42px;
             width: auto;
@@ -114,7 +114,6 @@
             padding-bottom: 12px;
         }
 
-        /* Ikona całusa calus.png obok nagłówka */
         .title-icon {
             width: 24px;
             height: 24px;
@@ -217,7 +216,6 @@
             color: #777;
         }
 
-        /* Sekcja Pustkaaaaa */
         .empty-section {
             text-align: center;
             padding: 50px 20px;
@@ -257,7 +255,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="logoo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
+            <img src="images/logoo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
             <span id="alt-logo" style="display:none; font-size:18px; font-weight:bold; letter-spacing:1px;">XO CRUSH</span>
         </div>
         <nav class="nav-links">
@@ -272,11 +270,10 @@
 
     <main>
         <div class="section-title">
-            <img src="calus.png" alt="Całus" class="title-icon" onerror="this.style.display='none'">
+            <img src="images/calus.png" alt="Całus" class="title-icon" onerror="this.style.display='none'">
             <span>HISTORIE & FANFIKI</span>
         </div>
 
-        <!-- Jedyna Dostępna Historia -->
         <div class="card">
             <div class="story-header">
                 <div class="story-title">Po dzwonku i bez wyjścia</div>
@@ -288,7 +285,6 @@
             <a href="AfterTheBellWithNoWayOut.HTML" class="action-btn">Czytaj historię</a>
         </div>
 
-        <!-- Twój Brudnopis -->
         <div class="section-title" style="margin-top: 50px;">
             <span>TWÓJ BRUDNOPIS</span>
         </div>
@@ -301,7 +297,6 @@
             </div>
         </div>
 
-        <!-- Sekcja Pustkaaaaa -->
         <div class="empty-section">
             <div class="empty-title">pustkaaaaa...</div>
             <div class="empty-sub">Chcesz o coś zapytać albo dodać własny wątek? Napisz do mnie.</div>
