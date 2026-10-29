@@ -43,53 +43,52 @@
             z-index: 0;
         }
 
+        /* Nagłówek bez paska i z logo na środku */
         header {
             position: relative;
             z-index: 10;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            padding: 18px 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            background: rgba(8, 8, 8, 0.85);
-            backdrop-filter: blur(12px);
+            padding: 30px 20px 20px 20px;
+            background: transparent; /* Usunięty pasek tła */
         }
 
         .logo-container {
-            display: flex;
-            align-items: center;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        /* Logo logoo.png z folderu images */
+        /* Logo logoo.png na środku */
         .logo-img {
-            max-height: 42px;
+            max-height: 55px;
             width: auto;
             display: block;
-            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
         }
 
+        /* Guziki bez ramek (czysty tekst z delikatnym efektem po najechaniu) */
         .nav-links {
             display: flex;
-            gap: 10px;
+            gap: 20px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .nav-btn {
-            background: rgba(255, 255, 255, 0.03);
-            color: #d1d1d1;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 8px 18px;
-            border-radius: 20px;
+            background: transparent;
+            color: #b0b0b0;
+            border: none;
+            padding: 6px 12px;
             text-decoration: none;
             font-size: 13px;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
         }
 
         .nav-btn:hover, .nav-btn.active {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #ffffff;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
 
         main {
@@ -97,7 +96,7 @@
             z-index: 2;
             max-width: 900px;
             width: 100%;
-            margin: 40px auto;
+            margin: 20px auto 40px auto;
             padding: 0 20px;
             flex: 1;
         }
@@ -177,6 +176,7 @@
             font-size: 13px;
             text-decoration: none;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .action-btn:hover {
@@ -255,9 +255,11 @@
 
     <header>
         <div class="logo-container">
+            <!-- Logo na środku z folderu images -->
             <img src="images/logoo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
-            <span id="alt-logo" style="display:none; font-size:18px; font-weight:bold; letter-spacing:1px;">XO CRUSH</span>
+            <span id="alt-logo" style="display:none; font-size:20px; font-weight:bold; letter-spacing:2px; color:#fff;">XO CRUSH</span>
         </div>
+        <!-- Guziki bez ramek i bez paska -->
         <nav class="nav-links">
             <a href="index.html" class="nav-btn">Strona główna</a>
             <a href="about.html" class="nav-btn">O stronie</a>
@@ -293,14 +295,14 @@
             <textarea id="storyEditor" class="editor-textarea" placeholder="Napisz swój własny rozdział lub przemyślenia..." oninput="updateWordCount()"></textarea>
             <div class="editor-bottom">
                 <span class="word-count" id="wordCount">Słowa: 0</span>
-                <button class="action-btn" onclick="saveDraft()" style="cursor: pointer;">Zapisz plik .txt</button>
+                <button class="action-btn" onclick="saveDraft()">Zapisz plik .txt</button>
             </div>
         </div>
 
         <div class="empty-section">
             <div class="empty-title">pustkaaaaa...</div>
             <div class="empty-sub">Chcesz o coś zapytać albo dodać własny wątek? Napisz do mnie.</div>
-            <button class="action-btn" onclick="alert('Możesz pisać śmiało tutaj!')" style="cursor: pointer;">ZADAJ PYTANIE ➔</button>
+            <button class="action-btn" onclick="alert('Możesz pisać śmiało tutaj!')">ZADAJ PYTANIE ➔</button>
         </div>
     </main>
 
