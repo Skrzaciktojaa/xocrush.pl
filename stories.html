@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanfiki & Stories</title>
+    <link rel="icon" type="image/png" href="calus.png">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #080808;
+            background-image: url('poprostu.png');
+            background-repeat: repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Tło z czarną siatką i światłem */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container img {
+            max-height: 40px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.03);
+            color: #d1d1d1;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            width: 100%;
+            margin: 40px auto;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .section-title img {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Style Kart ze Światłem */
+        .card {
+            background: rgba(15, 15, 15, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+        }
+
+        .story-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .story-title {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #aaa;
+        }
+
+        .story-desc {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .action-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* Edytor / Pisanie */
+        .editor-textarea {
+            width: 100%;
+            height: 250px;
+            background: rgba(5, 5, 5, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 16px;
+            color: #eee;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            margin-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .editor-textarea:focus {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .editor-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .word-count {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Modal do Czytania */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #0d0d0d;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .text-body {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #ccc;
+            white-space: pre-line;
+        }
+
+        /* Sekcja Pustkaaaaa */
+        .empty-section {
+            text-align: center;
+            padding: 50px 20px;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            margin-top: 40px;
+        }
+
+        .empty-title {
+            font-size: 28px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .empty-sub {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 12px;
+            color: #444;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-bg"></div>
+
+    <header>
+        <div class="logo-container">
+            <img src="logoo.png" alt="Logo" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
+            <span id="alt-logo" style="display:none; font-size:18px; font-weight:bold; letter-spacing:1px;">XO CRUSH</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="nav-btn">Strona główna</a>
+            <a href="#" class="nav-btn">O stronie</a>
+            <a href="#" class="nav-btn">O mnie</a>
+            <a href="#" class="nav-btn">Homofobia i akceptacja</a>
+            <a href="#" class="nav-btn">Q&A</a>
+            <a href="#" class="nav-btn active">Fanfiki</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="section-title">
+            <img src="calus.png" alt="Pocałunek" onerror="this.style.display='none'">
+            <span>HISTORIE & FANFIKI</span>
+        </div>
+
+        <!-- Lista Historii -->
+        <div class="card">
+            <div class="story-header">
+                <div class="story-title">Cisza w Szatni</div>
+                <div class="tag">Słodko-gorzkie</div>
+            </div>
+            <div class="story-desc">
+                Simon i Heniek zostają przypadkowo zamknięci w szkolnej szatni po WF-ie. Początkowy żal i chłód powoli ustępują miejsca cichej rozmowie w ciemności.
+            </div>
+            <button class="action-btn" onclick="openStory('Cisza w Szatni', story1)">Czytaj historię</button>
+        </div>
+
+        <div class="card">
+            <div class="story-header">
+                <div class="story-title">Moje Własne Zasady</div>
+                <div class="tag">Comfort</div>
+            </div>
+            <div class="story-desc">
+                Opowieść o odnajdywaniu siebie mimo złośliwych spojrzeń i komentarzy na szkolnym korytarzu.
+            </div>
+            <button class="action-btn" onclick="openStory('Moje Własne Zasady', story2)">Czytaj historię</button>
+        </div>
+
+        <!-- Twój Brudnopis -->
+        <div class="section-title" style="margin-top: 50px;">
+            <span>TWÓJ BRUDNOPIS</span>
+        </div>
+
+        <div class="card">
+            <textarea id="storyEditor" class="editor-textarea" placeholder="Napisz swój własny rozdział lub przemyślenia..." oninput="updateWordCount()"></textarea>
+            <div class="editor-bottom">
+                <span class="word-count" id="wordCount">Słowa: 0</span>
+                <button class="action-btn" onclick="saveDraft()">Zapisz na komputerze</button>
+            </div>
+        </div>
+
+        <!-- Sekcja Pustkaaaaa -->
+        <div class="empty-section">
+            <div class="empty-title">pustkaaaaa...</div>
+            <div class="empty-sub">Chcesz o coś zapytać albo dodać własny wątek? Napisz do mnie.</div>
+            <button class="action-btn" onclick="alert('Możesz pisać śmiało tutaj w czacie!')">ZADAJ PYTANIE ➔</button>
+        </div>
+    </main>
+
+    <!-- Modal do Czytania -->
+    <div class="modal" id="storyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" style="font-weight: 400; color: #fff;"></h2>
+                <button class="close-btn" onclick="closeStory()">&times;</button>
+            </div>
+            <div class="text-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; XO CRUSH — Wszelkie prawa zastrzeżone.
+    </footer>
+
+    <script>
+        const story1 = `Światła w szatni zgasły z głośnym kliknięciem. Zamknięcie drzwi echo odbiło się od kafelków. 
+
+Simon usiadł na ławce, podciągając kolana do klatki piersiowej. W kącie, oparty o ścianę, siedział Heniek. Z początku panowała całkowita cisza – ta ciężka, pełna niewypowiedzianych żali i napięcia.
+
+– Zamknęli nas na klucz, co? – odezwał się cicho Heniek, przełamując mrok.
+– Na to wygląda – odparł Simon, nie patrząc w jego stronę.
+
+Z każdą minutą chłód szatni stawał się coraz mniej odczuwalny. Rozmowa, która zaczęła się od krótkich zdań, powoli przechodziła w coś cieplejszego. Gdy nadszedł poranek i nauczyciel przekręcił klucz w zamku, obaj spali obok siebie, opierając głowy o ten sam plecak.`;
+
+        const story2 = `Kiedy wszedł na korytarz, poczuł na sobie te same spojrzenia co zwykle. Ale tym razem coś się zmieniło w jego głowie. 
+
+Zamiast chować dłonie do kieszeni, po prostu szedł dalej przed siebie. Uśmiechnął się delikatnie do własnych myśli – wiedział, że nie musi udawać kogoś, kim nie jest, tylko po to, żeby pasować do szarych ram innych ludzi.`;
+
+        function openStory(title, content) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = content;
+            document.getElementById('storyModal').style.display = 'flex';
+        }
+
+        function closeStory() {
+            document.getElementById('storyModal').style.display = 'none';
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById('storyEditor').value.trim();
+            const words = text ? text.split(/\s+/).length : 0;
+            document.getElementById('wordCount').innerText = 'Słowa: ' + words;
+            localStorage.setItem('myStoryDraft', text);
+        }
+
+        function saveDraft() {
+            const text = document.getElementById('storyEditor').value;
+            if(!text) return alert('Wpisz najpierw jakiś tekst!');
+            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'moj_fanfik.txt';
+            a.click();
+        }
+
+        // Wczytaj zapisany brudnopis z pamięci przeglądarki
+        window.onload = function() {
+            const saved = localStorage.getItem('myStoryDraft');
+            if(saved) {
+                document.getElementById('storyEditor').value = saved;
+                updateWordCount();
+            }
+        };
+    </script>
+</body>
+</html>
