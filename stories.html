@@ -43,34 +43,35 @@
             z-index: 0;
         }
 
-        /* Nagłówek bez paska i z logo na środku */
+        /* Nagłówek bez paska i z dużym logo na środku */
         header {
             position: relative;
             z-index: 10;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px 20px 20px 20px;
-            background: transparent; /* Usunięty pasek tła */
+            padding: 40px 20px 20px 20px;
+            background: transparent;
         }
 
         .logo-container {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: center;
         }
 
-        /* Logo logoo.png na środku */
+        /* Duże logo logoo.png na środku */
         .logo-img {
-            max-height: 55px;
-            width: auto;
+            width: 260px;
+            max-width: 80vw;
+            height: auto;
             display: block;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
         }
 
-        /* Guziki bez ramek (czysty tekst z delikatnym efektem po najechaniu) */
+        /* Guziki bez ramek i bez paska */
         .nav-links {
             display: flex;
-            gap: 20px;
+            gap: 24px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -88,7 +89,7 @@
 
         .nav-btn:hover, .nav-btn.active {
             color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         main {
@@ -255,9 +256,9 @@
 
     <header>
         <div class="logo-container">
-            <!-- Logo na środku z folderu images -->
+            <!-- Duże logo na środku -->
             <img src="images/logoo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('alt-logo').style.display='block';">
-            <span id="alt-logo" style="display:none; font-size:20px; font-weight:bold; letter-spacing:2px; color:#fff;">XO CRUSH</span>
+            <span id="alt-logo" style="display:none; font-size:24px; font-weight:bold; letter-spacing:2px; color:#fff;">XO CRUSH</span>
         </div>
         <!-- Guziki bez ramek i bez paska -->
         <nav class="nav-links">
