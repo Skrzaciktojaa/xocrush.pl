@@ -110,27 +110,19 @@
             min-width: 0;
         }
 
-        /* BOCZNY PANEL (SIDEBAR) */
+        /* BOCZNY PANEL (BEZ RAMKI I TŁA) */
         .sidebar {
             width: 320px;
             flex-shrink: 0;
         }
 
         .sidebar-card {
-            background: rgba(12, 12, 12, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 12px;
-            padding: 24px;
+            background: transparent;
+            border: none;
+            padding: 10px 0;
             text-align: center;
-            backdrop-filter: blur(5px);
             position: sticky;
             top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-card:hover {
-            border-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
         /* Okrągłe zdjęcie z bgforxo.png */
@@ -388,7 +380,7 @@
             </div>
         </main>
 
-        <!-- BOCZNY PANEL (SIDEBAR) -->
+        <!-- BOCZNY PANEL (BEZ RAMKI) -->
         <aside class="sidebar">
             <div class="sidebar-card">
                 <img src="images/bgforxo.png" alt="Profil" class="profile-circle" onerror="this.style.display='none'">
