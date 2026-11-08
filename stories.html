@@ -110,22 +110,33 @@
             min-width: 0;
         }
 
-        /* BOCZNY PANEL (BEZ RAMKI I TŁA) */
+        /* BOCZNY PANEL */
         .sidebar {
             width: 320px;
             flex-shrink: 0;
         }
 
+        /* Sekcja autora z białym podświetleniem (glow) */
         .sidebar-card {
-            background: transparent;
-            border: none;
-            padding: 10px 0;
+            background: rgba(12, 12, 12, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px 20px;
             text-align: center;
             position: sticky;
             top: 20px;
+            backdrop-filter: blur(8px);
+            /* Białe podświetlenie wokół */
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.12), inset 0 0 15px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
-        /* Okrągłe zdjęcie z bgforxo.png */
+        .sidebar-card:hover {
+            box-shadow: 0 0 35px rgba(255, 255, 255, 0.25), inset 0 0 20px rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Okrągłe zdjęcie z bgforxo.png z białą poświatą */
         .profile-circle {
             width: 110px;
             height: 110px;
@@ -133,8 +144,8 @@
             object-fit: cover;
             margin: 0 auto 16px auto;
             display: block;
-            border: 2px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
 
         .sidebar-title {
@@ -142,11 +153,12 @@
             color: #ffffff;
             font-weight: 500;
             margin-bottom: 8px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
 
         .sidebar-desc {
             font-size: 13px;
-            color: #999;
+            color: #bbb;
             line-height: 1.6;
         }
 
@@ -380,11 +392,11 @@
             </div>
         </main>
 
-        <!-- BOCZNY PANEL (BEZ RAMKI) -->
+        <!-- BOCZNY PANEL (Z BIAŁYM PODŚWIETLENIEM) -->
         <aside class="sidebar">
             <div class="sidebar-card">
                 <img src="images/bgforxo.png" alt="Profil" class="profile-circle" onerror="this.style.display='none'">
-                <div class="sidebar-title">O autorze</div>
+                <div class="sidebar-title">Poznaj autora!</div>
                 <div class="sidebar-desc">
                     Cześć! :DD Tutaj tworzę własne uniwersa, fanfiki i małe opowiadania. Jeśli lubisz slow-burn, comfy klimaty i ciekawą fabułę - to miejsce może być dla Ciebie! :) Miłego czytania  ♡
                 </div>
