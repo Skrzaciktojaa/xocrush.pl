@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>XO Crush</title>
+<title>XO Crush 💌</title>
 <link rel="icon" type="image/png" href="images/calus.png">
-<meta name="description" content="XO Crush 💌 Pamiętaj! Twoje uczucia należą do CIEBIE. Nie pozwól nikomu manipulować ani nimi, ani Tobą 🖤">
+<meta name="description" content="XO Crush 💌 Twoje bezpieczne miejsce na opowiadania i historie.">
 
 <style>
 @font-face {
@@ -28,10 +28,12 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    font-family: "Nunito", Arial, sans-serif;
-    color: white;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    color: #ffffff;
     background: #171017 url("images/poprostu.png") center center / cover fixed no-repeat;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 body::before {
@@ -40,10 +42,10 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: rgba(12, 8, 14, 0.48);
+    background: rgba(12, 8, 14, 0.55);
 }
 
-/* NAWIGACJA W PRAWYM GÓRNYM ROGU (BEZ RAMEK) */
+/* NAWIGACJA */
 
 .site-nav {
     position: absolute;
@@ -53,32 +55,34 @@ body::before {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 12px;
     align-items: center;
 }
 
 .site-nav a {
     display: inline-block;
-    padding: 10px 16px;
-    color: white;
+    padding: 10px 18px;
+    color: #ffffff;
     text-decoration: none;
     background: rgba(25, 20, 28, 0.45);
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     font-size: 14px;
     font-weight: 700;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    font-family: "Nunito", sans-serif;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .site-nav a:hover {
     background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
 }
 
-/* TĘCZOWY PRZYCISK HOMOFOBII (SPECJALNY WYJĄTEK) */
+/* PRZYCISK HOMOFOBII */
 
 .site-nav a[href="antyhomophobia.html"] {
     background:
@@ -107,24 +111,33 @@ body::before {
     filter: brightness(1.12);
 }
 
-/* GŁÓWNY NAGŁÓWEK Z POWIĘKSZONYM, PODŚWIETLONYM LOGO */
+/* STRONA GŁÓWNA */
 
-.hero {
-    min-height: 0;
+main {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    padding: 100px 20px 60px;
+    width: 100%;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: 70px 20px 40px;
+    max-width: 800px;
+    width: 100%;
 }
 
 .hero-logo {
-    width: 520px;
+    width: 480px;
     max-width: 90%;
     height: auto;
     display: block;
-    margin: 0 auto 30px;
+    margin: 0 auto 35px;
     filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.45)) drop-shadow(0 0 45px rgba(255, 255, 255, 0.2));
     animation: logoGlow 4s ease-in-out infinite alternate;
 }
@@ -138,226 +151,64 @@ body::before {
     }
 }
 
-/* CYTAT NA DZIŚ */
-.daily-quote {
-    max-width: 760px;
-    margin: 0 auto 26px;
-    text-align: center;
-    animation: quoteAppear 0.7s ease-out both;
-}
+/* NOWOCZESNA KARTA POWITALNA */
 
-.daily-quote-title {
-    margin: 0 0 8px;
-    font-family: "Nunito", Arial, sans-serif;
-    font-size: clamp(17px, 1.8vw, 22px);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    color: #f4eaf5;
-    text-shadow: 0 2px 10px #000;
-}
-
-.daily-quote-text {
-    margin: 0;
-    font-size: clamp(16px, 1.7vw, 21px);
-    line-height: 1.6;
-    font-style: italic;
-    color: #fff;
-    text-shadow: 0 3px 12px #000, 0 0 20px #000;
-}
-
-@keyframes quoteAppear {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* SEKCJE BEZ DUŻYCH KART */
-
-.panels {
-    width: min(1180px, 90%);
-    margin: 0 auto 65px;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: clamp(30px, 5vw, 70px);
-    align-items: start;
-}
-
-.panel {
-    min-width: 0;
-    padding: 12px 0 28px;
-    background: transparent;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.quiz-panel {
-    padding-right: clamp(0px, 2vw, 26px);
-    border-right: 1px solid rgba(255, 255, 255, 0.22);
-}
-
-.panel-title {
-    font-family: "Nunito", Arial, sans-serif;
-    font-weight: normal;
-    font-size: clamp(27px, 2.7vw, 34px);
-    text-align: center;
-    margin: 0 0 12px;
-    text-shadow: 0 2px 10px #000;
-}
-
-.panel-description {
-    text-align: center;
-    color: #e1dce3;
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 0 0 26px;
-}
-
-/* POSTĘP QUIZU */
-
-.quiz-progress {
-    display: flex;
-    justify-content: center;
-    gap: 9px;
-    flex-wrap: wrap;
-    margin: 25px 0;
-}
-
-.progress-number {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid #999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ddd;
-    font-size: 13px;
-}
-
-.progress-number.active {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: #fff;
-    color: white;
-}
-
-.progress-number.done {
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
-}
-
-/* PYTANIA QUIZU */
-
-.quiz-question {
-    font-family: "Nunito", Arial, sans-serif;
-    font-size: 24px;
-    font-weight: normal;
-    text-align: center;
-    line-height: 1.5;
-    margin: 25px 0;
-}
-
-.quiz-answers {
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
-}
-
-.quiz-answer {
-    width: 100%;
-    padding: 14px 18px;
-    text-align: left;
-    color: white;
-    background: rgba(20, 17, 23, 0.58);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 13px;
-    cursor: pointer;
-    font: inherit;
-    font-size: 15px;
-    transition: 0.2s;
-}
-
-.quiz-answer:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.6);
-}
-
-.quiz-answer.selected {
-    background: rgba(255, 255, 255, 0.19);
-    border-color: white;
-}
-
-/* PRZYCISKI QUIZU (BEZ RAMEK / MINIMALISTYCZNE) */
-
-.quiz-controls {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.main-button {
-    padding: 11px 22px;
-    color: white;
+.welcome-card {
     background: rgba(25, 20, 28, 0.55);
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font: inherit;
-    font-size: 15px;
-    font-weight: 700;
-    transition: 0.2s;
-    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    padding: 35px 30px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.main-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-1px);
+.welcome-card:hover {
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
-.main-button:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    transform: none;
+.welcome-title {
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 800;
+    margin: 0 0 16px;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-.quiz-message {
-    min-height: 24px;
-    text-align: center;
-    color: #e2dce5;
-    font-size: 14px;
-    margin-top: 15px;
-    line-height: 1.5;
-}
-
-/* ROZWIJANE PYTANIA O UCZUCIACH */
-
-.crush-faq details {
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.crush-faq details:first-of-type {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.crush-faq details:last-child {
-    border-bottom: 0;
-}
-
-.crush-faq summary {
-    cursor: pointer;
-    color: white;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-.crush-faq details p {
-    margin: 10px 0 0 0;
-    padding-left: 2px;
-    color: #e5e0e8;
-    font-size: 15px;
+.welcome-text {
+    font-family: "Nunito", sans-serif;
+    font-size: clamp(16px, 1.8vw, 19px);
     line-height: 1.7;
+    color: #e2dce5;
+    margin: 0 0 28px;
+}
+
+/* PRZYCISKI AKCJI */
+
+.cta-button {
+    display: inline-block;
+    padding: 14px 32px;
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 30px;
+    font-family: "Nunito", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    transition: all 0.25s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.cta-button:hover {
+    background: #ffffff;
+    color: #171017;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
 }
 
 /* STOPKA */
@@ -367,6 +218,7 @@ body::before {
     padding: 22px 16px 28px;
     color: #f2edf4;
     font-size: 14px;
+    font-family: "Nunito", sans-serif;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(15, 10, 17, 0.28);
 }
@@ -378,45 +230,7 @@ body::before {
     font-size: 12px;
 }
 
-/* TABLETY */
-
-@media (max-width: 1000px) {
-    .site-nav {
-        top: 15px;
-        right: 15px;
-        gap: 6px;
-    }
-
-    .site-nav a {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-    .hero {
-        padding-top: 80px;
-    }
-}
-
-@media (max-width: 900px) {
-    .panels {
-        grid-template-columns: 1fr;
-        width: min(650px, 88%);
-        gap: 38px;
-    }
-
-    .quiz-panel {
-        padding-right: 0;
-        border-right: 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.23);
-        padding-bottom: 38px;
-    }
-
-    .hero {
-        padding-top: 60px;
-    }
-}
-
-/* TELEFONY */
+/* RESPONSYWNOŚĆ */
 
 @media (max-width: 700px) {
     body {
@@ -427,47 +241,34 @@ body::before {
         position: relative;
         top: auto;
         right: auto;
-        padding: 14px 10px 0;
+        padding: 16px 10px 0;
         justify-content: center;
-        gap: 6px;
+        gap: 8px;
     }
 
     .site-nav a {
-        padding: 7px 10px;
-        font-size: 12px;
+        padding: 8px 14px;
+        font-size: 13px;
     }
 
-    .hero {
-        padding: 25px 18px 25px;
+    main {
+        padding: 30px 18px 45px;
     }
 
     .hero-logo {
-        width: 340px;
-        max-width: 90%;
-        margin-top: 20px;
+        width: 320px;
+        margin-bottom: 25px;
     }
 
-    .panels {
-        width: 88%;
-        margin-bottom: 42px;
-    }
-
-    .panel-title {
-        font-size: 28px;
-    }
-
-    .quiz-question {
-        font-size: 21px;
+    .welcome-card {
+        padding: 25px 20px;
     }
 }
-
-/* MNIEJ ANIMACJI */
 
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
     *::after {
-        scroll-behavior: auto !important;
         animation: none !important;
         transition: none !important;
     }
@@ -479,8 +280,6 @@ body::before {
 
 <nav class="site-nav" aria-label="Nawigacja strony">
     <a href="aboutweb.html">O stronie 📃</a>
-    <a href="aboutme.html">O mnie 🌈</a>
-    <a href="stories.html">Historyjki 📜</a>
     <a href="qa.html">Q&A 💌</a>
     <a href="antyhomophobia.html">Homofobia i akceptacja 🤍</a>
 </nav>
@@ -489,75 +288,15 @@ body::before {
 
     <section class="hero">
 
-        <img src="images/logoo.png"
-             alt="XO CRUSH.pl"
-             class="hero-logo">
+        <img src="images/logoo.png" alt="XO CRUSH.pl" class="hero-logo">
 
-        <div class="daily-quote">
-            <h1 class="daily-quote-title">Cytat na dziś:</h1>
-            <p class="daily-quote-text">„Niektóre historie istnieją tylko w głowie jednej osoby.”</p>
-        </div>
-
-    </section>
-
-    <section class="panels">
-
-        <section class="panel quiz-panel">
-
-            <h2 class="panel-title">Twój Crush Quiz 💌</h2>
-
-            <p class="panel-description">
-                Odpowiedz na pytania i odkryj coś o swoich uczuciach.
+        <article class="welcome-card">
+            <h1 class="welcome-title">Witaj w XO Crush 📜</h1>
+            <p class="welcome-text">
+                To miejsce stworzone z myślą o opowiadaniach, wyjątkowych historiach i przestrzeni do dzielenia się emocjami. Rozgość się i zanurz w świecie zapisanych myśli.
             </p>
-
-            <div class="quiz-progress" id="quizProgress"></div>
-
-            <h3 class="quiz-question" id="quizQuestion"></h3>
-
-            <div class="quiz-answers" id="quizAnswers"></div>
-
-            <div class="quiz-controls">
-                <button class="main-button" id="previousQuestion">
-                    ← Wstecz
-                </button>
-
-                <button class="main-button" id="nextQuestion">
-                    Dalej →
-                </button>
-            </div>
-
-            <div class="quiz-message" id="quizMessage"></div>
-
-        </section>
-
-        <section class="panel crush-panel">
-
-            <h2 class="panel-title">O czym myślisz? 🖤</h2>
-
-            <p class="panel-description">
-                Czasami serce zadaje pytania, na które trudno znaleźć odpowiedź...
-            </p>
-
-            <div class="crush-faq">
-                <details>
-                    <summary>Czemu o nim/niej tyle myślę?</summary>
-                    <p>Kiedy ktoś wzbudza w nas emocje, mózg potrafi często wracać do wspomnień i wyobrażeń związanych z tą osobą. Możesz myśleć o jej uśmiechu, rozmowach albo o tym, co wydarzy się następnym razem. To całkiem naturalne, gdy ktoś Ci się podoba. 🖤</p>
-                </details>
-                <details>
-                    <summary>Czy to już zakochanie?</summary>
-                    <p>Zauroczenie może być początkiem czegoś większego, ale nie ma jednego testu, który od razu da odpowiedź. Z czasem możesz lepiej poznać tę osobę i swoje uczucia. Nie musisz się spieszyć z nazywaniem tego, co czujesz.</p>
-                </details>
-                <details>
-                    <summary>Dlaczego się przy nim/niej stresuję?</summary>
-                    <p>Gdy zależy nam na czyjejś opinii, możemy zacząć bardziej zwracać uwagę na to, co mówimy i jak wypadamy. Dlatego zwykłe cześć może nagle wydawać się wielkim wydarzeniem. Twój mózg próbuje przewidzieć, jak potoczy się sytuacja.</p>
-                </details>
-                <details>
-                    <summary>Czy on/ona też może coś czuć?</summary>
-                    <p>To możliwe, ale pojedyncze spojrzenie, uśmiech czy wiadomość nie dają pewności. Najwięcej można dowiedzieć się z tego, jak ktoś rozmawia z Tobą, czy sam szuka kontaktu i czy traktuje Cię z szacunkiem.</p>
-                </details>
-            </div>
-
-        </section>
+            <a href="stories.html" class="cta-button">Czytaj historyjki ✨</a>
+        </article>
 
     </section>
 
@@ -567,262 +306,6 @@ body::before {
     XOcrush.pl
     <span>© 2026 XOcrush.pl. Wszelkie prawa zastrzeżone.</span>
 </footer>
-
-<script>
-
-/* QUIZ */
-
-const questions = [
-    {
-        question: "Czy warto zrobić pierwszy krok?",
-        answers: ["Tak, odważnie!", "Może kiedyś...", "Wolę poczekać"]
-    },
-    {
-        question: "Czy wierzysz w miłość od pierwszego wejrzenia?",
-        answers: ["Tak!", "Nie wiem", "Raczej nie"]
-    },
-    {
-        question: "Co najbardziej cenisz w drugiej osobie?",
-        answers: ["Poczucie humoru", "Szczerość", "Czułość"]
-    },
-    {
-        question: "Jak reagujesz na komplement?",
-        answers: ["Uśmiecham się", "Rumienię się", "Nie wiem, co powiedzieć"]
-    },
-    {
-        question: "Czy zdarza Ci się myśleć o kimś przed snem?",
-        answers: ["Często!", "Czasami", "Rzadko"]
-    },
-    {
-        question: "Co jest ważniejsze?",
-        answers: ["Zaufanie", "Wspólne zainteresowania", "Dobra komunikacja"]
-    },
-    {
-        question: "Czy lubisz romantyczne niespodzianki?",
-        answers: ["Uwielbiam!", "Zależy jakie", "Wolę spokój"]
-    },
-    {
-        question: "Gotowy na odkrycie swojego wyniku?",
-        answers: ["Tak!", "Jeszcze chwilę", "Dawaj wynik!"]
-    }
-];
-
-let currentQuestion = 0;
-let chosenAnswers = [];
-let quizFinished = false;
-
-const quizProgress = document.getElementById("quizProgress");
-const quizQuestion = document.getElementById("quizQuestion");
-const quizAnswers = document.getElementById("quizAnswers");
-const quizMessage = document.getElementById("quizMessage");
-const previousQuestion = document.getElementById("previousQuestion");
-const nextQuestion = document.getElementById("nextQuestion");
-
-function renderProgress() {
-    quizProgress.innerHTML = "";
-
-    questions.forEach((question, index) => {
-        const number = document.createElement("div");
-
-        number.className = "progress-number";
-        number.textContent = index + 1;
-
-        if (index === currentQuestion) {
-            number.classList.add("active");
-        }
-
-        if (chosenAnswers[index] !== undefined) {
-            number.classList.add("done");
-        }
-
-        quizProgress.appendChild(number);
-    });
-}
-
-function renderQuiz() {
-    const q = questions[currentQuestion];
-
-    quizFinished = false;
-    quizQuestion.textContent = q.question;
-    quizAnswers.innerHTML = "";
-    quizMessage.textContent = "";
-
-    q.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-
-        button.className = "quiz-answer";
-        button.textContent = answer;
-
-        if (chosenAnswers[currentQuestion] === index) {
-            button.classList.add("selected");
-        }
-
-        button.addEventListener("click", () => {
-            chosenAnswers[currentQuestion] = index;
-            renderQuiz();
-        });
-
-        quizAnswers.appendChild(button);
-    });
-
-    previousQuestion.disabled = currentQuestion === 0;
-
-    nextQuestion.textContent =
-        currentQuestion === questions.length - 1
-        ? "Zobacz wynik ♥"
-        : "Dalej →";
-
-    renderProgress();
-}
-
-previousQuestion.addEventListener("click", () => {
-    if (!quizFinished && currentQuestion > 0) {
-        currentQuestion--;
-        renderQuiz();
-    }
-});
-
-nextQuestion.addEventListener("click", () => {
-
-    if (quizFinished) {
-        currentQuestion = 0;
-        chosenAnswers = [];
-        renderQuiz();
-        return;
-    }
-
-    if (chosenAnswers[currentQuestion] === undefined) {
-        quizMessage.textContent = "Najpierw wybierz odpowiedź 🖤";
-        return;
-    }
-
-    if (currentQuestion < questions.length - 1) {
-        currentQuestion++;
-        renderQuiz();
-        return;
-    }
-
-    showQuizResult();
-});
-
-
-function showQuizResult() {
-    quizFinished = true;
-
-    quizQuestion.textContent = "Twój wynik 🖤";
-    quizAnswers.innerHTML = "";
-    quizProgress.innerHTML = "";
-
-    const points = [0, 0, 0, 0, 0, 0];
-
-    chosenAnswers.forEach((answer, index) => {
-        if (answer === undefined) return;
-
-        const profile = (answer * 2 + index) % 6;
-        points[profile]++;
-    });
-
-    const maxPoints = Math.max(...points);
-    const winners = points
-        .map((value, index) => value === maxPoints ? index : -1)
-        .filter(index => index !== -1);
-
-    const winner = winners.includes(
-        (chosenAnswers[chosenAnswers.length - 1] + 3) % 6
-    )
-        ? (chosenAnswers[chosenAnswers.length - 1] + 3) % 6
-        : winners[0];
-
-    const results = [
-        {
-            title: "Niepoprawny romantyk 🩷",
-            text: "Kiedy ktoś wpadnie Ci w oko, trudno przejść obok tego obojętnie. Potrafisz długo wracać myślami do małych momentów i wyobrażać sobie, co mogłoby się wydarzyć. Daj sobie przestrzeń na marzenia, ale pamiętaj też o tym, co dzieje się tu i teraz."
-        },
-        {
-            title: "Cichy marzyciel 🌙",
-            text: "Nie zawsze pokazujesz wszystko, co czujesz. Czasem wolisz najpierw przyjrzeć się sytuacji i poukładać myśli, zanim zrobisz kolejny krok. Nie musisz się spieszyć. Nawet małe gesty mogą być początkiem czegoś fajnego."
-        },
-        {
-            title: "Serce na dłoni 💌",
-            text: "Bliskość, szczerość i dobre relacje mają dla Ciebie znaczenie. Chcesz, żeby uczucia były czymś prawdziwym, a nie tylko domysłami. Pamiętaj, że nie musisz mieć wszystkich odpowiedzi od razu, a Twoje tempo jest w porządku."
-        },
-        {
-            title: "Poszukiwacz przygód ⚡",
-            text: "Lubisz dreszczyk emocji i nie bojesz się wyzwań. Kiedy ktoś Ci się podoba, najchętniej od razu przeszedłeśby do działania. Masz w sobie mnóstwo energii i sprawiasz, że wokół Ciebie nigdy nie jest nudno!"
-        },
-        {
-            title: "Pragmatyczny realista 🧭",
-            text: "Podchodzisz do spraw sercowych z chłodną głową i rozsądkiem. Zanim zaangażujesz się na sto procent, wolisz dobrze poznać drugą osobę i upewnić się, że to ma sens. Twoje podejście chroni Cię przed zranieniem."
-        },
-        {
-            title: "Tajemniczy obserwator 🗝️",
-            text: "Twoje myśli i emocje to pilnie strzeżona tajemnica. Nie lubisz odsłaniać kart zbyt szybko i wolisz dyskretnie obserwować otoczenie. Ci, którzy zdołają Cię lepiej poznać, odkrywają jednak niezwykle lojalną i wrażliwą duszę."
-        }
-    ];
-
-    const result = results[winner];
-
-    const title = document.createElement("h3");
-    title.textContent = result.title;
-    title.style.textAlign = "center";
-    title.style.fontFamily = '"Nunito", Arial, sans-serif';
-    title.style.fontWeight = "normal";
-    title.style.fontSize = "25px";
-
-    const description = document.createElement("p");
-    description.textContent = result.text;
-    description.style.textAlign = "center";
-    description.style.lineHeight = "1.8";
-
-    quizAnswers.appendChild(title);
-    quizAnswers.appendChild(description);
-
-    previousQuestion.disabled = true;
-    nextQuestion.textContent = "Spróbuj ponownie ↻";
-    quizMessage.textContent = "Twój wynik to jedna z wielu odsłon Twojego podejścia do uczuć 🖤";
-}
-
-renderQuiz();
-
-/* ANIMACJA PISANIA TEKSTU W CYTACIE */
-
-const quoteTextElement = document.querySelector(".daily-quote-text");
-
-if (quoteTextElement && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const text = quoteTextElement.textContent.trim();
-    quoteTextElement.textContent = "";
-
-    let index = 0;
-
-    const cursor = document.createElement("span");
-    cursor.setAttribute("aria-hidden", "true");
-    cursor.style.display = "inline-block";
-    cursor.style.height = "1em";
-    cursor.style.borderRight = "3px solid white";
-    cursor.style.marginLeft = "3px";
-
-    quoteTextElement.appendChild(cursor);
-
-    const typing = setInterval(() => {
-        cursor.insertAdjacentText("beforebegin", text.charAt(index));
-        index++;
-
-        if (index >= text.length) {
-            clearInterval(typing);
-            cursor.style.borderRight = "none";
-        }
-    }, 50);
-}
-
-</script>
-
-<!-- Cloudflare Web Analytics -->
-<script
-    type="module"
-    src="https://static.cloudflareinsights.com/beacon.min.js"
-    data-cf-beacon='{"token": "ef70a6092c7d4d90acfa6f2d528404ff"}'>
-</script>
-<!-- End Cloudflare Web Analytics -->
 
 </body>
 </html>
