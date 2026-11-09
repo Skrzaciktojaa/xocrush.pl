@@ -45,13 +45,14 @@ body::before {
     background: rgba(8, 5, 10, 0.7);
 }
 
-/* CZYSTA NAWIGACJA BEZ TŁA I BEZ EMOTEK */
+/* CZYSTA NAWIGACJA BEZ TŁA Z SUBTELNĄ KRESKĄ */
 
 .site-nav-container {
     position: relative;
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 24px 20px 10px;
     background: transparent;
     z-index: 20;
@@ -63,6 +64,17 @@ body::before {
     justify-content: center;
     gap: 24px;
     align-items: center;
+}
+
+/* Subtelna, krótka linia pod menu */
+.site-nav-container::after {
+    content: "";
+    display: block;
+    width: 180px;
+    height: 1px;
+    margin-top: 14px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
 }
 
 .site-nav a {
@@ -237,6 +249,7 @@ main {
 <div class="site-nav-container">
     <nav class="site-nav" aria-label="Nawigacja strony">
         <a href="aboutweb.html">O stronie</a>
+        <a href="qa.html">Q&A</a>
     </nav>
 </div>
 
