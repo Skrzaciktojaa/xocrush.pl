@@ -45,7 +45,7 @@ body::before {
     background: rgba(8, 5, 10, 0.7);
 }
 
-/* NAWIGACJA WYŚRODKOWANA BEZ BLURA */
+/* NAWIGACJA Z KAPITALKAMI */
 
 .site-nav-container {
     position: relative;
@@ -62,7 +62,7 @@ body::before {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 22px;
+    gap: 24px;
     align-items: center;
 }
 
@@ -83,10 +83,12 @@ body::before {
     text-decoration: none;
     background: transparent;
     border: none;
-    padding: 4px 8px;
+    padding: 4px 6px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     font-family: "Nunito", Arial, sans-serif;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
     transition: color 0.2s ease, transform 0.2s ease;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
@@ -97,13 +99,13 @@ body::before {
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* PRZYCISK HOMOFOBII Z LEKKIM PODŚWIETLENIEM TEKSTU */
+/* PRZYCISK HOMOFOBII W KAPITALKACH */
 
 .site-nav a[href="antyhomophobia.html"] {
     background: linear-gradient(110deg, #ff6b9d, #ffb86c, #8cffb0, #78d8ff, #c5a3ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .site-nav a[href="antyhomophobia.html"]:hover {
@@ -174,29 +176,29 @@ main {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* PROSTY PRZYCISK */
+/* CZYSTY TEKSTOWY PRZYCISK BEZ RAMKI I BLURA */
 
 .cta-button {
     display: inline-block;
-    padding: 10px 24px;
-    color: #ffffff;
+    padding: 6px 12px;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    background: transparent;
+    border: none;
     font-family: "Nunito", Arial, sans-serif;
     font-size: 14px;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    font-weight: 700;
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .cta-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
     transform: translateY(-1px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* STOPKA BEZ BLURA */
+/* STOPKA */
 
 .site-footer {
     text-align: center;
@@ -227,7 +229,7 @@ main {
     }
 
     .site-nav {
-        gap: 14px;
+        gap: 16px;
     }
 
     .site-nav a {
