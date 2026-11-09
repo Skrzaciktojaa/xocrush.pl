@@ -30,7 +30,6 @@ body {
     min-height: 100vh;
     font-family: "Nunito", Arial, sans-serif;
     color: #ffffff;
-    /* Lekko przyciemnione tło */
     background: #0d080e url("images/poprostu.png") center center / cover fixed no-repeat;
     position: relative;
     display: flex;
@@ -43,28 +42,41 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    /* Mocniejsze przyciemnienie dla lepszego kontrastu */
     background: rgba(8, 5, 10, 0.7);
 }
 
-/* NAWIGACJA WYŚRODKOWANA Z PODŚWIETLANĄ LINIĄ */
+/* NAWIGACJA WYŚRODKOWANA Z SUBTELNĄ KRÓTSZĄ LINIĄ */
 
-.site-nav {
+.site-nav-container {
     position: relative;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 20px 16px;
+    background: rgba(12, 8, 14, 0.4);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 20;
+}
+
+.site-nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 22px;
     align-items: center;
-    padding: 24px 20px 18px;
-    /* Lekko podświetlana linia pod menu */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.08) inset;
-    background: rgba(12, 8, 14, 0.4);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    z-index: 20;
+}
+
+/* Subtelna, krótka linia pod menu */
+.site-nav-container::after {
+    content: "";
+    display: block;
+    width: 180px;
+    height: 1px;
+    margin-top: 14px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
 }
 
 .site-nav a {
@@ -214,9 +226,12 @@ main {
         background-attachment: scroll;
     }
 
+    .site-nav-container {
+        padding: 18px 10px 14px;
+    }
+
     .site-nav {
         gap: 14px;
-        padding: 18px 10px 14px;
     }
 
     .site-nav a {
@@ -246,11 +261,13 @@ main {
 
 <body>
 
-<nav class="site-nav" aria-label="Nawigacja strony">
-    <a href="aboutweb.html">O stronie 📃</a>
-    <a href="qa.html">Q&A 💌</a>
-    <a href="antyhomophobia.html">Homofobia i akceptacja 🤍</a>
-</nav>
+<div class="site-nav-container">
+    <nav class="site-nav" aria-label="Nawigacja strony">
+        <a href="aboutweb.html">O stronie 📃</a>
+        <a href="qa.html">Q&A 💌</a>
+        <a href="antyhomophobia.html">Homofobia i akceptacja 🤍</a>
+    </nav>
+</div>
 
 <main>
 
