@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/images/calus.png">
+    <title>Wyczerpanie i wyjazd — XOCrush.pl</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slateDark: '#0b0f17',       // Głęboka, ciemna szarość tła
+                        slateCard: '#151d2a',       // Szara karta
+                        slateBorder: '#27354a',     // Szara ramka
+                        slateAccent: '#334155',     // Akcentowy szary
+                        pureWhite: '#ffffff',       // Czysta biel
+                        silverDust: '#e2e8f0',      // Jasny srebrny tekst
+                    },
+                    fontFamily: {
+                        sans: ['"Montserrat"', 'sans-serif'],
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Dark Monochrome Charcoal Background with Radial Glows */
+        body {
+            background-color: #0b0f17;
+            background-image: 
+                radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 10% 85%, rgba(148, 163, 184, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(203, 213, 225, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        /* Subtle Monochrome Grid Overlay */
+        .bg-grunge-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Typography Glowing Effect (White Glow) */
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27354a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Dialogue styling */
+        .dialogue-line {
+            border-left: 2px solid rgba(255, 255, 255, 0.6);
+            padding-left: 1rem;
+            margin-top: 0.75rem;
+            margin-bottom: 0.75rem;
+            color: #ffffff;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body class="text-gray-200 font-sans min-h-screen flex flex-col bg-grunge-grid selection:bg-white selection:text-black relative">
+
+    <!-- Top Navigation Bar -->
+    <header class="w-full py-6 px-4 z-40">
+        <div class="max-w-4xl mx-auto flex justify-center items-center">
+            <nav class="flex items-center gap-6 bg-black/40 px-6 py-2 rounded-full backdrop-blur-md border border-slateBorder/50">
+                <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
+                    Strona główna
+                </a>
+                <span class="text-slateBorder">•</span>
+                <a href="stories.html" class="text-sm font-medium text-white hover:text-gray-300 transition-colors duration-200">
+                    Historyjki
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Header Section with Large Centered Logo -->
+    <section class="pt-2 pb-6 px-4 text-center">
+        <div class="max-w-4xl mx-auto flex flex-col items-center">
+            <a href="index.html" class="inline-block transition-transform duration-300 hover:scale-105">
+                <img 
+                    src="images/logoo.png" 
+                    alt="XOCrush.pl Logo" 
+                    class="h-28 md:h-36 object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]"
+                    onerror="this.onerror=null; this.src='https://placehold.co/400x120/0b0f17/FFFFFF?text=XOCrush.pl';"
+                >
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Story Content Container -->
+    <main class="flex-1 max-w-3xl w-full mx-auto px-4 pb-16">
+        
+        <!-- Story Container -->
+        <article class="p-4 md:p-6 space-y-8 relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-60 h-60 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Story Header Info -->
+            <header class="border-b border-slateBorder/80 pb-8 space-y-4 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slateAccent/40 border border-slateBorder text-white text-xs tracking-widest uppercase">
+                    <i data-lucide="heart" class="w-3.5 h-3.5 text-white"></i> Rozdział 2 • Simon & Heniek
+                </div>
+                
+                <h1 class="text-3xl md:text-5xl font-serif font-bold text-white tracking-tight leading-tight text-glow">
+                    Wyczerpanie i wyjazd
+                </h1>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-400 pt-2 font-light">
+                    <span class="flex items-center gap-1.5"><i data-lucide="user" class="w-3.5 h-3.5 text-white"></i> Autor: xocrush.pl</span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="calendar" class="w-3.5 h-3.5 text-white"></i> Opublikowano 9.11.26r.</span>
+                    <span>•</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-white"></i> Szacowany czas czytania: 10-15 min</span>
+                </div>
+            </header>
+
+            <!-- Text Control Panel -->
+            <div class="flex justify-end items-center gap-2 pt-1 text-xs text-gray-400">
+                <span class="mr-1">Rozmiar tekstu:</span>
+                <button onclick="changeFontSize(-1)" class="w-7 h-7 rounded-lg bg-slateDark border border-slateBorder hover:border-white text-white flex items-center justify-center transition-colors">A-</button>
+                <button onclick="changeFontSize(1)" class="w-7 h-7 rounded-lg bg-slateDark border border-slateBorder hover:border-white text-white flex items-center justify-center transition-colors">A+</button>
+            </div>
+
+            <!-- Story Text Body -->
+            <div id="story-body" class="font-serif text-white text-lg md:text-xl leading-relaxed space-y-6 transition-all duration-200">
+                
+                <p>
+                    Simon wyprowadza się. Do wujka. Przyczyną jego nagłej przeprowadzki była nieprzyjemna sytuacja i ciągnące się za tym gnębienie chłopaka ze względu na jego orientację. Korespondencja między nim i jego koleżanką została przeczytana przez rodziców. Simon i Stella – to właśnie z nią pisał – pisali o swoich przemyśleniach. Zadawali sobie różne pytania, w tym intymne... Wysłali sobie różnorakie screeny wiadomości, bez wiedzy i myśli, że ktoś by to przeczytał. Gdy wszyscy dowiedzieli się o korespondencji ich dwojga, świat zapadał się dla nich obojga, lecz to Simon był gnębiony i przytłaczany codzienną atmosferą w szkole.
+                </p>
+
+                <p>
+                    Z dnia na dzień pogarszał się jego apetyt, jak i samopoczucie. Jego rodzice początkowo byli zdezorientowani tym, co się stało, lecz z czasem zaakceptowali sprawę taką, jaka jest. Udali się z Simonem do poradni. Terapeuta jednoznacznie po rozmowie oświadczył, że jedynym ratunkiem jest wyjazd za granicę. Początkowo rodzice byli sceptyczni i szukali alternatyw, lecz sami wiedzieli, że czas działa na niekorzyść ich i chłopaka.
+                </p>
+
+                <p>
+                    Simon na początku, jeszcze przed nieprzyjemną sytuacją, próbował być pogodny i pomocny. Umiał być czasem marudny lub złośliwy, ale przechodząc przez ten zły dla niego czas, jego siła i energia przeminęła. Zachowanie się obniżyło. Aktywność na lekcji spadła. Jego średnia poleciała w dół. Rodzice wielokrotnie stawiali się w szkole, by spróbować poprawić środowisko w klasie, lecz mimo starań nauczycieli nie było widać poprawy.
+                </p>
+
+                <p>
+                    Simon miał subtelne rysy twarzy, choć sam tego nie dostrzegał. Jego niebieskie oczy były niczym ocean, a wokół nich opadały delikatne, brązowe włosy. Choć był chudy, natura obdarzyła go dość wysokim wzrostem – uważał jednak, że wiązanie autorytetu z byciem większym od innych to nic innego, jak tylko obłudny stereotyp.
+                </p>
+
+                <p>
+                    Wracając, rodzice rozmyślali nad Kanadą i na niej stanęli, ponieważ chłopak miał kanadyjskie obywatelstwo i rodzinę w tamtejszych okolicach. Ostatnimi krokami zostało zorganizowanie wszystkiego. Tata zadzwonił do wujka Henryka z prośbą, czy Simon mógłby zostać na jakiś czas z nimi. Zgodził się i powiedział, że postara się przylecieć do Polski jak najszybciej tylko może. Wujek Henryk był od dawien dawna pomocny. Zadeklarował, że chce przylecieć, ponieważ chce oprowadzić Simona po mieście – Vancouverze.
+                </p>
+
+                <p>
+                    Rodzice byli przez ten czas również zdruzgotani, lecz wiedzieli, że to w połowie ich wina. Tata wyjął największą walizkę z piwnicy i jedną mniejszą. Simon nie miał zbytnio dużo ubrań, więc taka ilość bagaży wystarczy. Tego samego dnia zaczął się pakować. Zaczął od bielizny do bluz. Nie brał wszystkich ubrań, ponieważ jego mama powiedziała, że kupi sobie resztę już na miejscu.
+                </p>
+
+                <p>
+                    Simon przez ten czas organizacji czuł się przytłoczony i wyczerpany. Nie miał siły nawet na zrobienie sobie kanapki. Przez sytuację w szkole dopadła go depresja i był bliski anoreksji, lecz rodzice chociaż zdążyli zareagować jeszcze przed. Nie wiedział, czego może się spodziewać w nowej szkole, w nowym mieście i nowym domu. Mama pomogła mu się spakować, ponieważ chłopak z czasem nie wiedział, co jeszcze wziąć. Rodzice wypisali Simona ze szkoły jeszcze tego samego dnia.
+                </p>
+
+                <p>
+                    Chłopak był już na tyle wyczerpany tym dniem, że położył się o 20:00 i nakrył ciepłą kołdrą. Nie chciał myśleć nawet o dniu jutrzejszym. Gdy mama chciała zobaczyć, co robi Simon, zauważyła, że śpi. Zgasiła światło i przytuliła go lekko, przy czym go nie obudziła. Jak już wyszła z pokoju, spytała się taty:
+                </p>
+
+                <div class="dialogue-line">— Adam, a kiedy przyleci Heniek?</div>
+                <div class="dialogue-line">— Mówił, że jutro przyleci, bo był w Berlinie załatwić jakieś sprawy i tego samego dnia weźmie Simona ze sobą – powiedział, przecierając oczy ze zmęczenia.</div>
+                <div class="dialogue-line">— Dobra... to tylko jeszcze szybko pojadę do sklepu kupić mu coś na drogę, bo na lotnisko będzie jechał z godzinę – rzekła, biorąc pęk kluczy.</div>
+                <div class="dialogue-line">— A to przy okazji weź mi tylko maszynkę do golenia – dodał.</div>
+                <div class="dialogue-line">— Dobra, paa – odpowiedziała.</div>
+                <div class="dialogue-line">— Paa kochanie – dorzucił.</div>
+
+                <p>
+                    Tata za ten czas wyjął plecak ze strychu i spakował dokumenty Simona i potrzebne mu akcesoria. Nie dawali gotówki, ponieważ zdecydowali, że przelew byłby lepszym rozwiązaniem. Poza tym wujek sam powiedział, żeby nie martwić się o pieniądze.
+                </p>
+
+                <p>
+                    Mama wróciła po 30 minutach z dwiema siatkami. Wyjęła na blat czekoladę, batony zbożowe i ulubione krakersy Simona. Spakowała starannie do plecaka z dbałością. Starali się nie pakować zbyt wielu rzeczy, ponieważ wiedzieli, że Simon i tak nie zje wszystkiego, ale na pokładzie będzie miał zapewnione posiłki.
+                </p>
+
+                <p>
+                    Simon i Stella byli przyjaciółmi, mogło się zdawać, że nic ich nie rozłączy, lecz nikt nie przewidział takiego przewrotu. Stella w szkole stała się neutralna dla Simona, ponieważ nie chciała pogarszać swojego, jak i jego stanu. Nie wiedziała, że tym pogłębiła samotność chłopaka. Nie miał z kim rozmawiać i siedział na podłodze w szkole na każdej przerwie. Stella również była na początku nękana po wycieku ich rozmów, ale po tygodniu ucichło. Simonem za to gardzono przez resztę czasu. Dostawał na WF-ie piłką jako pierwszy, nie było to lekkie uderzenie, tylko takie z impetem. Ostatecznie rodzice poszli z nim do odpowiedniego lekarza, który zdecydował, że zwolnienie z zajęć WF będzie najlepszym rozwiązaniem. Przyniosło to taki efekt, że samopoczucie Simona lekko wzdrygnęło w górę.
+                </p>
+
+                <p>
+                    Minęła noc. Simon wstał jako pierwszy, ponieważ nie czuł się dobrze w łóżku. Zszedł schodami do kuchni, zrobił se płatki z mlekiem. Gdy jadł, spojrzał na gotowe walizki i plecak obok nich. Westchnął i kontynuował jedzenie. Jak już zamierzał wstać z krzesła, chcąc zanieść miskę, trafił na ostry kąt progu, przez co miska i on polecieli na podłogę. Szybko się pozbierał z podłogi i gdy już kończył sprzątać, zauważył mamę, która schodzi schodami zobaczyć, co się stało.
+                </p>
+
+                <div class="dialogue-line">— Hejj Simon, co się stało? – pyta zaniepokojona, przesuwając rękę po barierce.</div>
+                <div class="dialogue-line">— Nic… chciałem zanieść miskę, ale uderzyłem o róg… niezdara ze mnie – odpowiada spokojnie, siadając na krześle.</div>
+                <div class="dialogue-line">— Aaaa tam, nie ma się co przejmować. Ważne, że nic Ci się nie stało – rzekła.</div>
+                <div class="dialogue-line">— Tak… – powiedział.</div>
+
+                <p>
+                    Gdy mama poszła się przebrać, zadzwonił dzwonek. Mama poprosiła Simona, by zobaczył kto to, ponieważ ona teraz nie da rady. Chłopak poszedł i ku jego zaskoczeniu w drzwiach stał wujek.
+                </p>
+
+                <div class="dialogue-line">— Simon! Jak dawno Cię nie widziałem, co tam u Ciebie? – przywitał się miło wujek.</div>
+                <div class="dialogue-line">— Dobrze wujku… – wyszeptał Simon, przesuwając palcami po policzku.</div>
+                <div class="dialogue-line">— No dobrze… A gdzie rodzice? – spytał, wchodząc do środka.</div>
+                <div class="dialogue-line">— Mama poszła się przebrać, a tata jeszcze śpi… – odpowiedział, zamykając drzwi.</div>
+
+                <p>
+                    Mama schodzi i wita się.
+                </p>
+
+                <div class="dialogue-line">— Heniek! Jak ja Cię dawno nie widziałam… Co tam u Ciebie? – spytała pogodnie.</div>
+                <div class="dialogue-line">— A całkiem… a Simon… coś lepiej z nim? – wyszeptał.</div>
+                <div class="dialogue-line">— Staramy się z Adamem, ale terapeuta powiedział, że inne środowisko mu pomoże… – powiedziała szeptem.</div>
+                <div class="dialogue-line">— Postaram się mu tam odnaleźć i postaram się go gdzieś co jakiś czas wyciągać… – powiedział z nadzieją.</div>
+                <div class="dialogue-line">— Dobra, jeszcze do wylotu macie ponad 10 godzin. Zjesz coś? – spytała, przechodząc do kuchni.</div>
+                <div class="dialogue-line">— Chętnie! – oznajmił, przechodząc do kuchni.</div>
+                <div class="dialogue-line">— Natalko, a jeszcze takie pytanie… nie wiem dużo o tym za bardzo, co się stało. Adam mi tylko skrócił. Opowiesz mi to jakoś? – powiedział spokojnym tonem.</div>
+                <div class="dialogue-line">— Wiesz Heniek, jakie są realia w Polsce… też trudno przyznać, ale to my też zawiniliśmy, lecz zdążyliśmy zareagować przed następną nieprzyjemną sytuacją… Simon czasem jest pogodny lub marudny jak dawniej… hah… lecz coraz rzadziej, ale wiemy chociaż, że nie straciliśmy dawnego jego… A ty jak w tej Kanadzie? – zapytała.</div>
+                <div class="dialogue-line">— A… rozumiem, ale w Kanadzie może wróci do siebie… A u mnie? Heh… Jak tylko zadzwoniłem do Alice z informacją o Simonie, to od razu postawiła cały dom na nogi. Od wczoraj szykuje mu pokój i dopina wszystko na ostatni guzik – powiedział.</div>
+                <div class="dialogue-line">— Myślę, że też dzięki Вам mu się może polepszyć… – rzekła, podając talerz z jajecznicą Heńkowi.</div>
+                <div class="dialogue-line">— Eee tam, każdy popełnił kiedyś jakiś błąd… robicie przecież wszystko, by mu pomóc – powiedział otulającym głosem.</div>
+                <div class="dialogue-line">— No tak… – Natalka westchnęła, odstawiając szklankę na stół.</div>
+
+                <p>
+                    Po schodach zszedł ziewający Adam w piżamie.
+                </p>
+
+                <div class="dialogue-line">— Ooo… a kto to idzie! – powiedział entuzjastycznie Heniek.</div>
+                <div class="dialogue-line">— Hej… Heniek, co tam? – odpowiedział Adam, ziewając przy tym.</div>
+                <div class="dialogue-line">— Całkiem, a u Ciebie? – spytał.</div>
+                <div class="dialogue-line">— Wiesz… chyba Natalia Ci streściła…</div>
+                <div class="dialogue-line">— A no tak…</div>
+                <div class="dialogue-line">— Dobra, idę się przebrać i zaraz do Was wrócę.</div>
+
+                <p>
+                    Przez ten cały czas Simon siedział przed komputerem. Grał w symulator marketu i słuchał muzyki. Jedyne, co go podtrzymywało jeszcze przy zdrowych zmysłach, to muzyka. Nie rozstaje się nigdy ze swoimi słuchawkami i telefonem. W ten sposób zagłuszał czasem kłótnie rodziców, ale rodzice po dowiedzeniu się o sytuacji Simona zdecydowali, że kłótnie mogą jeszcze bardziej pogorszyć stan chłopaka. Zamiast konfliktów woleli się przeprosić i starać się nie powtarzać takich kłótni dla dobra syna i samych ich.
+                </p>
+
+                <p>
+                    Gdy Simon postanowił zmienić grę, do jego pokoju wszedł tata.
+                </p>
+
+                <div class="dialogue-line">— Hej, zjadłbyś coś?</div>
+                <div class="dialogue-line">— Nie… jadłem już płatki z mlekiem.</div>
+                <div class="dialogue-line">— Och… dobra, jakbyś coś potrzebował, to tylko zejdź do nas na dół.</div>
+                <div class="dialogue-line">— Dobrze, dzięki.</div>
+
+                <p>
+                    Simon zdecydował, że zejdzie na dół coś przegryźć, bo padał z sił.
+                </p>
+
+            </div>
+
+            <!-- Story Footer -->
+            <footer class="border-t border-slateBorder/80 pt-8 mt-12 flex flex-col md:flex-row items-center justify-between gap-4">
+                <a href="stories.html" class="inline-flex items-center gap-2 text-xs font-semibold text-gray-400 hover:text-white transition-colors">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i> Powrót do historii
+                </a>
+                
+                <div class="flex items-center gap-3">
+                    <button onclick="copyCurrentUrl()" class="px-4 py-2 rounded-xl bg-slateDark border border-slateBorder hover:border-white text-xs text-gray-300 transition-all flex items-center gap-1.5">
+                        <i data-lucide="share-2" class="w-3.5 h-3.5 text-white"></i> Udostępnij
+                    </button>
+                </div>
+            </footer>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slateBorder py-6 text-center text-xs text-gray-500 bg-black/40">
+        <p>© 2026 XOCrush.pl — Wszystkie prawa zastrzeżone. 🖤</p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            lucide.createIcons();
+        });
+
+        let currentFontSize = 19; // Default size in px
+
+        function changeFontSize(delta) {
+            currentFontSize = Math.max(15, Math.min(26, currentFontSize + delta));
+            const storyBody = document.getElementById('story-body');
+            storyBody.style.fontSize = `${currentFontSize}px`;
+        }
+
+        function copyCurrentUrl() {
+            const input = document.createElement('input');
+            input.value = window.location.href;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            
+            // Toast notification
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 right-6 bg-slateAccent border border-white text-white px-4 py-2 rounded-xl text-xs font-medium shadow-xl z-50 transition-opacity duration-300';
+            toast.innerText = 'Link skopiowany do schowka! 🖤';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
