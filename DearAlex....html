@@ -9,10 +9,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Definicja lokalnej czcionki Nunito -->
+    <style>
+        @font-face {
+            font-family: 'Nunito';
+            src: url('fonts/Nunito-Variable.woff2') format('woff2');
+            font-weight: 200 900;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
 
     <script>
         tailwind.config = {
@@ -28,7 +35,7 @@
                     },
                     fontFamily: {
                         sans: ['"Montserrat"', 'sans-serif'],
-                        serif: ['"Cormorant Garamond"', 'serif'],
+                        serif: ['"Nunito"', 'sans-serif'], // Tutaj podpięta Twoja lokalna czcionka Nunito
                     }
                 }
             }
@@ -234,7 +241,7 @@
                 <div class="dialogue-line">— Natalko, a jeszcze takie pytanie… nie wiem dużo o tym za bardzo, co się stało. Adam mi tylko skrócił. Opowiesz mi to jakoś? – powiedział spokojnym tonem.</div>
                 <div class="dialogue-line">— Wiesz Heniek, jakie są realia w Polsce… też trudno przyznać, ale to my też zawiniliśmy, lecz zdążyliśmy zareagować przed następną nieprzyjemną sytuacją… Simon czasem jest pogodny lub marudny jak dawniej… hah… lecz coraz rzadziej, ale wiemy chociaż, że nie straciliśmy dawnego jego… A ty jak w tej Kanadzie? – zapytała.</div>
                 <div class="dialogue-line">— A… rozumiem, ale w Kanadzie może wróci do siebie… A u mnie? Heh… Jak tylko zadzwoniłem do Alice z informacją o Simonie, to od razu postawiła cały dom na nogi. Od wczoraj szykuje mu pokój i dopina wszystko na ostatni guzik – powiedział.</div>
-                <div class="dialogue-line">— Myślę, że też dzięki Вам mu się może polepszyć… – rzekła, podając talerz z jajecznicą Heńkowi.</div>
+                <div class="dialogue-line">— Myślę, że też dzięki Wam mu się może polepszyć… – rzekła, podając talerz z jajecznicą Heńkowi.</div>
                 <div class="dialogue-line">— Eee tam, każdy popełnił kiedyś jakiś błąd… robicie przecież wszystko, by mu pomóc – powiedział otulającym głosem.</div>
                 <div class="dialogue-line">— No tak… – Natalka westchnęła, odstawiając szklankę na stół.</div>
 
