@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<script>
-    // Zmienia adres w pasku przeglądarki na /strona-glowna bez przeładowywania
-    if (window.location.pathname.endsWith('/stories.html')) {
-        const newPath = window.location.pathname.replace('/stories.html', '/Historyjki');
-        window.history.replaceState({}, '', newPath);
-    }
-</script>
+    <script>
+        // Zmienia adres w pasku przeglądarki na /Historyjki bez przeładowywania
+        if (window.location.pathname.endsWith('/stories.html')) {
+            const newPath = window.location.pathname.replace('/stories.html', '/Historyjki');
+            window.history.replaceState({}, '', newPath);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fanfiki & Stories</title>
@@ -421,9 +421,9 @@
                 <div class="dropdown-container">
                     <button class="action-btn" onclick="toggleChapters(event)">Czytaj historię ▾</button>
                     <div id="chaptersDropdown" class="chapters-dropdown-menu">
-                        <a href="DearAlex-chapter-1.html">Rozdział 1: Nowy początek</a>
-                        <a href="DearAlex-chapter-2.html">Rozdział 2: ❌</a>
-                        <a href="DearAlex-chapter-3.html">Rozdział 3: ❌</a>
+                        <a href="DearAlex/Rozdzial/1/">Rozdział 1: Nowy początek</a>
+                        <a href="DearAlex/Rozdzial/2/">Rozdział 2: ❌</a>
+                        <a href="DearAlex/Rozdzial/3/">Rozdział 3: ❌</a>
                     </div>
                 </div>
             </div>
