@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <script>
+        // Zmienia adres w pasku przeglądarki bez przeładowywania
+        if (window.location.pathname.endsWith('/DearAlex-chapter-1.html')) {
+            const newPath = window.location.pathname.replace('/DearAlex-chapter-1.html', '/DearAlex/Rozdzial/1');
+            window.history.replaceState({}, '', newPath);
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/images/calus.png">
