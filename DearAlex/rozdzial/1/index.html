@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<script>
-    // Zmienia adres w pasku przeglądarki na /strona-glowna bez przeładowywania
-    if (window.location.pathname.endsWith('/DearAlex-chapter-1.html')) {
-        const newPath = window.location.pathname.replace('/DearAlex-chapter-1.html', '/DearAlex/Rozdzial/1');
-        window.history.replaceState({}, '', newPath);
-    }
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/calus.png">
+    <link rel="icon" type="image/png" href="../../../images/calus.png">
     <title>Dear Alex... — XOCrush.pl</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +14,7 @@
     <style>
         @font-face {
             font-family: 'Nunito';
-            src: url('fonts/Nunito-Variable.woff2') format('woff2');
+            src: url('../../../fonts/Nunito-Variable.woff2') format('woff2');
             font-weight: 200 900;
             font-style: normal;
             font-display: swap;
@@ -53,7 +46,7 @@
         /* Przyciemnione tło z pliku poprostu.png z nakładką ciemnego filtru */
         body {
             background-color: #0b0f17;
-            background-image: linear-gradient(rgba(11, 15, 23, 0.75), rgba(11, 15, 23, 0.85)), url('images/poprostu.png');
+            background-image: linear-gradient(rgba(11, 15, 23, 0.75), rgba(11, 15, 23, 0.85)), url('../../../images/poprostu.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -97,11 +90,11 @@
     <header class="w-full py-6 px-4 z-40">
         <div class="max-w-4xl mx-auto flex justify-center items-center">
             <nav class="flex items-center gap-6 bg-black/50 px-6 py-2 rounded-full backdrop-blur-md border border-slateBorder/50">
-                <a href="index.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
+                <a href="../../../index.html" class="text-sm font-medium text-gray-300 hover:text-white transition-colors duration-200">
                     Strona główna
                 </a>
                 <span class="text-slateBorder">•</span>
-                <a href="stories.html" class="text-sm font-medium text-white hover:text-gray-300 transition-colors duration-200">
+                <a href="../../../stories.html" class="text-sm font-medium text-white hover:text-gray-300 transition-colors duration-200">
                     Historyjki
                 </a>
             </nav>
@@ -111,9 +104,9 @@
     <!-- Header Section with Large Centered Logo -->
     <section class="pt-2 pb-6 px-4 text-center">
         <div class="max-w-4xl mx-auto flex flex-col items-center">
-            <a href="index.html" class="inline-block transition-transform duration-300 hover:scale-105">
+            <a href="../../../index.html" class="inline-block transition-transform duration-300 hover:scale-105">
                 <img 
-                    src="images/logoo.png" 
+                    src="../../../images/logoo.png" 
                     alt="XOCrush.pl Logo" 
                     class="h-28 md:h-36 object-contain drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]"
                     onerror="this.onerror=null; this.src='https://placehold.co/400x120/0b0f17/FFFFFF?text=XOCrush.pl';"
@@ -183,7 +176,7 @@
                 </p>
 
                 <p>
-                    Simon przez ten czas organizacji czuł się przytłoczony i wyczerpany. Nie miał siły nawet na zrobienie sobie kanapki. Przez sytuację w szkole dopadła go depresja i był bliski anoreksji, lecz rodzice chociaż zdążyli zareagować jeszcze przed. Nie wiedział, czego może się spodziewać w nowej szkole, w nowym mieście i nowym domu. Mama pomogła mu się spakować, ponieważ chłopak z czasem nie wiedział, co jeszcze wziąć. Rodzice wypisali Simona ze szkoły jeszcze tego samego dnia.
+                    Simon przez ten czas organizacji czuł się przytłoczony i wyczerpany. Não miał siły nawet na zrobienie sobie kanapki. Przez sytuację w szkole dopadła go depresja i był bliski anoreksji, lecz rodzice chociaż zdążyli zareagować jeszcze przed. Nie wiedział, czego może się spodziewać w nowej szkole, w nowym mieście i nowym domu. Mama pomogła mu się spakować, ponieważ chłopak z czasem nie wiedział, co jeszcze wziąć. Rodzice wypisali Simona ze szkoły jeszcze tego samego dnia.
                 </p>
 
                 <p>
@@ -276,7 +269,7 @@
 
             <!-- Story Footer -->
             <footer class="border-t border-slateBorder/80 pt-8 mt-12 flex flex-col md:flex-row items-center justify-between gap-4">
-                <a href="stories.html" class="inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-white transition-colors">
+                <a href="../../../stories.html" class="inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-white transition-colors">
                     <i data-lucide="arrow-left" class="w-4 h-4"></i> Powrót do historii
                 </a>
                 
