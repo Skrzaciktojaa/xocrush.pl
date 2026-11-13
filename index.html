@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+<script>
+    // Zmienia adres w pasku przeglądarki na /strona-glowna bez przeładowywania
+    if (window.location.pathname.endsWith('/index.html')) {
+        const newPath = window.location.pathname.replace('/index.html', '/strona-glowna');
+        window.history.replaceState({}, '', newPath);
+    }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
