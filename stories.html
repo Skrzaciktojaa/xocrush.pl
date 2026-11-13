@@ -242,6 +242,51 @@
             transform: translateY(-1px);
         }
 
+        /* STYLE DLA ROZWIJANEGO MENU ROZDZIAŁÓW */
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .chapters-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 115%;
+            left: 0;
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            min-width: 240px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.1);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            overflow: hidden;
+        }
+
+        .chapters-dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #ccc;
+            text-decoration: none;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .chapters-dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .chapters-dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding-left: 20px;
+        }
+
+        .chapters-dropdown-menu.show {
+            display: block;
+        }
+
         /* Edytor tekstu */
         .editor-textarea {
             width: 100%;
@@ -355,7 +400,7 @@
                 <a href="AfterTheBellWithNoWayOut.html" class="action-btn">Czytaj historię</a>
             </div>
 
-            <!-- DRUGA KARTA / OKIENKO -->
+            <!-- DRUGA KARTA / OKIENKO Z ROZWIJANYM MENU -->
             <div class="card">
                 <div class="story-header">
                     <div class="story-title">Dear Alex...</div>
@@ -364,7 +409,16 @@
                 <div class="story-desc">
                     Po trudnych doświadczeniach Simon wyjeżdża do Kanady, próbując zacząć wszystko od nowa. Wśród niepewności, bolesnych wspomnień i nowych znajomości pojawia się ktoś, kto może odmienić jego życie.
                 </div>
-                <a href="DearAlex....html" class="action-btn">Czytaj historię</a>
+                
+                <!-- Rozwijany przycisk rozdziałów -->
+                <div class="dropdown-container">
+                    <button class="action-btn" onclick="toggleChapters(event)">Czytaj historię ▾</button>
+                    <div id="chaptersDropdown" class="chapters-dropdown-menu">
+                        <a href="DearAlex-chapter-1.html">Rozdział 1: Nowy początek</a>
+                        <a href="DearAlex-chapter-2.html">Rozdział 2: ❌</a>
+                        <a href="DearAlex-chapter-3.html">Rozdział 3: ❌</a>
+                    </div>
+                </div>
             </div>
 
             <div class="section-title" style="margin-top: 50px;">
@@ -404,6 +458,21 @@
     </footer>
 
     <script>
+        // Obsługa menu rozdziałów
+        function toggleChapters(event) {
+            event.stopPropagation();
+            const menu = document.getElementById('chaptersDropdown');
+            menu.classList.toggle('show');
+        }
+
+        // Zamykanie menu po kliknięciu gdziekolwiek poza nim
+        window.addEventListener('click', () => {
+            const menu = document.getElementById('chaptersDropdown');
+            if (menu && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        });
+
         function updateWordCount() {
             const text = document.getElementById('storyEditor').value.trim();
             const words = text ? text.split(/\s+/).length : 0;
